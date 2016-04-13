@@ -12,7 +12,7 @@ A simple EC site by Laravel framework 5.2.
 
 ##### Checkout source code
 ```bash
-git clone git@github.com:AT-PHPIntership/simple-ec.git
+git clone git@github.com:AT-PHPIntership/phone-ec.git
 ```
 
 ##### Vagrant up
@@ -32,6 +32,16 @@ vagrant provision
 vagrant ssh
 ```
 
+##### Install vboxadd
+
+execute these commands
+
+```bash
+ yum install kernel-devel-$(uname -r) kernel-headers-$(uname -r) dkms -y
+ 
+/etc/init.d/vboxadd setup
+```
+
 ##### Create database
 Login ssh to the box, then login to mysql and create database
 
@@ -45,22 +55,15 @@ mysql> exit;
 ##### Install packages by composer
 
 ```bash
-cd ~/simple-ec
+cd ~/phone-ec
 cp .env.sample .env
 composer install
 #php artisan migrate #if needed
 ```
-##### Directory Permissions (after vagrant ssh)
-
-```bash
-cd ~/simple-ec
-sudo chmod -R 777 storage
-sudo chmod -R 777 bootstrap/cache
-```
 
 ##### Add hosts
 
-Open `/etc/hosts` file and add this line `192.168.44.12   simple-ec.me`
+Open `/etc/hosts` file and add this line `192.168.44.14   phone-ec.me`
 
 
 

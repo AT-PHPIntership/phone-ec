@@ -2,11 +2,11 @@
   sudo: yes
   vars:
 
-    project_name: simple-ec
-    server_name: simple-ec.me
+    project_name: phone-ec
+    server_name: phone-ec.me
 
-    root_dir: "/home/vagrant/simple-ec/"
-    document_root: "/home/vagrant/simple-ec/public"
+    root_dir: "/home/vagrant/phone-ec/"
+    document_root: "/home/vagrant/phone-ec/public"
 
     db_name: simple_ec
     db_user: root

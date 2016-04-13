@@ -6,16 +6,15 @@ dependencies:
     - ~/.composer/cache
   pre:
     - cp .env.sample .env
-    - gem install --no-document checkstyle_filter-git saddler saddler-reporter-github
 test:
   override:
     # phpcs report github
-    - scripts/saddler.sh
+    # - scripts/saddler.sh
     # phpcs circleci status
     - ./vendor/bin/phpcs -n --standard=phpcs.xml
     # phpmd
     - ./vendor/bin/phpmd app text phpmd.xml
     #migrate database
-    - php artisan migrate
+    # - php artisan migrate
     # phpunit
-    - ./vendor/bin/phpunit
+    # - ./vendor/bin/phpunit
