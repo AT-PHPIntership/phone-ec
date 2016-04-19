@@ -1,3 +1,3 @@
 <?php
-include 'routes/backend.php';
-include 'routes/frontend.php';
+include 'Routes/backend.php';
+include 'Routes/frontend.php';
