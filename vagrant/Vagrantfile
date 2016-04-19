@@ -4,7 +4,7 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "centos67"
   config.vm.network :private_network, ip: "192.168.44.12"
-  config.vm.synced_folder "../", "/home/vagrant/simple-ec", :create => true, :owner => "vagrant", :group => "vagrant", mount_option: ["dmode=777","fmode=666"]
+  config.vm.synced_folder "../", "/home/vagrant/phone-ec", :create => true, :owner => "vagrant", :group => "vagrant", mount_option: ["dmode=777","fmode=666"]
   config.vm.box_url = "https://github.com/CommanderK5/packer-centos-template/releases/download/0.6.7/vagrant-centos-6.7.box"
   config.vbguest.auto_update  = false if Vagrant.has_plugin?('vagrant-vbguest')
   config.vm.provision "ansible_local" do |ansible|

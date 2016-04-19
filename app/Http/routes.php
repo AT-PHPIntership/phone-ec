@@ -12,9 +12,24 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.dashboard.index');
 });
 
+Route::get('category', function () {
+    return view('frontend.dashboard.productCategory');
+});
+
+Route::get('detail', function () {
+    return view('frontend.dashboard.productDetail');
+});
+
+Route::get('account', function () {
+    return view('frontend.dashboard.account');
+});
+
+Route::get('oder-history', function () {
+    return view('frontend.dashboard.orderHistory');
+});
 /*
 |--------------------------------------------------------------------------
 | Application Routes
