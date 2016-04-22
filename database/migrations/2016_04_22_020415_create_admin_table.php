@@ -12,7 +12,7 @@ class CreateAdminTable extends Migration
      */
     public function up()
     {
-        Schema::create('admin', function (Blueprint $table) {
+        Schema::create('admin', function (Blueprint $table) { 
             $table->increments('id');
             $table->string('email')->unique();
             $table->string('password', 60);
@@ -21,7 +21,7 @@ class CreateAdminTable extends Migration
             $table->string('phone',11);
             $table->tinyInteger('active')->default(1);
             $table->rememberToken();
-            $table->timestamps();
+            $table->timestamps(); 
         });
     }
 
