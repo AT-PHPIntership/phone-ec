@@ -1,6 +1,21 @@
 <?php
 
-Route::get('route',function(){
-	return view('backend.dashboard.index');
+
+/*--------------------------------Login--------------------------------*/
+Route::group(['middleware' => ['admin'],'prefix'=>'admin'], function () {
+	Route::get('/', function(){
+		return redirect('admin/login');
+	});
+
+	Route::get('login', 'Backend\Auth\AuthController@getLogin');
+	Route::post('login', 'Backend\Auth\AuthController@postLogin');
+	
+	Route::get('logout', 'Backend\Auth\AuthController@getLogout');
+	
 });
-Route::get('users', 'Backend\UsersController@index');
+
+/*--------------------------------Auth--------------------------------*/
+Route::group(['middleware' => ['auth:admin'],'prefix'=>'admin'], function () {
+	Route::get('users', 'Backend\UsersController@index');
+	Route::get('dashboard', 'Backend\DashboardController@index');
+});
