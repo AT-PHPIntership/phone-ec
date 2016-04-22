@@ -6,13 +6,104 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\User;
+use App\Models\Backend\Users;
+use App\Http\Requests\Backend\CreateUserRequest;
 
 class UsersController extends Controller
 {
-    //
-    public function index() {
-    	$users = user::get();
-    	return view('backend.users.index', ['users' =>  $users]);
-    }	
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+            $users = Users::all();
+            return view('backend.users.index', compact('users'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('backend.users.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request request for create
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function store(CreateUserRequest $request)
+    {
+        $users = new Users;
+        $users->name = $request->name;
+        $users->email = $request->email;
+        $users->address = $request->address;
+        $users->password = bcrypt($request->password);
+        $users->phone = $request->phone;
+        $users->active = $request->active;
+        $users->save();
+        return redirect('admin/users');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param int $id id user
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param int $id id user
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $user = Users::findOrFail($id);
+        return view('backend.users.edit', compact('user'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request request for update
+     * @param int                      $id      id user
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function update($request, $id)
+    {
+        $user = Users::findOrFail($id);
+        $data = $request->all();
+        $user->update();
+        return redirect()->route('admin.users.index');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param int $id id user
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $users = Users::findOrFail($id);
+        $users->delete();
+        return redirect('admin/users');
+    }
 }

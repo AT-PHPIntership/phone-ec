@@ -16,119 +16,55 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             DataTables Advanced Tables
-                            <button type="button" class="btn btn-primary btn-sm pull-right"><i class="fa fa-plus-circle"></i> Add new user</button>
+                            <a href="{!! url('admin/users/create') !!}" class="btn btn-primary btn-sm pull-right" >
+                                <i class="fa fa-plus-circle"></i> Add new user
+                            </a>
                             <div class="clearfix"></div>
                         </div>
                         <!-- /.panel-heading -->
+                        @if (count($users) > 0 )
                         <div class="panel-body">
                             <div class="dataTable_wrapper">
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th>Rendering engine</th>
-                                            <th>Browser</th>
-                                            <th>Platform(s)</th>
-                                            <th>Engine version</th>
-                                            <th>Acction</th>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Email(s)</th>
+                                            <th>Address</th>
+                                            <th>Phone number</th>
+                                            <th>Active</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="odd gradeX">
-                                            <td>Trident</td>
-                                            <td>Internet Explorer 4.0</td>
-                                            <td>Win 95+</td>
-                                            <td class="center">4</td>
-                                            <td class="center">
-                                            <button type="button" class="btn btn-circle btn-outline btn-primary"><i class="fa fa-edit"></i></button>
-                                            <button type="button" class="btn btn-circle btn-outline btn-danger"><i class="fa fa-trash-o"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr class="even gradeC">
-                                            <td>Trident</td>
-                                            <td>Internet Explorer 5.0</td>
-                                            <td>Win 95+</td>
-                                            <td class="center">5</td>
-                                            <td class="center">
-                                            <button type="button" class="btn btn-circle btn-outline btn-primary"><i class="fa fa-edit"></i></button>
-                                            <button type="button" class="btn btn-circle btn-outline btn-danger"><i class="fa fa-trash-o"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr class="odd gradeA">
-                                            <td>Trident</td>
-                                            <td>Internet Explorer 5.5</td>
-                                            <td>Win 95+</td>
-                                            <td class="center">5.5</td>
-                                            <td class="center">
-                                            <button type="button" class="btn btn-circle btn-outline btn-primary"><i class="fa fa-edit"></i></button>
-                                            <button type="button" class="btn btn-circle btn-outline btn-danger"><i class="fa fa-trash-o"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr class="even gradeA">
-                                            <td>Trident</td>
-                                            <td>Internet Explorer 6</td>
-                                            <td>Win 98+</td>
-                                            <td class="center">6</td>
-                                            <td class="center">
-                                            <button type="button" class="btn btn-circle btn-outline btn-primary"><i class="fa fa-edit"></i></button>
-                                            <button type="button" class="btn btn-circle btn-outline btn-danger"><i class="fa fa-trash-o"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr class="odd gradeA">
-                                            <td>Trident</td>
-                                            <td>Internet Explorer 7</td>
-                                            <td>Win XP SP2+</td>
-                                            <td class="center">7</td>
-                                            <td class="center">
-                                            <button type="button" class="btn btn-circle btn-outline btn-primary"><i class="fa fa-edit"></i></button>
-                                            <button type="button" class="btn btn-circle btn-outline btn-danger"><i class="fa fa-trash-o"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr class="even gradeA">
-                                            <td>Trident</td>
-                                            <td>AOL browser (AOL desktop)</td>
-                                            <td>Win XP</td>
-                                            <td class="center">6</td>
-                                            <td class="center">
-                                            <button type="button" class="btn btn-circle btn-outline btn-primary"><i class="fa fa-edit"></i></button>
-                                            <button type="button" class="btn btn-circle btn-outline btn-danger"><i class="fa fa-trash-o"></i></button>
-                                            </td>
-                                        </tr>
+                                        @foreach ($users as $user)
                                         <tr class="gradeA">
-                                            <td>Gecko</td>
-                                            <td>Firefox 1.0</td>
-                                            <td>Win 98+ / OSX.2+</td>
-                                            <td class="center">1.7</td>
-                                            <td class="center">
-                                            <button type="button" class="btn btn-circle btn-outline btn-primary"><i class="fa fa-edit"></i></button>
-                                            <button type="button" class="btn btn-circle btn-outline btn-danger"><i class="fa fa-trash-o"></i></button>
+                                            <td>{{$user['id']}}</td>
+                                            <td>{{$user['name']}}</td>
+                                            <td>{{$user['email']}}</td>
+                                            <td>{{$user['address']}}</td>
+                                            <td>{{$user['phone']}}</td>
+                                            <td class="text-center">{{$user['active']}}</td>
+                                            <td class="text-center">
+                                                <a href="{{ url('admin/users/'.$user->id.'/edit') }}" class="btn btn-circle btn-outline btn-primary" ><i class="fa fa-edit"></i></a>
+                                                <button type="submit" data-toggle="modal" data-target="#confirmDelete" class="btn btn-circle btn-outline btn-danger btnDel"><i class="fa fa-trash-o"></i></button>
+                                                <input type="hidden" value="{{ $user['id'] }}">
                                             </td>
                                         </tr>
-                                        <tr class="gradeA">
-                                            <td>Gecko</td>
-                                            <td>Firefox 1.5</td>
-                                            <td>Win 98+ / OSX.2+</td>
-                                            <td class="center">1.8</td>
-                                            <td class="center">
-                                            <button type="button" class="btn btn-circle btn-outline btn-primary"><i class="fa fa-edit"></i></button>
-                                            <button type="button" class="btn btn-circle btn-outline btn-danger"><i class="fa fa-trash-o"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr class="gradeA">
-                                            <td>Gecko</td>
-                                            <td>Firefox 2.0</td>
-                                            <td>Win 98+ / OSX.2+</td>
-                                            <td class="center">1.8</td>
-                                            <td class="center">
-                                            <button type="button" class="btn btn-circle btn-outline btn-primary"><i class="fa fa-edit"></i></button>
-                                            <button type="button" class="btn btn-circle btn-outline btn-danger"><i class="fa fa-trash-o"></i></button>
-                                            </td>
-                                        </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
                             <!-- /.table-responsive -->
                         </div>
                         <!-- /.panel-body -->
+                        @else 
+                            <br>
+                            <div class="alert alert-info">
+                              <strong>Info!</strong> There are no user!
+                            </div>
+                        @endif
                     </div>
                     <!-- /.panel -->
                 </div>
@@ -136,4 +72,36 @@
             </div>
             <!-- /.row -->
         </div>
+        @if (count($users) > 0 )
+        <div class="modal fade" id="confirmDelete" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Delete User "<b><span id='idDel'></span></b>"</h4>
+                    </div>
+                    <div class="modal-body text-center alert alert-danger">
+                        <h3 class="text-danger">Are you sure delete this user?</h3>
+                    </div>
+                    <div class="modal-footer">
+                        <form action="{{ url('admin/users/'.$user->id) }}" method="POST">
+                        {!! csrf_field() !!}
+                        {!! method_field('DELETE') !!}
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        <button type="button" class="btn btn-primary btn-sm pull-right" data-dismiss="modal">Cancel</button>
+                        </form> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
+        <script>
+            $(document).ready(function(){
+                $(document).on('click',".btnDel", function(){
+                    var id = $(this).next().val();
+                    $('form').attr('action','users/'+id);
+                    $('#idDel').text(id);
+                });
+            });
+        </script>
 @endsection
