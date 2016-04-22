@@ -15,9 +15,14 @@
  */
 Route::group(['middleware' => ['auth']], function () {
 
+
     // Route::get('/', function () {
  //    	return view('frontend.dashboard.index');
     // });
+});
+Route::group(['middleware' => ['web']], function () {
+
+    Route::get('{detailsUrl}', 'Frontend\ProductsController@details');
 
     Route::get('category', function () {
         return view('frontend.dashboard.productCategory');
@@ -35,10 +40,6 @@ Route::group(['middleware' => ['auth']], function () {
         return view('frontend.dashboard.orderHistory');
     });
 
-    Route::get('account', function () {
-        return view('frontend.dashboard.account');
-    });
-
     Route::get('login', function () {
         return view('frontend.auth.login');
     });
@@ -47,8 +48,4 @@ Route::group(['middleware' => ['auth']], function () {
         return view('frontend.auth.register');
     });
 
-});
-
-Route::group(['middleware' => 'web'], function () {
-    Route::get('{detailsUrl}', 'Frontend\ProductsController@details');
 });
