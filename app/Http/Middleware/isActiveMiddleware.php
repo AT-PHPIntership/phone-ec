@@ -16,7 +16,7 @@ class isActiveMiddleware
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::check() && Auth::user()->active == 1) {
+        if (!Auth::guest() && Auth::user()->active == 1) {
             return $next($request);
         }
 
