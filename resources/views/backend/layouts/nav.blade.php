@@ -100,7 +100,7 @@
                             <a href="tables.html"><i class="fa fa-table fa-fw"></i> Products</a>
                         </li>
                         <li>
-                            <a href="login.html"><i class="fa fa-edit fa-fw"></i> Login Page</a>
+                            <a href="{{ url('admin/brands') }}"><i class="fa fa-edit fa-fw"></i> Brands</a>
                             <!-- /.nav-second-level -->
                         </li>
                     </ul>
