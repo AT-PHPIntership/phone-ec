@@ -23,8 +23,8 @@ class ProductsController extends Controller
         $id = last($array);
         $product = Product::with('brands')->findOrFail($id);
         $productLatest = Product::with('brands')->take(5)
-                                                 ->orderBy('created_at')
-                                                 ->get();
+                                                ->orderBy('created_at')
+                                                ->get();
 
         return view('frontend.dashboard.detailProduct', compact('product', 'productLatest'));
     }
