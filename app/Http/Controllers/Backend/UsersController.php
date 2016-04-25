@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use App\Models\Backend\Users;
 use App\Http\Requests\Backend\UserRequest;
+use App\Models\Backend\User;
+use App\Http\Controllers\Controller;
 
 class UsersController extends Controller
 {
@@ -18,7 +18,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-            $users = Users::all();
+            $users = User::all();
             return view('backend.users.index', compact('users'));
     }
 
@@ -43,6 +43,7 @@ class UsersController extends Controller
     {
         $data = $request->all();
         User::create($data);
+
         return redirect('admin/users');
     }
 
@@ -55,7 +56,7 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $user = Users::findOrFail($id);
+        $user = User::findOrFail($id);
         return view('backend.users.edit', compact('user'));
     }
 
@@ -84,7 +85,7 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        $users = Users::findOrFail($id);
+        $users = User::findOrFail($id);
         $users->delete();
         return redirect('admin/users');
     }

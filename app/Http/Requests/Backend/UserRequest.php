@@ -4,7 +4,7 @@ namespace App\Http\Requests\Backend;
 
 use App\Http\Requests\Request;
 
-class UpdateUserRequest extends Request
+class UserRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class UpdateUserRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class UpdateUserRequest extends Request
     public function rules()
     {
         return [
-            //
+            'name' => 'required',
+            'email'    => 'required|email|max:255|unique:users,email',
+            'password' => 'required|min:6',
         ];
     }
 }
