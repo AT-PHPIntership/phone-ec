@@ -27,12 +27,14 @@ div.dataTables_filter input {
 div.dataTables_info {
 	padding-top: 8px;
 	white-space: nowrap;
+	display: none;
 }
 
 div.dataTables_paginate {
 	margin: 0;
 	white-space: nowrap;
 	text-align: right;
+	display: none;
 }
 
 div.dataTables_paginate ul.pagination {

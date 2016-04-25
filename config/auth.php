@@ -46,7 +46,6 @@ return [
             'provider' => 'users',
         ],
 
-        // For admin
         'admin' => [
             'driver'   => 'session',
             'provider' => 'admin',
@@ -75,10 +74,9 @@ return [
             'model' => App\User::class,
         ],
 
-        // For admin
         'admin' => [
             'driver' => 'eloquent',
-            'model' => App\Models\AdminUser::class
+            'model' => App\Models\Backend\Admin::class
         ]
     ],
 
@@ -108,6 +106,7 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
         ],
+        
         'admin' => [
             'provider' => 'admin',
             'email' => 'backend.auth.emails.password',
