@@ -42,6 +42,7 @@ class UsersController extends Controller
     public function store(UserRequest $request)
     {
         $data = $request->all();
+        $data['password'] = bcrypt($request->password);
         User::create($data);
 
         return redirect('admin/users');

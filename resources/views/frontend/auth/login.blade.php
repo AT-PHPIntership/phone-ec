@@ -43,15 +43,28 @@
           </div>
           <div class="right">
             <h2>Returning Customer</h2>
-            <form enctype="multipart/form-data" method="post" action="#">
+            <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+              {!! csrf_field() !!}
               <div class="content">
                 <p>I am a returning customer</p>
                 <b>E-Mail Address:</b><br>
-                <input type="text" value="" name="email">
+                <input type="text" name="email" value="{{ old('email') }}">
+
+                @if ($errors->has('email'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('email') }}</strong>
+                    </span>
+                @endif
                 <br>
                 <br>
                 <b>Password:</b><br>
-                <input type="password" value="" name="password">
+                <input type="password" class="form-control" name="password">
+
+                @if ($errors->has('password'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('password') }}</strong>
+                    </span>
+                @endif
                 <br>
                 <a href="#">Forgotten Password</a><br>
                 <br>

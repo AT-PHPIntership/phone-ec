@@ -40,12 +40,13 @@ Route::group(['middleware' => ['web']], function () {
         return view('frontend.dashboard.account');
     });
 
-    Route::get('login', function () {
-        return view('frontend.auth.login');
-    });
-
     Route::get('register', function () {
         return view('frontend.auth.register');
     });
+
+    //Login logout
+    Route::get('login', 'Frontend\Auth\AuthController@getLogin')->name('login');
+    Route::post('login', 'Frontend\Auth\AuthController@postLogin')->name('login');
+    Route::get('logout', 'Frontend\Auth\AuthController@getLogout')->name('logout');
 
 });
