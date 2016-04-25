@@ -13,7 +13,7 @@
 /**
  * Route for Frontend
  */
-Route::group(['middleware' => ['web']], function () {
+Route::group(['middleware' => ['auth']], function () {
 
     // Route::get('/', function () {
  //    	return view('frontend.dashboard.index');
@@ -47,4 +47,8 @@ Route::group(['middleware' => ['web']], function () {
         return view('frontend.auth.register');
     });
 
+});
+
+Route::group(['middleware' => 'web'], function () {
+    Route::get('{detailsUrl}', 'Frontend\ProductsController@details');
 });

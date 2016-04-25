@@ -193,57 +193,29 @@
   <!--Bestsellers Part End-->
   <!--Latest Product Start-->
   @section('latest-products')
-  <div class="box">
-    <div class="box-heading">Latest</div>
-    <div class="box-content">
-      <div class="box-product">
-        <div class="flexslider">
-          <ul class="slides">
-            <li>
-              <div class="slide-inner">
-                <div class="image"><a href="product.html"><img src="{!! asset('assets/frontend/image/product/sony_vaio_1-45x45.jpg') !!}" alt="Friendly Jewelry" /></a></div>
-                <div class="name"><a href="product.html">Friendly Jewelry</a></div>
-                <div class="price">$1,177.00</div>
-                <div class="clear"></div>
-              </div>
-            </li>
-            <li>
-              <div class="slide-inner">
-                <div class="image"><a href="product.html"><img src="{!! asset('assets/frontend/image/product/apple_cinema_30-45x45.jpg') !!}" alt="Apple Cinema 30&quot;" /></a></div>
-                <div class="name"><a href="product.html">Apple Cinema 30&quot;</a></div>
-                <div class="price"><span class="price-old">$119.50</span> <span class="price-new">$107.75</span></div>
-                <div class="clear"></div>
-              </div>
-            </li>
-            <li>
-              <div class="slide-inner">
-                <div class="image"><a href="product.html"><img src="{!! asset('assets/frontend/image/product/ipod_classic_1-45x45.jpg') !!}" alt="iPad Classic" /></a></div>
-                <div class="name"><a href="product.html">iPad Classic</a></div>
-                <div class="price">$119.50</div>
-                <div class="clear"></div>
-              </div>
-            </li>
-            <li>
-              <div class="slide-inner">
-                <div class="image"><a href="product.html"><img src="{!! asset('assets/frontend/image/product/lotto-sports-shoes-white-45x45.jpg') !!}" alt="Lotto Sports Shoes" /></a></div>
-                <div class="name"><a href="product.html">Lotto Sports Shoes</a></div>
-                <div class="price">$589.50</div>
-                <div class="clear"></div>
-              </div>
-            </li>
-            <li>
-              <div class="slide-inner">
-                <div class="image"><a href="product.html"><img src="{!! asset('assets/frontend/image/product/Jeep-Casual-Shoes-45x45.jpg') !!}" alt="Jeep-Casual-Shoes" /></a></div>
-                <div class="name"><a href="product.html">Jeep-Casual-Shoes</a></div>
-                <div class="price">$131.25</div>
-                <div class="clear"></div>
-              </div>
-            </li>
-          </ul>
+    @if (count($product_latest) > 0)
+      <div class="box">
+        <div class="box-heading">Latest</div>
+        <div class="box-content">
+          <div class="box-product">
+            <div class="flexslider">
+              <ul class="slides">
+                @foreach ($productLatest as $latest)
+                  <li>
+                    <div class="slide-inner">
+                      <div class="image"><a href="{{ url(str_slug($latest->name).'-'.$latest->id) }}"><img src="{!! asset('upload/'.$latest->image) !!}" alt="{{ $latest->name }}" /></a></div>
+                      <div class="name"><a href="{{ url(str_slug($latest->name).'-'.$latest->id) }}">{{ $latest->name }}</a></div>
+                      <div class="price">{{ number_format($latest->current_price) }}</div>
+                      <div class="clear"></div>
+                    </div>
+                  </li>
+                @endforeach
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+    @endif
   @show
   <!--Latest Product End-->
   <!--Banner Start-->
