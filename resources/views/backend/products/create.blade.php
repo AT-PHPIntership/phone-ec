@@ -6,66 +6,59 @@
 <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Add / Update</h1>
+                    <h1 class="page-header">Add a product</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
+            @include('common.errors')
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Basic Form Elements
-                        </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form role="form">
+                                    <form role="form" action="{{ url('admin/products') }}" method="post" enctype="multipart/form-data">
+                                        {{ csrf_field() }}
                                         <div class="form-group">
-                                            <label>Text Input</label>
-                                            <input class="form-control">
-                                            <p class="help-block">Example block-level help text here.</p>
+                                            <label>Name</label>
+                                            <input class="form-control" name="name" value="{{ old('name') }}">
                                         </div>
                                         <div class="form-group">
-                                            <label>Text Input with Placeholder</label>
-                                            <input class="form-control" placeholder="Enter text">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Static Control</label>
-                                            <p class="form-control-static">email@example.com</p>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>File input</label>
-                                            <input type="file">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Text area</label>
-                                            <textarea class="form-control" rows="3"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Inline Checkboxes</label>
-                                            <label class="checkbox-inline">
-                                                <input type="checkbox">1
-                                            </label>
-                                            <label class="checkbox-inline">
-                                                <input type="checkbox">2
-                                            </label>
-                                            <label class="checkbox-inline">
-                                                <input type="checkbox">3
-                                            </label>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Selects</label>
-                                            <select class="form-control">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
+                                            <label>Brands</label>
+                                            <select class="form-control" name="brand_id">
+                                                @foreach ($brands as $brand)
+                                                    <option value="{{ $brand->id }}">{{ $brand->brand_name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Submit Button</button>
-                                        <button type="reset" class="btn btn-primary">Reset Button</button>
+                                        <div class="form-group">
+                                            <label>Image</label>
+                                            <input type="file" name="image">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Old price</label>
+                                            <input class="form-control" type="number" min="1000" step="1000" name="old_price" value="{{ old('old_price') }}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Current price</label>
+                                            <input class="form-control" type="number" min="1000" step="1000" name="current_price" value="{{ old('current_price') }}">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Quantity</label>
+                                            <input class="form-control" type="number" min="1" step="1" name="quantity" value="{{ old('quantity') }}">
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label>Desciprtion</label>
+                                            <textarea class="form-control" rows="5" name="description">{{ old('description') }}</textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Parameter</label>
+                                            <textarea class="form-control" rows="5" name="des_tech">{{ old('des_tech') }}</textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Create</button>
                                     </form>
                                 </div>
                                 <!-- /.col-lg-12 (nested) -->
