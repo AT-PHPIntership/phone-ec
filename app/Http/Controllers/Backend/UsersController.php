@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Requests\Backend\UserRequest;
+use App\Models\Backend\User;
 use App\Http\Controllers\Controller;
-use App\Models\Backend\Users;
-use App\Http\Requests\Backend\CreateUserRequest;
 
 class UsersController extends Controller
 {
@@ -18,7 +18,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-            $users = Users::all();
+            $users = User::all();
             return view('backend.users.index', compact('users'));
     }
 
@@ -39,29 +39,12 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateUserRequest $request)
+    public function store(UserRequest $request)
     {
-        $users = new Users;
-        $users->name = $request->name;
-        $users->email = $request->email;
-        $users->address = $request->address;
-        $users->password = bcrypt($request->password);
-        $users->phone = $request->phone;
-        $users->active = $request->active;
-        $users->save();
-        return redirect('admin/users');
-    }
+        $data = $request->all();
+        User::create($data);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id id user
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return redirect('admin/users');
     }
 
     /**
@@ -73,7 +56,7 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $user = Users::findOrFail($id);
+        $user = User::findOrFail($id);
         return view('backend.users.edit', compact('user'));
     }
 
@@ -85,11 +68,11 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update($request, $id)
+    public function update(UserRequest $request, $id)
     {
-        $user = Users::findOrFail($id);
+        $user = User::findOrFail($id);
         $data = $request->all();
-        $user->update();
+        $user->update($data);
         return redirect()->route('admin.users.index');
     }
 
@@ -102,7 +85,7 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        $users = Users::findOrFail($id);
+        $users = User::findOrFail($id);
         $users->delete();
         return redirect('admin/users');
     }
