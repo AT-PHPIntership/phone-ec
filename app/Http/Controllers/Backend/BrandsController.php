@@ -42,8 +42,8 @@ class BrandsController extends Controller
     {
         $data = $request->all();
         Brand::create($data);
-
         $request->session()->flash('message', 'Brand was created successfully!');
+        
         return redirect('admin/brands');
     }
 

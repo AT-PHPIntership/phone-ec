@@ -193,7 +193,7 @@
   <!--Bestsellers Part End-->
   <!--Latest Product Start-->
   @section('latest-products')
-    @if (count($product_latest) > 0)
+    @if (count($productLatest) > 0)
       <div class="box">
         <div class="box-heading">Latest</div>
         <div class="box-content">
