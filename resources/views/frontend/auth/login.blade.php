@@ -39,7 +39,7 @@
             <div class="content">
               <p><b>Register Account</b></p>
               <p>By creating an account you will be able to shop faster, be up to date on an order's status, and keep track of the orders you have previously made.</p>
-              <a class="button" href="#">Continue</a></div>
+              <a class="button" href="register">Continue</a></div>
           </div>
           <div class="right">
             <h2>Returning Customer</h2>

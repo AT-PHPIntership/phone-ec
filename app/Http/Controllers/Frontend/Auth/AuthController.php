@@ -31,6 +31,8 @@ class AuthController extends Controller
      */
     protected $redirectTo = '/';
 
+    protected $registerView = 'frontend.auth.register';
+
     protected $loginView = 'frontend.auth.login';
 
     /**
@@ -56,6 +58,8 @@ class AuthController extends Controller
                 'name' => 'required|max:255',
                 'email' => 'required|email|max:255|unique:users',
                 'password' => 'required|confirmed|min:6',
+                'phone' => 'required|min:8',
+                'address' => 'required',
         ]);
     }
 
@@ -71,6 +75,8 @@ class AuthController extends Controller
         return User::create([
                 'name' => $data['name'],
                 'email' => $data['email'],
+                'address' => $data['address'],
+                'phone' => $data['phone'],
                 'password' => bcrypt($data['password']),
         ]);
     }

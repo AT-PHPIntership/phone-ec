@@ -40,13 +40,15 @@ Route::group(['middleware' => ['web']], function () {
         return view('frontend.dashboard.account');
     });
 
-    Route::get('register', function () {
-        return view('frontend.auth.register');
-    });
 
-    //Login logout
-    Route::get('login', 'Frontend\Auth\AuthController@getLogin')->name('login');
-    Route::post('login', 'Frontend\Auth\AuthController@postLogin')->name('login');
-    Route::get('logout', 'Frontend\Auth\AuthController@getLogout')->name('logout');
+
+    // Authentication routes...
+    Route::get('login', 'Frontend\Auth\AuthController@getLogin');
+    Route::post('login', 'Frontend\Auth\AuthController@postLogin');
+    Route::get('logout', 'Frontend\Auth\AuthController@getLogout');
+
+    // Registration routes...
+    Route::get('register', 'Frontend\Auth\AuthController@getRegister');
+    Route::post('register', 'Frontend\Auth\AuthController@postRegister');
 
 });
