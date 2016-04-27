@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -15,9 +14,9 @@
  */
 Route::group(['middleware' => ['auth']], function () {
 
-    // Route::get('/', function () {
- //    	return view('frontend.dashboard.index');
-    // });
+    Route::get('/', function () {
+        return view('frontend.dashboard.index');
+    });
 
     Route::get('category', function () {
         return view('frontend.dashboard.productCategory');
@@ -46,10 +45,14 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('register', function () {
         return view('frontend.auth.register');
     });
-
 });
 
 Route::group(['middleware' => 'web'], function () {
-    Route::get('{detailsUrl}', 'Frontend\ProductsController@details');
+    Route::get('cart', 'Frontend\CheckoutController@showCart');
+    Route::post('cart', 'Frontend\CheckoutController@cart');
+    Route::delete('cart/{id}', 'Frontend\CheckoutController@deleteCart');
+    Route::post('cart/update', 'Frontend\CheckoutController@updateCart');
+
     Route::post('products/rating', 'Frontend\ProductsController@rating');
+    Route::get('{detailsUrl}', 'Frontend\ProductsController@details');
 });

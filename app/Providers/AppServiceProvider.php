@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Models\Frontend\Product;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,7 +15,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $productLatest = Product::with('brands')->take(5)
+                                                ->orderBy('created_at')
+                                                ->get();
+        view()->share('productLatest', $productLatest);
     }
 
     /**
