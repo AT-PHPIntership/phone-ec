@@ -20,4 +20,5 @@ Route::group(['middleware' => ['auth:admin'],'prefix'=>'admin'], function () {
     Route::get('dashboard', 'Backend\DashboardController@index');
     Route::resource('brands', 'Backend\BrandsController', ['except'=>['show']]);
     Route::resource('products', 'Backend\ProductsController', ['except'=>'show']);
+    Route::resource('rating', 'Backend\RatingController', ['only' => ['index','destroy']]);
 });
