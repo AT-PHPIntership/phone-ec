@@ -28,4 +28,10 @@ class ProductsController extends Controller
 
         return view('frontend.dashboard.detailProduct', compact('product', 'productLatest'));
     }
+
+    public function listProducts($id)
+    {
+        $listProducts = Product::where('brand_id', $id)->paginate(10);
+        return view('frontend.dashboard.productCategory', compact('listProducts'));
+    }
 }

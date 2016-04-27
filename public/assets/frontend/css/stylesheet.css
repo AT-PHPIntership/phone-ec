@@ -205,11 +205,12 @@ table.radio tr.highlight:hover td { background: #f8f6f6; cursor: pointer; }
 
 /*********** Pagination ***********/
 .pagination { border-top: 1px solid #EEEEEE; padding-top: 8px; display: inline-block; width: 100%; margin-bottom: 10px; }
+.pagination ul {border-top:none;}
 .pagination .links { float: left; }
-.pagination .links a { vertical-align:middle; display: inline-block; border: 1px solid #EEEEEE; padding: 4px 10px; text-decoration: none; color: #777; }
-.pagination .links b {vertical-align:middle; display: inline-block; border: 1px solid #d45c93; padding: 4px 10px; font-weight: normal; text-decoration: none; color: #fff; background: #d45c93; }
-.pagination .links a:hover { color:#d45c93; border: 1px solid #ccc; }
-.pagination .results { float: right; padding-top: 3px; }
+.pagination .links li{ vertical-align:middle; display: inline-block; border: 1px solid #EEEEEE; padding: 4px 10px; text-decoration: none; color: #777; }
+.pagination .links li:hover { color:#d45c93; border: 1px solid #ccc; }
+.pagination .links li.active {vertical-align:middle; display: inline-block; border: 1px solid #d45c93; padding: 4px 10px; font-weight: normal; text-decoration: none; color: #fff; background: #d45c93; }
+.pagination .results { float: right; padding-top: 3px; list-style-type: none; }
 
 /*********** button ***********/
 
