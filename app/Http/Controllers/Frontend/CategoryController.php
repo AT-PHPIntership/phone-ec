@@ -10,6 +10,12 @@ use App\Models\Frontend\Brand;
 
 class CategoryController extends Controller
 {
+
+    /**
+     * Display the specified resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function category()
     {
         return view('frontend.dashboard.productCategory');

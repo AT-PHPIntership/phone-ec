@@ -10,6 +10,7 @@ use App\Models\Frontend\Product;
 
 class ProductsController extends Controller
 {
+
     /**
     * Display details of product
     *
@@ -29,6 +30,13 @@ class ProductsController extends Controller
         return view('frontend.dashboard.detailProduct', compact('product', 'productLatest'));
     }
 
+    /**
+     * Show list products by category
+     *
+     * @param int $id id category
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function listProducts($id)
     {
         $listProducts = Product::where('brand_id', $id)->paginate(10);

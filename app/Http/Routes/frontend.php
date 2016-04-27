@@ -49,9 +49,9 @@ Route::group(['middleware' => ['auth']], function () {
 
 Route::group(['middleware' => 'web'], function () {
         Route::get('/', function () {
-        return view('frontend.dashboard.index');
-    });
-    Route::get('category', 'Frontend\CategoryController@category');
-    Route::get('category/{id}', 'Frontend\ProductsController@listProducts');
-    Route::get('{detailsUrl}', 'Frontend\ProductsController@details');
+            return view('frontend.dashboard.index');
+        });
+        Route::get('category', 'Frontend\CategoryController@category');
+        Route::get('category/{id}', 'Frontend\ProductsController@listProducts');
+        Route::get('{detailsUrl}', 'Frontend\ProductsController@details');
 });
