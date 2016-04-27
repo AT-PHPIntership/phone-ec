@@ -3,6 +3,7 @@
 @section('title', 'Orders Manage')
 
 @section('content')
+
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
@@ -32,7 +33,7 @@
                                         <tr>
                                             <th>id</th>
                                             <th>user_name</th>
-                                            <th>user_iD</th>
+                                            <th>user_id</th>
                                             <th>status</th>
                                             <th>user_address</th>
                                             <th>user_phone</th>
@@ -44,7 +45,7 @@
                                             <tr class="odd gradeX">
                                                 <td>{{ $order['id'] }}</td>
                                                 <td>{{ $order['user_name'] }}</td>
-                                                <td>{{ $order['user_iD'] }}</td>
+                                                <td>{{ $order['user_id'] }}</td>
                                                 <td>{{ $order['status'] }}</td>
                                                 
                                                 <td>{{ $order['user_address'] }}</td>

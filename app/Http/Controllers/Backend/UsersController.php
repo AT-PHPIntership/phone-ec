@@ -8,7 +8,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Backend\Product;
 use App\Models\Backend\Brand;
 use App\Models\Backend\Order;
-use App\Models\Backend\User;
 use App\Http\Requests\Backend\OrdersRequest;
 
 class OrdersController extends Controller
@@ -20,9 +19,9 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        $orders = Order::with('users')->paginate(10);
+        $users = Order::with('users')->paginate(10);
 
-        return view('backend.orders.index', compact('orders'));
+        return view('backend.users.index', compact('users'));
     }
 
     /**
@@ -32,9 +31,9 @@ class OrdersController extends Controller
      */
     public function create()
     {
-        $orders = Order::orderBy('user_name')->get();
+        $users = User::orderBy('user_name')->get();
         
-        return view('backend.orders.create', compact('orders'));
+        return view('backend.users.create', compact('users'));
     }
 
     /**
@@ -44,13 +43,13 @@ class OrdersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(OrdersRequest $request)
+    public function store(UsersRequest $request)
     {
         $data = $request->all();
-        Order::create($data);
+        User::create($data);
 
-        $request->session()->flash('message', 'Order was created successfully!');
-        return redirect('admin/orders');
+        $request->session()->flash('message', 'User was created successfully!');
+        return redirect('admin/users');
     }
 
     /**
@@ -63,9 +62,9 @@ class OrdersController extends Controller
     public function edit($id)
     {
         $order = Order::findOrFail($id);
-        $users = User::all();
+        $users = user::all();
 
-        return view('backend.orders.edit', compact('order', 'users'));
+        return view('backend.users.edit', compact('order', 'users'));
     }
 
     /**
@@ -76,14 +75,14 @@ class OrdersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(OrdersRequest $request, $id)
+    public function update(UsersRequest $request, $id)
     {
-        $order = Order::findOrFail($id);
+        $user = User::findOrFail($id);
         $data = $request->all();
-        $order->update($data);
-        $request->session()->flash('message', 'Order was updated successfully!');
+        $user->update($data);
+        $request->session()->flash('message', 'User was updated successfully!');
         
-        return redirect('admin/orders');
+        return redirect('admin/users');
     }
 
     /**
@@ -95,8 +94,8 @@ class OrdersController extends Controller
      */
     public function destroy($id)
     {
-        $order = Order::findOrFail($id);
-        $order->delete();
+        $user = Order::findOrFail($id);
+        $user->delete();
 
         return back();
     }

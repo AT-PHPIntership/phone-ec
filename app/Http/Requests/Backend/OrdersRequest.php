@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Backend;
 
+use App\Models\Backend\OrdersController;
 use App\Http\Requests\Request;
 
 class OrdersRequest extends Request
@@ -13,7 +14,7 @@ class OrdersRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**

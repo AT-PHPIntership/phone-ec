@@ -20,18 +20,23 @@
                                 <form role="form" action="{{ url('admin/orders') }}" method="post">
                                     {{ csrf_field() }}
                                     <div class="form-group">
-                                        <label>name</label>
-                                        <input class="form-control" name="user_name" value="{{ old('user_name') }}" >
+                                        <label>id</label>
+                                        <input class="form-control" name="id" value="{{ old('id') }}" >
                                     </div>
                                     <div class="form-group">
-                                        <label>user</label>
+                                        <label>user_name</label>
+                                        <input class="form-control" name="user_name"  value="{{ old('user_name') }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>user_id</label>
                                              
-                                        <input class="form-control" name="user_id" >
+                                        <input class="form-control" name="user_id" value="{{ old('user_id') }}">
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group">    
                                         <label>status</label>
                                         <input class="form-control" name="status"  value="{{ old('status') }}">
                                     </div>
+                                    
                                     <div class="form-group">
                                         <label>address</label>
                                         <input class="form-control" name="user_address"  value="{{ old('user_address') }}">  

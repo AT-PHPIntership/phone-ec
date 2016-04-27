@@ -100,7 +100,7 @@
                             <a href="{{ url('admin/products') }}"><i class="fa fa-table fa-fw"></i> Products</a>
                         </li>
                         <li>
-                            <a href="{{ url('admin/brands') }}"><i class="fa fa-edit fa-fw"></i> Rands</a>
+                            <a href="{{ url('admin/brands') }}"><i class="fa fa-edit fa-fw"></i> Brands</a>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
