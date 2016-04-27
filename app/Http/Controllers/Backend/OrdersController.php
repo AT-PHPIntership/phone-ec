@@ -3,13 +3,12 @@
 namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests\Backend\ProductsRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Backend\Product;
 use App\Models\Backend\Brand;
 use App\Models\Backend\Order;
-use App\Http\Requests\Backend\OrdersRequest
+use App\Http\Requests\Backend\OrdersRequest;
 
 class OrdersController extends Controller
 {
@@ -33,6 +32,7 @@ class OrdersController extends Controller
     public function create()
     {
         $orders = Order::orderBy('user_name')->get();
+        
         return view('backend.orders.create', compact('orders'));
     }
 
