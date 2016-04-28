@@ -14,9 +14,9 @@
  */
 Route::group(['middleware' => ['auth']], function () {
 
-    Route::get('/', function () {
-        return view('frontend.dashboard.index');
-    });
+    // Route::get('/', function () {
+    //     return view('frontend.dashboard.index');
+    // });
 
     Route::get('category', function () {
         return view('frontend.dashboard.productCategory');
