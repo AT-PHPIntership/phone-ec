@@ -49,3 +49,9 @@ Route::group(['middleware' => ['web']], function () {
     });
 
 });
+
+Route::group(['middleware' => 'web'], function () {
+    Route::get('{detailsUrl}', 'Frontend\ProductsController@details');
+    Route::post('products/rating', 'Frontend\ProductsController@rating');
+    Route::get('/', 'Frontend\ProductsController@listAllProducts');
+});

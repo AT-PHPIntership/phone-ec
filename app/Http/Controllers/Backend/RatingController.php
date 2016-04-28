@@ -26,7 +26,7 @@ class RatingController extends Controller
     /**
      * Delete a rating.
      *
-     * @param integet $id id
+     * @param integer $id id
      *
      * @return array
      */
