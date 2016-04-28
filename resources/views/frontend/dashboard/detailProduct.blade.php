@@ -62,7 +62,11 @@
                 </div>
             </div>
             <div class="review">
-                <div><img src="{!! asset('assets/frontend/image/stars-3.png') !!}" alt="2 reviews" />&nbsp;&nbsp;<a onClick="$('a[href=\'#tab-review\']').trigger('click');">0 reviews</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onClick="$('a[href=\'#tab-review\']').trigger('click');">Write a review</a></div>
+                <div>
+                    <img src="{!! asset('assets/frontend/image/stars-'.round($scoreAverage).'.png') !!}" alt="2 reviews" />&nbsp;&nbsp;
+                    <a onClick="$('a[href=\'#tab-review\']').trigger('click');">{{ $countRatings }} reviews</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                    <a onClick="$('a[href=\'#tab-review\']').trigger('click');">Write a review</a>
+                </div>
             </div>
             <!-- AddThis Button BEGIN -->
             <div class="addthis_toolbox addthis_default_style "> <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a> <a class="addthis_button_tweet"></a> <a class="addthis_button_google_plusone" g:plusone:size="medium"></a> <a class="addthis_counter addthis_pill_style"></a> </div>
@@ -70,44 +74,64 @@
                 <!-- AddThis Button END -->
         </div>
     </div>
+    @if (Session::has('rating'))
+        <div class="alert alert-success">{{ Session::get('rating') }}</div>
+    @endif
+    @include('common.errors')
     <!-- Description and Reviews Tab Start -->
-    <div id="tabs" class="htabs"> <a href="#tab-description">Description</a> <a href="#tab-review">Reviews (0)</a> </div>
+    <div id="tabs" class="htabs"> 
+        <a href="#tab-description">Description</a> 
+        <a href="#tab-proInfo">Product Infomation</a> 
+        @if (count($ratings) > 0)
+            <a href="#customer-review">Customer Reviews ({{ $countRatings }})</a>
+        @endif
+        <a href="#tab-review">Review</a>
+    </div>
     <div id="tab-description" class="tab-content">
         <p>{{ $product->description }}</p>
     </div>
+    <div id="tab-proInfo" class="tab-content">
+        <p>{{ $product->des_tech }}</p>
+    </div>
+    <div id="customer-review" class="tab-content">
+        @foreach ($ratings as $rating)
+            <b>{{ $rating->users->name }}</b>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span>
+                <img src="{{ asset('assets/frontend/image/stars-'.$rating->score.'.png') }}" alt="">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {{ $rating->created_at }}
+            </span>
+            <p>{{ $rating->comment }}</p>
+        @endforeach
+
+        {!! $ratings->links() !!}
+    </div>
     <div id="tab-review" class="tab-content">
-        <div id="review"></div>
-        <h2 id="review-title">Write a review</h2>
-        <br />
-        <b>Your Name:</b><br />
-        <input type="text" name="name" value="" />
-        <br />
-        <br />
-        <b>Your Review:</b>
-        <textarea name="text" cols="40" rows="8" style="width: 98%;"></textarea>
-        <span style="font-size: 11px;"><span style="color: #FF0000;">Note:</span> HTML is not translated!</span><br />
-        <br />
-        <b>Rating:</b> <span>Bad</span>&nbsp;
-        <input type="radio" name="rating" value="1" />
-        &nbsp;
-        <input type="radio" name="rating" value="2" />
-        &nbsp;
-        <input type="radio" name="rating" value="3" />
-        &nbsp;
-        <input type="radio" name="rating" value="4" />
-        &nbsp;
-        <input type="radio" name="rating" value="5" />
-        &nbsp;<span>Good</span><br />
-        <br />
-        <b>Enter the code in the box below:</b><br />
-        <input type="text" name="captcha" value="" />
-        <br />
-        <br />
-        <img src="indexffc1.html?route=product/product/captcha" alt="" id="captcha" /><br />
-        <br />
-        <div class="buttons">
-            <div class="right"><a id="button-review" class="button">Continue</a></div>
-        </div>
+        @if (Auth::check())
+            <div id="review"></div>
+            <form action="{{ url('products/rating') }}" method="post" id="RatingForm">
+                {{ csrf_field() }}
+                <b>Your Review:</b>
+                <textarea name="comment" cols="40" rows="8" style="width: 98%;"></textarea>
+                <br /><br />
+                <b>Rating:</b> <span>Bad</span>&nbsp;
+                <input type="radio" name="score" value="1" title="1" />&nbsp;
+                <input type="radio" name="score" value="2" title="2" />&nbsp;
+                <input type="radio" name="score" value="3" title="3" checked="checked" />&nbsp;
+                <input type="radio" name="score" value="4" title="4" />&nbsp;
+                <input type="radio" name="score" value="5" title="5" />&nbsp;
+                <span>Good</span><br />
+                <br />
+                <div class="buttons">
+                    <div class="right"><input type="submit" value="Continue" class="button"></div>
+                </div>
+                <input type="hidden" name="product_id" value="{{ url()->current() }}">
+            </form>
+        @else
+            You must be login to review this product.<br>
+            <a href="{{ url('login') }}"><strong>Click here to login<strong></a>
+        @endif
     </div>
     <script>
         $(document).ready(function(){

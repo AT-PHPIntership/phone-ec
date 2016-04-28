@@ -21,7 +21,9 @@ class RatingTableSeeder extends Seeder
 				'product_id' => rand(1,3),
 				'user_id' => 1,
 				'score' => rand(1,5),
-				'comment' => $faker->realText
+				'comment' => $faker->realText,
+				'created_at' => Carbon\Carbon::now(),
+				'updated_at' => Carbon\Carbon::now()
 			]);
 		}
     }
