@@ -14,9 +14,9 @@
  */
 Route::group(['middleware' => ['auth']], function () {
 
-    Route::get('/', function () {
-        return view('frontend.dashboard.index');
-    });
+    // Route::get('/', function () {
+    //     return view('frontend.dashboard.index');
+    // });
 
     Route::get('category', function () {
         return view('frontend.dashboard.productCategory');
@@ -54,5 +54,6 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('cart/update', 'Frontend\CheckoutController@updateCart');
 
     Route::post('products/rating', 'Frontend\ProductsController@rating');
+    Route::get('/', 'Frontend\ProductsController@listAllProducts');
     Route::get('{detailsUrl}', 'Frontend\ProductsController@details');
 });
