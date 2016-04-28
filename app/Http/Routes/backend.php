@@ -11,6 +11,8 @@ Route::group(['middleware' => ['admin'],'prefix'=>'admin'], function () {
     Route::post('login', 'Backend\Auth\AuthController@postLogin');
     
     Route::get('logout', 'Backend\Auth\AuthController@getLogout');
+    Route::resource('brands', 'Backend\BrandsController', ['except'=>'show']);
+    Route::resource('orders', 'Backend\OrdersController', ['except'=>'show']);
 });
 
 /*--------------------------------Auth--------------------------------*/

@@ -5,12 +5,14 @@ use Illuminate\Database\Seeder;
 class DatabaseSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Run the database seeder.
      *
      * @return void
      */
     public function run()
     {
-        $this->call(RatingTableSeeder::class);
+
+        $this->call(OrdersTableSeeder::class);
+        
     }
 }
