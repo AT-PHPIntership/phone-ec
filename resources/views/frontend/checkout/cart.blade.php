@@ -55,18 +55,17 @@
                                     <td class="name"><a href="product.html">{{ $carts[$i]['name'] }}</a></td>
                                     <td class="model">{{ $carts[$i]['brand'] }}</td>
                                     <td class="quantity">
-                                        <input type="text" size="1" value="{{ $carts[$i]['quantity'] }}" name="" class="w30">&nbsp;&nbsp;
+                                        <input type="text" size="1" value="{{ $carts[$i]['quantity'] }}" id="quantity-{{ $i }}" name="quantity" class="w30 quantity">&nbsp;&nbsp;
                                         <form action="{{ url('cart/'.$i) }}" method="POST">
                                             {!! csrf_field() !!}
                                             {!! method_field('DELETE') !!}
-
                                             <button type="submit" id="delete-cart-{{ $i }}" class="btn btn-danger">
                                                 <i class="fa fa-btn fa-trash"></i>Delete
                                             </button>
                                         </form>
                                     </td>
-                                    <td class="price">{{ $carts[$i]['price'] }}</td>
-                                    <td class="total">{{ $carts[$i]['total'] }}</td>
+                                    <td class="price" id="price-{{ $i }}">{{ number_format($carts[$i]['price']) }} VND</td>
+                                    <td class="total">{{ $carts[$i]['total'] }} VND</td>
                                 </tr>
                                 <?php $total += $carts[$i]['total'] ?>
                             @endfor
@@ -78,7 +77,7 @@
                     <tbody>
                         <tr>
                             <td class="right"><b>Total:</b></td>
-                            <td class="right">{{ $total }}</td>
+                            <td class="right">{{ $total }} VND</td>
                         </tr>
                     </tbody>
                 </table>
@@ -87,6 +86,7 @@
                 <div class="right"><a class="button" href="checkout.html">Checkout</a></div>
                 <div class="right" style="margin-right: 15px">
                     <button class="button" id="btnUpdate">Update Cart</button>
+                    <input type="hidden" value="{{ count($carts) }}" id="countCart">
                 </div>
             </div>
         @else
@@ -96,8 +96,11 @@
     <script>
         $(document).ready(function(){
             $("#btnUpdate").click(function(){
-                var id = $('.price').text();
-                console.log(id);
+                var quantity = [];
+
+                for (var i = 0; i < $("#countCart").val(); i++) {
+                    quantity.push($("#quantity-"+i).val());
+                }
                 
                 $.ajax({
                     headers: {
@@ -107,9 +110,12 @@
                     asynce: false,
                     dataType: 'text',
                     url: 'cart/update',
-                    data: {id:id},
+                    data: {quantity:quantity},
                     success: function(data)
                     {
+                        if (data == 'OK') {
+                            window.location.href = 'cart';
+                        }
                     }
                 });
             });
