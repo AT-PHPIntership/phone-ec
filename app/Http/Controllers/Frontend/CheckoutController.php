@@ -96,17 +96,13 @@ class CheckoutController extends Controller
     public function updateCart(Request $request)
     {
         $carts = session()->get('carts');
-        if ($request->ajax())
-        {
+        if ($request->ajax()) {
             $quantity = $request->quantity;
 
-            for ($i=0; $i < count($quantity); $i++) 
-            {
+            for ($i=0; $i < count($quantity); $i++) {
                 if ($quantity[$i] == 0) {
                     $request->session()->forget($carts[$i]);
-                }
-                else
-                {
+                } else {
                     $carts[$i]['quantity'] = $quantity[$i];
                     $productId = $carts[$i]['id'];
                     $product = Product::with('brands')->findOrFail($productId);
