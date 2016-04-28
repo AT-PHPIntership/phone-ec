@@ -11,7 +11,6 @@ class OrdersTableSeeder extends Seeder
      */
     public function run()
     {
-    	App\Models\Backend\Order::truncate();
         $faker = Faker\Factory::create();
 
 		$limit = 10;
@@ -19,10 +18,11 @@ class OrdersTableSeeder extends Seeder
 		{
 			DB::table('orders')->insert([
 				'user_name' => $faker->name,
-				'user_iD' => 1,
+				'user_id' => 1,
 				'status' => 1,	
 				'user_address' => $faker->address,
 				'user_phone' => 1,
+				'total_price' => 123
 			]);
 		}
     }

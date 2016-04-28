@@ -107,6 +107,7 @@
                             <a href="{{ url('admin/orders') }}"><i class="fa fa-table fa-fw"></i> Orders</a>
                             <!-- /.nav-second-level -->
                         </li>
+                        
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

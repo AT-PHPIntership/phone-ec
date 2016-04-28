@@ -21,29 +21,27 @@
                                     {{ csrf_field() }}
                                     <div class="form-group">
                                         <label>id</label>
-                                        <input class="form-control" name="id" value="{{ old('id') }}" >
+                                        <input class="form-control" name="id" value="{{ old('id') }}" required="">
                                     </div>
                                     <div class="form-group">
                                         <label>user_name</label>
-                                        <input class="form-control" name="user_name"  value="{{ old('user_name') }}">
+                                        <input class="form-control" name="user_name" value="{{ old('user_name') }}" required="">
                                     </div>
                                     <div class="form-group">
                                         <label>user_id</label>
-                                             
-                                        <input class="form-control" name="user_id" value="{{ old('user_id') }}">
+                                        <input class="form-control" name="user_id" value="{{ old('user_id') }}" required="">
                                     </div>
                                     <div class="form-group">    
                                         <label>status</label>
-                                        <input class="form-control" name="status"  value="{{ old('status') }}">
+                                        <input class="form-control" name="status"  value="{{ old('status') }}" required="">
                                     </div>
-                                    
                                     <div class="form-group">
                                         <label>address</label>
-                                        <input class="form-control" name="user_address"  value="{{ old('user_address') }}">  
+                                        <input class="form-control" name="user_address"  value="{{ old('user_address') }}" required="">  
                                     </div>
                                     <div class="form-group">
                                         <label>phone</label>
-                                        <input class="form-control" name="user_phone" value="{{ old('user_phone') }}" > 
+                                        <input class="form-control" name="user_phone" value="{{ old('user_phone') }}" required=""> 
                                     </div>
                                     <button type="submit" class="btn btn-primary">Create</button>
                                 </form>

@@ -20,9 +20,9 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        $orders = Order::with('users', 'orderdetails')->paginate(10);
-        
-        return view('backend.orders.index', compact('orders'));
+        $details = Order::with('users')->paginate(10);
+
+        return view('backend.details.index', compact('details'));
     }
 
     /**
@@ -32,9 +32,7 @@ class OrdersController extends Controller
      */
     public function create()
     {
-        $orders = Order::orderBy('user_name')->get();
-        
-        return view('backend.orders.create', compact('orders'));
+        return view('backend.details.create');
     }
 
     /**
@@ -44,13 +42,13 @@ class OrdersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(OrdersRequest $request)
+    public function store(DetailsRequest $request)
     {
         $data = $request->all();
-        Order::create($data);
+        Detail::create($data);
 
-        $request->session()->flash('message', 'Order was created successfully!');
-        return redirect('admin/orders');
+        $request->session()->flash('message', 'Detail was created successfully!');
+        return redirect('admin/details');
     }
 
     /**
@@ -62,10 +60,8 @@ class OrdersController extends Controller
      */
     public function edit($id)
     {
-        $order = Order::findOrFail($id);
-        $users = User::all();
-
-        return view('backend.orders.edit', compact('order', 'users'));
+        $detail = Detail::findOrFail($id);
+        return view('backend.details.edit', compact('detail'));
     }
 
     /**
@@ -76,14 +72,14 @@ class OrdersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(OrdersRequest $request, $id)
+    public function update(DetailsRequest $request, $id)
     {
-        $order = Order::findOrFail($id);
+        $detail = Detail::findOrFail($id);
         $data = $request->all();
-        $order->update($data);
-        $request->session()->flash('message', 'Order was updated successfully!');
+        $detail->update($data);
+        $request->session()->flash('message', 'Detail was updated successfully!');
         
-        return redirect('admin/orders');
+        return redirect('admin/details');
     }
 
     /**
@@ -95,8 +91,8 @@ class OrdersController extends Controller
      */
     public function destroy($id)
     {
-        $order = Order::findOrFail($id);
-        $order->delete();
+        $detail = Detail::findOrFail($id);
+        $detail->delete();
 
         return back();
     }

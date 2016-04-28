@@ -2,17 +2,15 @@
 
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class DetailsTableSeeder extends Seeder
 {
     /**
-     * Run the database seeder.
+     * Run the database seeds.
      *
      * @return void
      */
     public function run()
     {
-
-        $this->call(BrandsTableSeeder::class);
-        
+        //
     }
 }

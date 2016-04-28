@@ -23,6 +23,7 @@
                     <!-- /.panel-heading -->
                     @if (count($orders) > 0)
                         @if (Session::has('message'))
+
                             <div class="alert alert-success">{{ Session::get('message') }}</div>
                         @endif
                         
@@ -31,25 +32,28 @@
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th>id</th>
-                                            <th>user_name</th>
-                                            <th>user_id</th>
-                                            <th>status</th>
-                                            <th>user_address</th>
-                                            <th>user_phone</th>
-                                            
+                                            <th>Id</th>
+                                            <th>Image</th>
+                                            <th>Product Name</th>
+                                            <th>User Name</th>
+                                            <th>Address</th>
+                                            <th>Phone</th>
+                                            <th>Quantity</th>
+                                            <th>Total price</th>
+                                            <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($orders as $order)
                                             <tr class="odd gradeX">
                                                 <td>{{ $order['id'] }}</td>
-                                                <td>{{ $order['user_name'] }}</td>
-                                                <td>{{ $order['user_id'] }}</td>
-                                                <td>{{ $order['status'] }}</td>
-                                                
-                                                <td>{{ $order['user_address'] }}</td>
-                                                <td>{{ $order['user_phone'] }}</td>
+                                                <td>{{ $order->orderdetails->products->image }}</td>
+                                                <td>{{ $order->orderdetails->products->name }}</td>
+                                                <td>{{ $order->address }}</td>
+                                                <td>{{ $order->phone }}</td>
+                                                <td>{{ $order->orderdetails->quantity }}</td>
+                                                <td>{{ $order->total }}</td>
+                                                <td>{{ $order->status }}</td>
                                                 
 
                                                 <td class="text-right">

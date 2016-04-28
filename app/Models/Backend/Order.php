@@ -11,7 +11,7 @@ class Order extends Model
      *
      * @return array
      */
-    protected $fillable = ['id', 'user_id', 'status', 'user_name', 'user_address', 'user_phone'];
+    protected $fillable = ['status'];
     /**
      * The attributes that are mass assignable.
      *
@@ -20,5 +20,14 @@ class Order extends Model
     public function users()
     {
         return $this->hasOne('App\Models\Backend\User', 'id', 'user_id');
+    }
+     /**
+     * The attributes that are mass assignable.
+     *
+     * @return array
+     */
+    public function orderdetails()
+    {
+        return $this->hasMany('App\Models\Backend\OrderDetails');
     }
 }
