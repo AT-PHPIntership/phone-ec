@@ -44,11 +44,15 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+
                                         @foreach ($orders as $order)
+                                        
                                             <tr class="odd gradeX">
                                                 <td>{{ $order['id'] }}</td>
-                                                <td>{{ $order->orderdetails->products->image }}</td>
-                                                <td>{{ $order->orderdetails->products->name }}</td>
+                                            
+                                                <td>{{ $order->orderdetails->image }}</td>
+                                                <td>{{ $order->orderdetails->name }}</td>
+
                                                 <td>{{ $order->address }}</td>
                                                 <td>{{ $order->phone }}</td>
                                                 <td>{{ $order->orderdetails->quantity }}</td>
@@ -62,6 +66,7 @@
                                                     <input type="hidden" value="{{ $order['id'] }}">
                                                 </td>
                                             </tr>
+                                        
                                         @endforeach
                                     </tbody>
                                 </table>

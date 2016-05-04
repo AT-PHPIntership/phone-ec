@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests\Backend\ProductsRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Backend\Product;
@@ -20,10 +19,10 @@ use App\Models\Backend\User;
 use App\Http\Controllers\Controller;
 
 class UsersController extends Controller
-
 {
     /**
      * Display a listing of the resource.
+     /**
      *
      * @return \Illuminate\Http\Response
      */
@@ -42,7 +41,7 @@ class UsersController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+      @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -58,19 +57,18 @@ class UsersController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-
-     * @param \Illuminate\Http\Request $request request
+    @param \Illuminate\Http\Request $request request
      *
-     * @return \Illuminate\Http\Response
+     @return \Illuminate\Http\Response
      */
-    /**public function store(UsersRequest $request)
-
-     * @param \Illuminate\Http\Request $request request for create
+    /**
+    * Public function store(UsersRequest $request)
+    *
+    @param \Illuminate\Http\Request $request request for create
      *
-     * @return \Illuminate\Http\Response
+     @return \Illuminate\Http\Response
      */
     public function store(UserRequest $request)
-
     {
         $data = $request->all();
         User::create($data);
@@ -84,12 +82,10 @@ class UsersController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
-<<<<<<< HEAD
-     * @param int $id id
-=======
+
+     /**  @param int $id id
+
      * @param int $id id user
->>>>>>> 6c77f3fc964d146a74ee6d58eb0042c6d0b09788
      *
      * @return \Illuminate\Http\Response
      */
@@ -109,21 +105,21 @@ class UsersController extends Controller
     /**
      * Update the specified resource in storage.
      *
-
-     * @param \Illuminate\Http\Request $request request
+     /** @param \Illuminate\Http\Request $request request
+     *
      * @param int                      $id      id
      *
-     * @return \Illuminate\Http\Response
+     @return \Illuminate\Http\Response
      */
-    /**public function update(UsersRequest $request, $id)
-
+    /**
+     * Public function update(UsersRequest $request, $id)
+     *
      * @param \Illuminate\Http\Request $request request for update
      * @param int                      $id      id user
      *
      * @return \Illuminate\Http\Response
      */
     public function update(UserRequest $request, $id)
-
     {
         $user = User::findOrFail($id);
         $data = $request->all();
@@ -140,11 +136,9 @@ class UsersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-
-     * @param int $id id
+     /** @param int $id id
 
      * @param int $id id user
-
      *
      * @return \Illuminate\Http\Response
      */
