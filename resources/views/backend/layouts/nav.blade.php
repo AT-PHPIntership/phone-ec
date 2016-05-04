@@ -29,7 +29,7 @@
                             <a href="#">
                                 <div>
                                     <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                    <span class="pull-right text-muted small">12 minutes ago</span>
+                                    <span class="pull-right text-muted small"> 12 minutes ago</span>
                                 </div>
                             </a>
                         </li>
@@ -38,7 +38,7 @@
                             <a href="#">
                                 <div>
                                     <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                    <span class="pull-right text-muted small"> 4 minutes ago</span>
                                 </div>
                             </a>
                         </li>
@@ -47,7 +47,7 @@
                             <a href="#">
                                 <div>
                                     <i class="fa fa-tasks fa-fw"></i> New Task
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                    <span class="pull-right text-muted small"> 4 minutes ago</span>
                                 </div>
                             </a>
                         </li>
@@ -56,7 +56,7 @@
                             <a href="#">
                                 <div>
                                     <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                    <span class="pull-right text-muted small"> 4 minutes ago</span>
                                 </div>
                             </a>
                         </li>
@@ -103,6 +103,11 @@
                             <a href="{{ url('admin/brands') }}"><i class="fa fa-edit fa-fw"></i> Brands</a>
                             <!-- /.nav-second-level -->
                         </li>
+                        <li>
+                            <a href="{{ url('admin/orders') }}"><i class="fa fa-table fa-fw"></i> Orders</a>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

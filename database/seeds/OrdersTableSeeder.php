@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class BrandsTableSeeder extends Seeder
+class OrdersTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,11 +13,16 @@ class BrandsTableSeeder extends Seeder
     {
         $faker = Faker\Factory::create();
 
-		$limit = 65;
+		$limit = 10;
 		for ($i = 0; $i < $limit; $i++) 
 		{
-			DB::table('brands')->insert([
-				'brand_name' => $faker->name
+			DB::table('orders')->insert([
+				'user_name' => $faker->name,
+				'user_id' => 1,
+				'status' => 1,	
+				'user_address' => $faker->address,
+				'user_phone' => 1,
+				'total_price' => 123
 			]);
 		}
     }
