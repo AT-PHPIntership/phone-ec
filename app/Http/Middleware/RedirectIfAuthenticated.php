@@ -10,16 +10,18 @@ class RedirectIfAuthenticated
     /**
      * Handle an incoming request.
      *
-     * @param \Illuminate\Http\Request $request request
-     * @param \Closure                 $next    next callback
-     * @param string|null              $guard   guard
-     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @param  string|null  $guard
      * @return mixed
      */
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return redirect('/');
+            if ($guard == 'admin')
+                return redirect('/admin/dashboard');
+            else
+                return redirect('/');
         }
 
         return $next($request);
