@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class DropColumnOfUsersTable extends Migration
+class CreateBrandsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,10 @@ class DropColumnOfUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['phone', 'address', 'active']);
+        Schema::create('brands', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('brand_name', 20);
+            $table->timestamps();
         });
     }
 
@@ -24,8 +26,6 @@ class DropColumnOfUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
+        Schema::drop('brands');
     }
 }

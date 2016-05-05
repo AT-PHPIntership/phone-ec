@@ -49,13 +49,13 @@
                                         
                                             <tr class="odd gradeX">
                                                 <td>{{ $order['id'] }}</td>
-                                            
-                                                <td>{{ $order->orderdetails->image }}</td>
-                                                <td>{{ $order->orderdetails->name }}</td>
+                                           
+                                                <td>{{ $order->image }}</td>
+                                                <td>{{ $order->name }}</td>
 
                                                 <td>{{ $order->address }}</td>
                                                 <td>{{ $order->phone }}</td>
-                                                <td>{{ $order->orderdetails->quantity }}</td>
+                                                <td>{{ $order->quantity }}</td>
                                                 <td>{{ $order->total }}</td>
                                                 <td>{{ $order->status }}</td>
                                                 

@@ -13,7 +13,7 @@ class UpdateBrandsTable extends Migration
     public function up()
     {
         Schema::table('brands', function (Blueprint $table) {
-            $table->string('brand_name',20)->after('id')->change();
+            $table->string('brand_name',20)->after('id');
         });
     }
 
