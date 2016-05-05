@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UpdateUsersTable extends Migration
+class DropColumnOfUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,7 @@ class UpdateUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('address')->after('name');
-            $table->string('phone',11)->after('address');
-            $table->tinyInteger('active')->after('phone');
+            $table->dropColumn(['phone', 'address', 'active']);
         });
     }
 

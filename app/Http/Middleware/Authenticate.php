@@ -11,8 +11,8 @@ class Authenticate
      * Handle an incoming request.
      *
      * @param \Illuminate\Http\Request $request request
-     * @param \Closure                 $next    next callback
-     * @param string|null              $guard   guard
+     * @param \Closure                 $next    next request
+     * @param string|null              $guard   guard admin
      *
      * @return mixed
      */
