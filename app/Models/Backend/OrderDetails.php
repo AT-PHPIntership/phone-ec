@@ -14,6 +14,15 @@ class OrderDetails extends Model
      */
     public function products()
     {
-        return $this->hasOne('App\Models\Backend\Product', 'product_id', 'id');
+        return $this->belongsTo('App\Models\Backend\Product', 'product_id');
+    }
+     /**
+     * The attributes that are mass assignable.
+     *
+     * @return array
+     */
+    public function orders()
+    {
+        return $this->hasOne('App\Models\Backend\Order');
     }
 }

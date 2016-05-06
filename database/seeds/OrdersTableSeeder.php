@@ -11,6 +11,7 @@ class OrdersTableSeeder extends Seeder
      */
     public function run()
     {
+        // DB::table('orders')->delete();
         $faker = Faker\Factory::create();
 
 		$limit = 10;

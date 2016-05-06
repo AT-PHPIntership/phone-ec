@@ -28,6 +28,6 @@ class Order extends Model
      */
     public function orderdetails()
     {
-        return $this->hasMany('App\Models\Backend\OrderDetails');
+        return $this->hasMany('App\Models\Backend\OrderDetails', 'id', 'order_details_id');
     }
 }

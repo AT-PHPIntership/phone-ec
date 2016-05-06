@@ -46,18 +46,23 @@
                                     <tbody>
 
                                         @foreach ($orders as $order)
-                                        
+                                            <?php //dd($order->orderdetails); //var_dump($order->orderdetails->name); ?>
                                             <tr class="odd gradeX">
-                                                <td>{{ $order['id'] }}</td>
-                                           
-                                                <td>{{ $order->image }}</td>
-                                                <td>{{ $order->name }}</td>
-
-                                                <td>{{ $order->address }}</td>
-                                                <td>{{ $order->phone }}</td>
-                                                <td>{{ $order->quantity }}</td>
-                                                <td>{{ $order->total }}</td>
-                                                <td>{{ $order->status }}</td>
+                                                <td>{{ $order->id }}</td>
+                                                <td>{{ $order->orderdetails->products->image }}</td>
+                                                <td>{{ $order->orderdetails->products->name }}</td>
+                                                <td>{{ $order->user_name }}</td>
+                                                <td>{{ $order->user_address }}</td>
+                                                <td>{{ $order->user_phone }}</td>
+                                                <td>quantity</td>
+                                                <td>{{ $order->total_price }}</td>
+                                                <td>
+                                                    @if ($order->status == 1)
+                                                        Orders are comfirmed
+                                                    @elseif ($order->status == 2)
+                                                        Orders was moved
+                                                    @endif
+                                                </td>
                                                 
 
                                                 <td class="text-right">

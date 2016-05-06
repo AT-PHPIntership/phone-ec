@@ -10,16 +10,14 @@ use App\Models\Backend\Brand;
 use App\Models\Backend\Order;
 use App\Http\Requests\Backend\OrdersRequest;
 
-use App\Http\Requests;
-use App\Http\Requests\Backend\UserRequest;
-use App\Models\Backend\User;
-use App\Http\Controllers\Controller;
-
 class OrdersController extends Controller
 {
-    
+    use App\Http\Requests;
+    use App\Http\Requests\Backend\UserRequest;
+    use App\Models\Backend\User;
+    use App\Http\Controllers\Controller;
 }
-
+// @codingStandardsIgnoreStart
 class UsersController extends Controller
 {
     /**
@@ -27,7 +25,7 @@ class UsersController extends Controller
      /**
      *
      * @return \Illuminate\Http\Response
-     */
+     */xattr_get(x, name)
     public function index()
     {
 

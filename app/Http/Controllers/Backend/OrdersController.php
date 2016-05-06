@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Backend\Product;
 use App\Models\Backend\Brand;
 use App\Models\Backend\Order;
+use App\Models\Backend\OrderDetails;
 use App\Models\Backend\User;
 use App\Http\Requests\Backend\OrdersRequest;
 
@@ -20,9 +21,11 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        $orders = Order::with('users', 'orderdetails')->paginate(10);
-        
-        return view('backend.orders.index', compact('orders'));
+        $orders = Order::with('users', 'orderdetails', 'orderdetails.products')->paginate(10);
+        $detail = OrderDetails::with('products')->get();
+        // dd($orders);
+        //dd($detail);
+        return view('backend.orders.index', compact('orders', 'detail'));
     }
 
     /**
