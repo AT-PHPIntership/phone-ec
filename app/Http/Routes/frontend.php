@@ -15,19 +15,6 @@
  */
 Route::group(['middleware' => ['auth']], function () {
 
-
-    // Route::get('/', function () {
- //    	return view('frontend.dashboard.index');
-    // });
-});
-Route::group(['middleware' => ['web']], function () {
-
-    Route::get('{detailsUrl}', 'Frontend\ProductsController@details');
-
-    Route::get('category', function () {
-        return view('frontend.dashboard.productCategory');
-    });
-
     Route::get('detail', function () {
         return view('frontend.dashboard.productDetail');
     });
@@ -51,7 +38,9 @@ Route::group(['middleware' => ['web']], function () {
 });
 
 Route::group(['middleware' => 'web'], function () {
-    Route::get('{detailsUrl}', 'Frontend\ProductsController@details');
     Route::post('products/rating', 'Frontend\ProductsController@rating');
     Route::get('/', 'Frontend\ProductsController@listAllProducts');
+    Route::get('category', 'Frontend\CategoryController@category');
+    Route::get('category/{id}', 'Frontend\ProductsController@listProducts');
+    Route::get('{detailsUrl}', 'Frontend\ProductsController@details');
 });
