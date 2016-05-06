@@ -28,9 +28,6 @@ class ProductsController extends Controller
         $id = last($array);
         
         $product = Product::with('brands')->findOrFail($id);
-        $productLatest = Product::with('brands')->take(5)
-                                                ->orderBy('created_at')
-                                                ->get();
         $countRatings = Rating::where('product_id', $id)->count();
         $scoreAverage = Rating::where('product_id', $id)->avg('score');
         $ratings = Rating::with('users')->where('product_id', $id)
@@ -40,7 +37,6 @@ class ProductsController extends Controller
             'frontend.dashboard.detailProduct',
             compact(
                 'product',
-                'productLatest',
                 'ratings',
                 'countRatings',
                 'scoreAverage'
