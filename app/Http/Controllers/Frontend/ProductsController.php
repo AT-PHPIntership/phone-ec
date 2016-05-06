@@ -15,6 +15,7 @@ use DB;
 
 class ProductsController extends Controller
 {
+
     /**
     * Display details of product
     *
@@ -90,5 +91,18 @@ class ProductsController extends Controller
         $listLatestProducts = Product::orderBy('id', 'DESC')->get();
         // $listBestsellerProducts = Order::with('products')->take(10)->orderBy('created_at')->get();
         return view('frontend.dashboard.index', compact('listLatestProducts', 'productLatest', 'listFeaturedProducts'));
+    }
+
+    /**
+     * Show list products by category
+     *
+     * @param int $id id category
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function listProducts($id)
+    {
+        $listProducts = Product::where('brand_id', $id)->paginate(10);
+        return view('frontend.dashboard.productCategory', compact('listProducts'));
     }
 }
