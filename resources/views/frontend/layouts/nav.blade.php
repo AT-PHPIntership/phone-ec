@@ -2,15 +2,13 @@
         <ul>
           <li class="home"><a title="Home" href="/"><span>Home</span></a></li>
           <li class="categories"><a>Categories</a>
+            @if (count($productCategory) > 0)
             <div>
-              <div class="column"> <a href="category">Apple</a></div>
-              <div class="column"> <a href="category">Samsung</a></div>
-              <div class="column"> <a href="category">Nokia</a></div>
-              <div class="column"> <a href="category">Sony</a></div>
-              <div class="column"> <a href="category">HTC</a></div>
-              <div class="column"> <a href="category">Lenovo</a></div>
-              <div class="column"> <a href="category">FPT</a></div>
+              @foreach ($productCategory as $Category)
+              <div class="column"> <a href="{!! url('category/'. $Category->id) !!}">{{ $Category->brand_name }}</a></div>
+              @endforeach
             </div>
+            @endif
           </li>
           <li><a href="about-us">About Us</a></li>
           <li><a href="contact-us">Contact Us</a></li>
