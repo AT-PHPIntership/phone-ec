@@ -20,9 +20,6 @@ Route::group(['middleware' => ['auth']], function () {
     // });
 });
 Route::group(['middleware' => ['web']], function () {
-
-    Route::get('{detailsUrl}', 'Frontend\ProductsController@details');
-
     Route::get('category', function () {
         return view('frontend.dashboard.productCategory');
     });
