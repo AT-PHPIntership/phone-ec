@@ -44,5 +44,4 @@ class Product extends Model
 
         return $fileName;
     }
-
 }

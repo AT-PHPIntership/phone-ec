@@ -25,7 +25,8 @@ class UsersController extends Controller
      /**
      *
      * @return \Illuminate\Http\Response
-     */xattr_get(x, name)
+     xattr_get(x, name)
+     */
     public function index()
     {
 
