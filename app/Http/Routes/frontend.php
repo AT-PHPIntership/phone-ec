@@ -13,11 +13,6 @@
  * Route for Frontend
  */
 Route::group(['middleware' => ['auth']], function () {
-    // Route::get('/', function () {
-    //     return view('frontend.dashboard.index');
-    // });
-});
-Route::group(['middleware' => ['web']], function () {
     Route::get('category', function () {
         return view('frontend.dashboard.productCategory');
     });
