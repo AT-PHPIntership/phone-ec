@@ -50,5 +50,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('register', 'Frontend\Auth\AuthController@getRegister');
     Route::post('register', 'Frontend\Auth\AuthController@postRegister');
 
+    Route::post('products/rating', 'Frontend\ProductsController@rating');
+    Route::get('/', 'Frontend\ProductsController@listAllProducts');
+    Route::get('category', 'Frontend\CategoryController@category');
+    Route::get('category/{id}', 'Frontend\ProductsController@listProducts');
     Route::get('{detailsUrl}', 'Frontend\ProductsController@details');
 });
