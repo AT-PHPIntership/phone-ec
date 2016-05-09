@@ -11,7 +11,7 @@ class ProductsTableSeeder extends Seeder
      */
     public function run()
     {
-        App\Models\Backend\Product::truncate();
+        DB::table('products')->delete();
         $faker = Faker\Factory::create();
 
 		$limit = 15;

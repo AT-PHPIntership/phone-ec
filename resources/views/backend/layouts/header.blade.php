@@ -28,6 +28,13 @@
 
     <!-- Custom Fonts -->
     <link href="{!! asset('assets/backend/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css') !!}">
+
+
+    
+    <!-- jQuery -->
+    <script src="{!! asset('assets/backend/bower_components/jquery/dist/jquery.min.js') !!}"></script>
+
+
     
     <!-- jQuery -->
     <script src="{!! asset('assets/backend/bower_components/jquery/dist/jquery.min.js') !!}"></script>
