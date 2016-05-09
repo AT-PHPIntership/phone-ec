@@ -33,28 +33,21 @@
                                     <thead>
                                         <tr>
                                             <th>Id</th>
-                                            <th>Image</th>
-                                            <th>Product Name</th>
-                                            <th>User Name</th>
+                                            <th>Username</th>
                                             <th>Address</th>
                                             <th>Phone</th>
-                                            <th>Quantity</th>
                                             <th>Total price</th>
                                             <th>Status</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-
                                         @foreach ($orders as $order)
-                                            <?php //dd($order->orderdetails); //var_dump($order->orderdetails->name); ?>
                                             <tr class="odd gradeX">
                                                 <td>{{ $order->id }}</td>
-                                                <td>{{ $order->orderdetails->products->image }}</td>
-                                                <td>{{ $order->orderdetails->products->name }}</td>
                                                 <td>{{ $order->user_name }}</td>
                                                 <td>{{ $order->user_address }}</td>
                                                 <td>{{ $order->user_phone }}</td>
-                                                <td>quantity</td>
                                                 <td>{{ $order->total_price }}</td>
                                                 <td>
                                                     @if ($order->status == 1)
@@ -63,11 +56,8 @@
                                                         Orders was moved
                                                     @endif
                                                 </td>
-                                                
-
                                                 <td class="text-right">
-                                                    <a href="{{ url('admin/orders/'.$order->id.'/edit') }}" class="btn btn-circle btn-outline btn-primary" ><i class="fa fa-edit"></i></a>
-                                                    <button type="submit" data-toggle="modal" data-target="#confirmDelete" class="btn btn-circle btn-outline btn-danger btnDel"><i class="fa fa-trash-o"></i></button>
+                                                    <a href="{{ url('admin/orders/'.$order->id.'') }}" class="btn btn-circle btn-outline btn-primary" ><i class="fa fa-edit"></i></a>
                                                     <input type="hidden" value="{{ $order['id'] }}">
                                                 </td>
                                             </tr>

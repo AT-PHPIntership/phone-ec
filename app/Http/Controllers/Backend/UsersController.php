@@ -10,14 +10,6 @@ use App\Models\Backend\Brand;
 use App\Models\Backend\Order;
 use App\Http\Requests\Backend\OrdersRequest;
 
-class OrdersController extends Controller
-{
-    use App\Http\Requests;
-    use App\Http\Requests\Backend\UserRequest;
-    use App\Models\Backend\User;
-    use App\Http\Controllers\Controller;
-}
-// @codingStandardsIgnoreStart
 class UsersController extends Controller
 {
     /**
@@ -30,7 +22,7 @@ class UsersController extends Controller
     public function index()
     {
 
-        $users = Order::with('users')->paginate(10);
+        $users = User::with('users')->paginate(10);
 
         return view('backend.users.index', compact('users'));
 
@@ -93,7 +85,7 @@ class UsersController extends Controller
     public function edit($id)
     {
 
-        $order = Order::findOrFail($id);
+        $user = User::findOrFail($id);
         $users = user::all();
 
         return view('backend.users.edit', compact('order', 'users'));
@@ -146,7 +138,7 @@ class UsersController extends Controller
     public function destroy($id)
     {
 
-        $user = Order::findOrFail($id);
+        $user = User::findOrFail($id);
         $user->delete();
 
         return back();

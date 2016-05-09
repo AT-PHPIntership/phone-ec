@@ -21,11 +21,9 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        $orders = Order::with('users', 'orderdetails', 'orderdetails.products')->paginate(10);
-        $detail = OrderDetails::with('products')->get();
-        // dd($orders);
-        //dd($detail);
-        return view('backend.orders.index', compact('orders', 'detail'));
+        // $orders = Order::with('users', 'orderdetails', 'orderdetails.products')->paginate(10);
+        $orders = Order::paginate(10);
+        return view('backend.orders.index', compact('orders','details'));
     }
 
     /**
@@ -63,6 +61,12 @@ class OrdersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function show($id)
+    {
+        //
+    }
+    
     public function edit($id)
     {
         $order = Order::findOrFail($id);
