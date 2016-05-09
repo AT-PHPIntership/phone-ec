@@ -54,5 +54,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/', 'Frontend\ProductsController@listAllProducts');
     Route::get('category', 'Frontend\CategoryController@category');
     Route::get('category/{id}', 'Frontend\ProductsController@listProducts');
+    Route::get('search', 'Frontend\SearchController@index');
     Route::get('{detailsUrl}', 'Frontend\ProductsController@details');
 });
