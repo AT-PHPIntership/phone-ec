@@ -24,6 +24,7 @@ class ProductsController extends Controller
     {
         $array = explode('-', $detailsUrl);
         $id = last($array);
+        
         $product = Product::with('brands')->findOrFail($id);
         $productLatest = Product::with('brands')->take(5)
                                                 ->orderBy('created_at')

@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="clean modern and elegant corporate look eCommerce html template">
 <meta name="author" content="">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <!-- CSS Part Start-->
 <link rel="stylesheet" type="text/css" href="{!! asset('assets/frontend/css/stylesheet.css') !!}" />
 <link rel="stylesheet" type="text/css" href="{!! asset('assets/frontend/css/slideshow.css') !!}" media="screen" />
@@ -51,6 +52,7 @@
             <li> <a title="US Dollar"><b>$ - US Dollar</b></a> </li>
           </ul>
         </div>
+        <div class="links"> <a href="login">Login</a> <a href="register.html">Register</a> <a href="#">My Account</a> <a href="{{ url('cart') }}">Checkout</a> </div>
         <div class="links">
         @if (Auth::guest()) 
         <a href="login">Login</a> <a href="register">Register</a>
@@ -74,47 +76,13 @@
         <section id="cart">
           <div class="heading">
             <h4><img width="32" height="32" alt="" src="{!! asset('assets/frontend/image/cart-bg.png') !!}"></h4>
-            <a><span id="cart-total">2 item(s) - $710.18</span></a> </div>
-          <div class="content">
-            <div class="mini-cart-info">
-              <table>
-                <tr>
-                  <td class="image"><a href="product.html"><img src="{!! asset('assets/frontend/image/product/lotto-sports-shoes-white-47x47.jpg') !!}" alt="Lotto Sports Shoes" title="Lotto Sports Shoes" /></a></td>
-                  <td class="name"><a href="product.html">Lotto Sports Shoes</a></td>
-                  <td class="quantity">x&nbsp;1</td>
-                  <td class="total">$589.50</td>
-                  <td class="remove"><img src="{!! asset('assets/frontend/image/remove-small.png') !!}" alt="Remove" title="Remove" /></td>
-                </tr>
-                <tr>
-                  <td class="image"><a href="product.html"><img src="{!! asset('assets/frontend/image/product/iphone_1-47x47.jpg') !!}" alt="iPhone 4s" title="iPhone 4s" /></a></td>
-                  <td class="name"><a href="product.html">iPhone 4s</a></td>
-                  <td class="quantity">x&nbsp;1</td>
-                  <td class="total">$120.68</td>
-                  <td class="remove"><img src="{!! asset('assets/frontend/image/remove-small.png') !!}" alt="Remove" title="Remove" /></td>
-                </tr>
-              </table>
-            </div>
-            <div class="mini-cart-total">
-              <table>
-                <tr>
-                  <td class="right"><b>Sub-Total:</b></td>
-                  <td class="right">$601.00</td>
-                </tr>
-                <tr>
-                  <td class="right"><b>Eco Tax (-2.00):</b></td>
-                  <td class="right">$4.00</td>
-                </tr>
-                <tr>
-                  <td class="right"><b>VAT (17.5%):</b></td>
-                  <td class="right">$105.18</td>
-                </tr>
-                <tr>
-                  <td class="right"><b>Total:</b></td>
-                  <td class="right">$710.18</td>
-                </tr>
-              </table>
-            </div>
-            <div class="checkout"><a class="button" href="cart">View Cart</a> &nbsp; <a class="button" href="checkout">Checkout</a></div>
+            <a>
+              @if (Session::has('carts') && count(Session::get('carts')>0))
+                <span id="cart-total" style="background: none">{{ count(session()->get('carts')) }} item(s)</span>
+              @else
+                <span id="cart-total">0 item</span>
+              @endif
+            </a> 
           </div>
         </section>
         <!--Mini Shopping Cart End-->
@@ -125,3 +93,4 @@
       <!-- Mobile Menu End-->
     </header>
     <!--Header Part End-->
+    
