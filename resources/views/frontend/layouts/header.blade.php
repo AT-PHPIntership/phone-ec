@@ -64,10 +64,12 @@
       </div>
       <section class="hsecond">
         <div id="logo"><a href="/"><img src="{!! asset('assets/frontend/image/logo.png') !!}" title="Polishop" alt="Polishop" /></a></div>
+        <form action="{{ url('search') }}" method="GET" role="search">
         <div id="search">
-          <div class="button-search"></div>
-          <input type="text" name="search" placeholder="Search" value="" />
+          <button class="button-search" type="submit"></button>
+          <input type="text" name="search" placeholder="Search" required="" value="" />
         </div>
+        </form>
         <!--Mini Shopping Cart Start-->
         <section id="cart">
           <div class="heading">
