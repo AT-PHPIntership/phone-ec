@@ -51,15 +51,18 @@
                 Price: <span class="price-old">{{ number_format($product->old_price) }} VND</span> <span class="price-new">{{ number_format($product->current_price) }} VND</span> <br />
             </div>
             <div class="cart">
-                <div>
-                    <div class="qty"> <strong>Qty:</strong> <a class="qtyBtn mines" href="javascript:void(0);">-</a>
-                        <input id="qty" type="text" class="w30" name="quantity" size="2" value="1" />
-                        <a class="qtyBtn plus" href="javascript:void(0);">+</a>
-                        <input type="hidden" name="product_id" size="2" value="30" />
-                        <div class="clear"></div>
+                <form action="{{ url('cart') }}" method="post">
+                    {{ csrf_field() }}
+                    <div>
+                        <div class="qty"> <strong>Qty:</strong> <a class="qtyBtn mines" href="javascript:void(0);">-</a>
+                            <input id="qty" type="text" class="w30" name="quantity" size="2" value="1" />
+                            <a class="qtyBtn plus" href="javascript:void(0);">+</a>
+                            <input type="hidden" name="id" size="2" value="{{ url()->current() }}" />
+                            <div class="clear"></div>
+                        </div>
+                        <input type="submit" value="Add to Cart" id="button-cart" class="button" />
                     </div>
-                    <input type="button" value="Add to Cart" id="button-cart" class="button" />
-                </div>
+                </form>
             </div>
             <div class="review">
                 <div>
@@ -136,6 +139,9 @@
     <script>
         $(document).ready(function(){
             $('#tabs a').tabs();
+            $("#button-cart").click(function(){
+                console.log($("#qty").val());
+            });
         });
     </script>
     <!-- Description and Reviews Tab Start -->
