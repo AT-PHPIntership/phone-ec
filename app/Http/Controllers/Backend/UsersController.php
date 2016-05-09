@@ -88,7 +88,7 @@ class UsersController extends Controller
         $user = User::findOrFail($id);
         $users = user::all();
 
-        return view('backend.users.edit', compact('order', 'users'));
+        return view('backend.users.edit', compact('users'));
 
         $user = User::findOrFail($id);
         return view('backend.users.edit', compact('user'));

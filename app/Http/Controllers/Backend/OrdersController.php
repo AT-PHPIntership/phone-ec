@@ -23,7 +23,7 @@ class OrdersController extends Controller
     {
         // $orders = Order::with('users', 'orderdetails', 'orderdetails.products')->paginate(10);
         $orders = Order::paginate(10);
-        return view('backend.orders.index', compact('orders','details'));
+        return view('backend.orders.index', compact('orders'    ));
     }
 
     /**
@@ -53,20 +53,13 @@ class OrdersController extends Controller
         $request->session()->flash('message', 'Order was created successfully!');
         return redirect('admin/orders');
     }
-
     /**
      * Show the form for editing the specified resource.
      *
      * @param int $id id
      *
      * @return \Illuminate\Http\Response
-     */
-
-    public function show($id)
-    {
-        //
-    }
-    
+     */ 
     public function edit($id)
     {
         $order = Order::findOrFail($id);
