@@ -52,16 +52,15 @@
             <li> <a title="US Dollar"><b>$ - US Dollar</b></a> </li>
           </ul>
         </div>
-        <div class="links"> <a href="login">Login</a> <a href="register.html">Register</a> <a href="#">My Account</a> <a href="{{ url('cart') }}">Checkout</a> </div>
         <div class="links">
         @if (Auth::guest()) 
-        <a href="login">Login</a> <a href="register">Register</a>
+          <a href="login">Login</a> <a href="register">Register</a>
         @else
-        <a href="account">{{ Auth::user()->name }}</a>
-        <a href="account">My Account</a>
-        <a href="checkout.html">Checkout</a> 
-        <a href="{{ url('/logout') }}">Logout</a> 
+          <a href="account">{{ Auth::user()->name }}</a>
+          <a href="account">My Account</a>
+          <a href="{{ url('/logout') }}">Logout</a> 
         @endif
+          <a href="{{ url('cart') }}">Checkout</a> 
         </div>
       </div>
       <section class="hsecond">

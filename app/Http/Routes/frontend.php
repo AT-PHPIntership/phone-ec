@@ -33,40 +33,41 @@ Route::group(['middleware' => ['auth']], function () {
     });
 });
 
-Route::group(['middleware' => 'web'], function () {
-    view()->composer(['frontend.layouts.sidebar','frontend.layouts.nav'], function ($view) {
-        $productLatest = App\Models\Frontend\Product::with('brands')->take(5)
-                                                                    ->orderBy('created_at')
-                                                                    ->get();
-        $productCategory = App\Models\Frontend\Brand::all();
+/*=================================================================================*/
+view()->composer(['frontend.layouts.sidebar','frontend.layouts.nav'], function ($view) {
+    $productLatest = App\Models\Frontend\Product::with('brands')->take(5)
+                                                                ->orderBy('created_at')
+                                                                ->get();
+    $productCategory = App\Models\Frontend\Brand::all();
 
-        $view->with(['productLatest'=> $productLatest,
-                     'productCategory' => $productCategory]);
-    });
-    Route::get('cart', 'Frontend\CheckoutController@showCart');
-    Route::post('cart', 'Frontend\CheckoutController@cart');
-    Route::delete('cart/{id}', 'Frontend\CheckoutController@deleteCart');
-    Route::post('cart/update', 'Frontend\CheckoutController@updateCart');
-
-    Route::post('products/rating', 'Frontend\ProductsController@rating');
-    Route::get('/', 'Frontend\ProductsController@listAllProducts');
-
-    Route::post('products/rating', 'Frontend\ProductsController@rating');
-    Route::get('/', 'Frontend\ProductsController@listAllProducts');
-
-    // Authentication routes...
-    Route::get('login', 'Frontend\Auth\AuthController@getLogin');
-    Route::post('login', 'Frontend\Auth\AuthController@postLogin');
-    Route::get('logout', 'Frontend\Auth\AuthController@getLogout');
-
-    // Registration routes...
-    Route::get('register', 'Frontend\Auth\AuthController@getRegister');
-    Route::post('register', 'Frontend\Auth\AuthController@postRegister');
-
-    Route::post('products/rating', 'Frontend\ProductsController@rating');
-    Route::get('/', 'Frontend\ProductsController@listAllProducts');
-    Route::get('category', 'Frontend\CategoryController@category');
-    Route::get('category/{id}', 'Frontend\ProductsController@listProducts');
-    Route::get('search', 'Frontend\SearchController@index');
-    Route::get('{detailsUrl}', 'Frontend\ProductsController@details');
+    $view->with(['productLatest'=> $productLatest,
+                 'productCategory' => $productCategory]);
 });
+
+Route::get('cart', 'Frontend\CheckoutController@showCart');
+Route::post('cart', 'Frontend\CheckoutController@cart');
+Route::delete('cart/{id}', 'Frontend\CheckoutController@deleteCart');
+Route::post('cart/update', 'Frontend\CheckoutController@updateCart');
+
+Route::get('checkout', 'Frontend\CheckoutController@showCheckout');
+Route::post('checkout', 'Frontend\CheckoutController@checkout');
+Route::get('checkout/success', 'Frontend\CheckoutController@success');
+
+Route::post('products/rating', 'Frontend\ProductsController@rating');
+Route::get('/', 'Frontend\ProductsController@listAllProducts');
+
+// Authentication routes...
+Route::get('login', 'Frontend\Auth\AuthController@getLogin');
+Route::post('login', 'Frontend\Auth\AuthController@postLogin');
+Route::get('logout', 'Frontend\Auth\AuthController@getLogout');
+
+// Registration routes...
+Route::get('register', 'Frontend\Auth\AuthController@getRegister');
+Route::post('register', 'Frontend\Auth\AuthController@postRegister');
+
+Route::get('category', 'Frontend\CategoryController@category');
+Route::get('category/{id}', 'Frontend\ProductsController@listProducts');
+
+Route::get('search', 'Frontend\SearchController@index');
+
+Route::get('{detailsUrl}', 'Frontend\ProductsController@details');

@@ -83,7 +83,7 @@
                 </table>
             </div>
             <div class="buttons">
-                <div class="right"><a class="button" href="checkout.html">Checkout</a></div>
+                <div class="right"><a class="button" href="{{ url('checkout') }}">Checkout</a></div>
                 <div class="right" style="margin-right: 15px">
                     <button class="button" id="btnUpdate">Update Cart</button>
                     <input type="hidden" value="{{ count($carts) }}" id="countCart">
