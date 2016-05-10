@@ -36,7 +36,7 @@ class Product extends Model
      *
      * @return \Illuminate\Http\Response
      */
-    public function upload($image)
+    public static function upload($image)
     {
         $fileName = time() . $image->getClientOriginalName();
         $destinationPath = public_path('upload/');
