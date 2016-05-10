@@ -63,8 +63,7 @@ class OrdersController extends Controller
         
         if ($order->update($data)) {
             $request->session()->flash('message', 'Order was updated successfully!');
-        }
-        else {
+        } else {
             $request->session()->flash('message', 'Update failed!');
         }
 
