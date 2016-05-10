@@ -17,7 +17,6 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         Orders Manage
-                        <a href="{{ url('admin/orders/create') }}" class="btn btn-primary btn-sm pull-right"><i class="fa fa-plus-circle"></i> Add new order</a>
                         <div class="clearfix"></div>
                     </div> 
                     <!-- /.panel-heading -->

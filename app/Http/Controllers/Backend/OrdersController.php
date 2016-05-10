@@ -60,9 +60,15 @@ class OrdersController extends Controller
     {
         $order = Order::findOrFail($id);
         $data = $request->all();
-        $order->update($data);
-        $request->session()->flash('message', 'Order was updated successfully!');
         
+        if ($order->update($data)) {
+            $request->session()->flash('message', 'Order was updated successfully!');
+        }
+        else {
+            $request->session()->flash('message', 'Update failed!');
+        }
+
+
         return redirect('admin/orders');
     }
 }
