@@ -103,6 +103,10 @@
                             <a href="{{ url('admin/brands') }}"><i class="fa fa-edit fa-fw"></i> Brands</a>
                             <!-- /.nav-second-level -->
                         </li>
+                        <li>
+                            <a href="{{ url('admin/orders') }}"><i class="fa fa-edit fa-fw"></i> Orders</a>
+                            <!-- /.nav-second-level -->
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

@@ -1,17 +1,13 @@
 @include('backend.layouts.header')
 <body>
-
     <div id="wrapper">
-
         <!-- Navigation -->
         @include('backend.layouts.nav')
         <!-- Content -->
         @yield('content')
         <!-- /#page-wrapper -->
-
     </div>
     <!-- /#wrapper -->
-
 
     <!-- Bootstrap Core JavaScript -->
     <script src="{!! asset('assets/backend/bower_components/bootstrap/dist/js/bootstrap.min.js') !!}"></script>
