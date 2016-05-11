@@ -54,13 +54,13 @@
         </div>
         <div class="links">
         @if (Auth::guest()) 
-          <a href="login">Login</a> <a href="register">Register</a>
+          <a href="{{ url('login') }}">Login</a> 
+          <a href="{{ url('register') }}">Register</a>
         @else
-          <a href="account">{{ Auth::user()->name }}</a>
-          <a href="account">My Account</a>
+          <a href="{{ url('account') }}">{{ Auth::user()->name }}</a>
+          <a href="{{ url('cart') }}">Checkout</a> 
           <a href="{{ url('/logout') }}">Logout</a> 
         @endif
-          <a href="{{ url('cart') }}">Checkout</a> 
         </div>
       </div>
       <section class="hsecond">
