@@ -33,6 +33,10 @@
 
 @section('content')
     @if (Session::has('message'))
-        <div class="alert alert-success">{{ Session::get('message') }}</div>
+        <div class="alert alert-success">
+          Your order code: {{ Session::get('order_id') }}
+          <br>
+          {{ Session::get('message') }}
+        </div>
     @endif
 @endsection

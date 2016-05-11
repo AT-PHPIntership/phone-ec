@@ -73,10 +73,10 @@
                 <table class="radio">
                   <tbody>
                     <tr class="highlight">
-                      <td><label><input type="radio" checked="checked" id="" value="1" name="payment_method">Cash On Delivery</label></td>
+                      <td><label><input type="radio" checked="checked" id="" value="1">Cash On Delivery</label></td>
                     </tr>
                     <tr class="highlight">
-                      <td><label><input type="radio" disabled="disabled" value="0" name="payment_method">PayPal</label></td>
+                      <td><label><input type="radio" disabled="disabled" value="0">PayPal</label></td>
                     </tr>
                   </tbody>
                 </table>
@@ -100,25 +100,25 @@
                     <tbody>
                       <tr>
                         <?php $total = 0 ?>
-                        @for ($i = 0; $i < count($carts); $i++)
+                        @foreach ($carts as $key => $cart)
                             <tr>
-                                <td class="image"><a href="{{ url(str_slug($carts[$i]['name']).'-'.$carts[$i]['id']) }}"><img src="{{ asset('assets/frontend/upload/'.$carts[$i]['image']) }}" alt="{{ $carts[$i]['name'] }}" /></a></td>
-                                <td class="name"><a href="product.html">{{ $carts[$i]['name'] }}</a></td>
-                                <td class="model">{{ $carts[$i]['brand'] }}</td>
+                                <td class="image"><a href="{{ url(str_slug($cart['name']).'-'.$cart['id']) }}"><img src="{{ asset('upload/'.$cart['image']) }}" alt="{{ $cart['name'] }}" /></a></td>
+                                <td class="name"><a href="{{ url(str_slug($cart['name']).'-'.$cart['id']) }}">{{ $cart['name'] }}</a></td>
+                                <td class="model">{{ $cart['brand'] }}</td>
                                 <td class="quantity">
-                                    <span>{{ $carts[$i]['quantity'] }}</span>
+                                    <span>{{ $cart['quantity'] }}</span>
                                 </td>
-                                <td class="price" id="price-{{ $i }}">{{ number_format($carts[$i]['price']) }} VND</td>
-                                <td class="total">{{ $carts[$i]['total'] }} VND</td>
+                                <td class="price" id="price-{{ $key }}">{{ number_format($cart['price']) }} VND</td>
+                                <td class="total">{{ number_format($cart['total']) }} VND</td>
                             </tr>
-                            <?php $total += $carts[$i]['total'] ?>
-                        @endfor
+                            <?php $total += $cart['total'] ?>
+                        @endforeach
                       </tr>
                     </tbody>
                     <tfoot>
                       <tr>
                         <td class="price" colspan="5"><b>Total:</b></td>
-                        <td class="total"><?= $total ?></td>
+                        <td class="total">{{ number_format($total) }} VND</td>
                       </tr>
                     </tfoot>
                   </table>
