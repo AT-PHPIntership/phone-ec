@@ -68,6 +68,8 @@ Route::post('register', 'Frontend\Auth\AuthController@postRegister');
 Route::get('category', 'Frontend\CategoryController@category');
 Route::get('category/{id}', 'Frontend\ProductsController@listProducts');
 
+Route::resource('account', 'Frontend\AccountController');
+
 Route::get('search', 'Frontend\SearchController@index');
 
 Route::get('{detailsUrl}', 'Frontend\ProductsController@details');

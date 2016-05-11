@@ -14,10 +14,17 @@
           <li><a href="contact-us">Contact Us</a></li>
           <li><a>Account</a>
             <div>
+              @if (Auth::guest()) 
               <ul>
-                <li><a href="#">My Account</a></li>
-                <li><a href="#">Order History</a></li>
+                <li><a href="{{ url('login') }}">My Account</a></li>
+                <li><a href="{{ url('login') }}">Order History</a></li>
               </ul>
+              @else
+              <ul>
+                <li><a href="{{ url('account') }}">My Account</a></li>
+                <li><a href="{{ url('account') }}">Order History</a></li>
+              </ul>
+              @endif
             </div>
           </li>
         </ul>

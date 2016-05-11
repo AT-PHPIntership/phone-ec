@@ -22,14 +22,20 @@
   <div class="box">
     <div class="box-heading">Account</div>
     <div class="box-content">
+      @if (Auth::guest()) 
       <ul class="list-item">
-        <li><a href="login.html">Login</a></li>
-        <li><a href="register.html">Register</a></li>
+        <li><a href="{{ url('login') }}">Login</a></li>
+        <li><a href="{{ url('register') }}">Register</a></li>
         <li><a href="#">Forgotten Password</a></li>
-        <li><a href="#">My Account</a></li>
-        <li><a href="#">Order History</a></li>
-        <li><a href="#">Log out</a></li>
       </ul>
+      @else
+      <ul class="list-item">
+        <li><a href="{{ url('account') }}">My Account</a></li>
+        <li><a href="{{ url('account') }}">Order History</a></li>
+        <li><a href="{{ url('account') }}">Change Password</a></li>
+        <li><a href="{{ url('logout') }}">Log out</a></li>
+      </ul>
+      @endif
     </div>
   </div>
   @show
