@@ -43,11 +43,12 @@ class ProductsController extends Controller
     public function store(ProductsRequest $request)
     {
         $data = $request->all();
+        $productObj = new Product;
         
         if ($request->hasFile('image')) {
             if ($request->file('image')->isValid()) {
                 $image = $request->file('image');
-                $data['image'] = Product::upload($image);
+                $data['image'] = $productObj->upload($image);
 
                 Product::create($data);
                 $request->session()->flash('message', 'Product was created successfully!');
@@ -86,11 +87,12 @@ class ProductsController extends Controller
     {
         $product = Product::findOrFail($id);
         $data = $request->all();
-
+        $productObj = new Product;
+        
         if ($request->hasFile('image')) {
             if ($request->file('image')->isValid()) {
                 $image = $request->file('image');
-                $data['image'] = Product::upload($image);
+                $data['image'] = $productObj->upload($image);
                 
                 $product->update($data);
                 $request->session()->flash('message', 'Product was updated successfully!');
