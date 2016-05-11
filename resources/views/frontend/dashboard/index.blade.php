@@ -29,11 +29,16 @@
                   @foreach($listFeaturedProducts as $listFeatured)
                   <li>
                     <div class="slide-inner">
-                      <div class="image"><a href="product.html"><img src="{!! asset('assets/frontend/image/product/lotto-sports-shoes-white-210x210.jpg') !!}" alt="Lotto Sports Shoes" /></a></div>
-                      <div class="name"><a href="http://localhost/polishop/index.php?route=product/product&amp;product_id=43">{{ $listFeatured->name }}</a></div>
-                      <div class="price"> {{ $listFeatured->current_price }} </div>
+                      <div class="image"><a href="{{ url(str_slug($listFeatured->name).'-'.$listFeatured->id) }}"><img src="{!! asset('assets/frontend/image/product/lotto-sports-shoes-white-210x210.jpg') !!}" alt="Lotto Sports Shoes" /></a></div>
+                      <div class="name"><a href="{{ url(str_slug($listFeatured->name).'-'.$listFeatured->id) }}">{{ $listFeatured->name }}</a></div>
+                      <div class="price"> {{ $listFeatured->current_price }} VNĐ</div>
                       <div class="cart">
-                        <input type="button" value="Add to Cart" class="button" />
+                        <form action="{{ url('cart') }}" method="post">
+                          {{ csrf_field() }}
+                          <input type="hidden" name="quantity" value="1" />
+                          <input type="hidden" name="id" value="{{ url(str_slug($listFeatured->name).'-'.$listFeatured->id) }}" />
+                          <input type="submit" value="Add to Cart" id="button-cart" class="button" />
+                        </form>
                       </div>
                       <div class="clear"></div>
                     </div>
@@ -83,11 +88,16 @@
                   @foreach($listLatestProducts as $listLatest)
                   <li>
                     <div class="slide-inner">
-                      <div class="image"><a href="product.html"><img src="{!! asset('assets/frontend/image/product/samsung_syncmaster_941bw-210x210.jpg') !!}" alt="Samsung SyncMaster 941BW" /></a></div>
-                      <div class="name"><a href="product.html">{{ $listLatest->name }}</a></div>
-                      <div class="price"> $237.00 </div>
+                      <div class="image"><a href="{{ url(str_slug($listLatest->name).'-'.$listLatest->id) }}"><img src="{!! asset('assets/frontend/image/product/samsung_syncmaster_941bw-210x210.jpg') !!}" alt="Samsung SyncMaster 941BW" /></a></div>
+                      <div class="name"><a href="{{ url(str_slug($listLatest->name).'-'.$listLatest->id) }}">{{ $listLatest->name }}</a></div>
+                      <div class="price">{{ $listLatest->current_price }} VNĐ</div>
                       <div class="cart">
-                        <input type="button" value="Add to Cart" class="button" />
+                        <form action="{{ url('cart') }}" method="post">
+                          {{ csrf_field() }}
+                          <input type="hidden" name="quantity" value="1" />
+                          <input type="hidden" name="id" value="{{ url(str_slug($listLatest->name).'-'.$listLatest->id) }}" />
+                          <input type="submit" value="Add to Cart" id="button-cart" class="button" />
+                        </form>
                       </div>
                       <div class="clear"></div>
                     </div>
@@ -161,46 +171,54 @@
             </div>
           </div>
         </section>
+        <script>
+        $(document).ready(function(){
+          $('#tabs a').tabs();
+            $("#button-cart").click(function(){
+                console.log($("#qty").val());
+            });
+          });
+        </script>
         <script type="text/javascript">
-  (function() {
-  // store the slider in a local variable
-  var $window = $(window),
-      flexslider;
-  // tiny helper function to add breakpoints
-  function getGridSize() {
-    return (window.innerWidth < 320) ? 1 :
-           (window.innerWidth < 600) ? 2 :
-           (window.innerWidth < 800) ? 3 :
-           (window.innerWidth < 900) ? 4 : 5;
-  }
-  $window.load(function() {
-    $('#product-tab .featured_carousel_tab, #product-tab .latest_carousel_tab, #product-tab .bestseller_carousel_tab, #product-tab .special_carousel_tab').flexslider({
-      animation: "slide",
-      animationLoop: false,
-      slideshow: false,
-      itemWidth: 210,
-      minItems: getGridSize(), // use function to pull in initial value
-      maxItems: getGridSize(), // use function to pull in initial value
-      start: function(){
-          $("#product-tab .tab_content").addClass("deactive");
-          $("#product-tab .tab_content:first").removeClass("deactive"); //Show first tab content
-          } });
-  });
+          (function() {
+          // store the slider in a local variable
+          var $window = $(window),
+              flexslider;
+          // tiny helper function to add breakpoints
+          function getGridSize() {
+            return (window.innerWidth < 320) ? 1 :
+                   (window.innerWidth < 600) ? 2 :
+                   (window.innerWidth < 800) ? 3 :
+                   (window.innerWidth < 900) ? 4 : 5;
+          }
+          $window.load(function() {
+            $('#product-tab .featured_carousel_tab, #product-tab .latest_carousel_tab, #product-tab .bestseller_carousel_tab, #product-tab .special_carousel_tab').flexslider({
+              animation: "slide",
+              animationLoop: false,
+              slideshow: false,
+              itemWidth: 210,
+              minItems: getGridSize(), // use function to pull in initial value
+              maxItems: getGridSize(), // use function to pull in initial value
+              start: function(){
+                  $("#product-tab .tab_content").addClass("deactive");
+                  $("#product-tab .tab_content:first").removeClass("deactive"); //Show first tab content
+                  } });
+          });
 
-$(document).ready(function() {
-    //Default Action
-    $("ul#tabs li:first").addClass("active").show(); //Activate first tab
-    //On Click Event
-    $("ul#tabs li").click(function() {
-        $("ul#tabs li").removeClass("active"); //Remove any "active" class
-        $(this).addClass("active"); //Add "active" class to selected tab
-        $("#product-tab .tab_content").hide(); 
-        var activeTab = $(this).find("a").attr("href"); //Find the rel attribute value to identify the active tab + content
-        $(activeTab).fadeIn(); //Fade in the active content
-        return false;
-    });
-});}());
-</script>
+        $(document).ready(function() {
+            //Default Action
+            $("ul#tabs li:first").addClass("active").show(); //Activate first tab
+            //On Click Event
+            $("ul#tabs li").click(function() {
+                $("ul#tabs li").removeClass("active"); //Remove any "active" class
+                $(this).addClass("active"); //Add "active" class to selected tab
+                $("#product-tab .tab_content").hide(); 
+                var activeTab = $(this).find("a").attr("href"); //Find the rel attribute value to identify the active tab + content
+                $(activeTab).fadeIn(); //Fade in the active content
+                return false;
+            });
+        });}());
+        </script>
         <!-- Product Tab End-->
         <!-- Carousel Start-->
         <section id="carousel">
