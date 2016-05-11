@@ -26,7 +26,7 @@ class CheckoutController extends Controller
             session(['carts'=>array()]);
         }
 
-        $carts = array_values(session()->get('carts'));
+        $carts = session()->get('carts');
         return view('frontend.checkout.cart', compact('carts'));
     }
 
