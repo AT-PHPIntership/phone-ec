@@ -2,7 +2,7 @@
 
 
 /*--------------------------------Login--------------------------------*/
-Route::group(['middleware' => ['admin'],'prefix'=>'admin'], function () {
+Route::group(['prefix'=>'admin'], function () {
     Route::get('/', function () {
         return redirect('admin/login');
     });
