@@ -49,26 +49,26 @@
                         </thead>
                         <tbody>
                             <?php $total = 0 ?>
-                            @for ($i = 0; $i < count($carts); $i++)
+                            @foreach ($carts as $key => $cart)
                                 <tr>
-                                    <td class="image"><a href="{{ url(str_slug($carts[$i]['name']).'-'.$carts[$i]['id']) }}"><img src="{{ asset('assets/frontend/upload/'.$carts[$i]['image']) }}" alt="{{ $carts[$i]['name'] }}" /></a></td>
-                                    <td class="name"><a href="product.html">{{ $carts[$i]['name'] }}</a></td>
-                                    <td class="model">{{ $carts[$i]['brand'] }}</td>
+                                    <td class="image"><a href="{{ url(str_slug($cart['name']).'-'.$cart['id']) }}"><img src="{{ asset('assets/frontend/upload/'.$cart['image']) }}" alt="{{ $cart['name'] }}" /></a></td>
+                                    <td class="name"><a href="{{ url(str_slug($cart['name']).'-'.$cart['id']) }}">{{ $cart['name'] }}</a></td>
+                                    <td class="model">{{ $cart['brand'] }}</td>
                                     <td class="quantity">
-                                        <input type="text" size="1" value="{{ $carts[$i]['quantity'] }}" id="quantity-{{ $i }}" name="quantity" class="w30 quantity">&nbsp;&nbsp;
-                                        <form action="{{ url('cart/'.$i) }}" method="POST">
+                                        <input type="text" size="1" value="{{ $cart['quantity'] }}" id="quantity-{{ $key }}" name="quantity" class="w30 quantity">&nbsp;&nbsp;
+                                        <form action="{{ url('cart/'.$key) }}" method="POST">
                                             {!! csrf_field() !!}
                                             {!! method_field('DELETE') !!}
-                                            <button type="submit" id="delete-cart-{{ $i }}" class="btn btn-danger">
+                                            <button type="submit" id="delete-cart-{{ $key }}" class="btn btn-danger">
                                                 <i class="fa fa-btn fa-trash"></i>Delete
                                             </button>
                                         </form>
                                     </td>
-                                    <td class="price" id="price-{{ $i }}">{{ number_format($carts[$i]['price']) }} VND</td>
-                                    <td class="total">{{ $carts[$i]['total'] }} VND</td>
+                                    <td class="price" id="price-{{ $key }}">{{ number_format($cart['price']) }} VND</td>
+                                    <td class="total">{{ number_format($cart['total']) }} VND</td>
                                 </tr>
-                                <?php $total += $carts[$i]['total'] ?>
-                            @endfor
+                                <?php $total += $cart['total'] ?>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -77,7 +77,7 @@
                     <tbody>
                         <tr>
                             <td class="right"><b>Total:</b></td>
-                            <td class="right">{{ $total }} VND</td>
+                            <td class="right">{{ number_format($total) }} VND</td>
                         </tr>
                     </tbody>
                 </table>
