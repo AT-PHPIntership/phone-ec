@@ -25,10 +25,9 @@ class AccountController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
         return view('frontend.dashboard.editAccount');
     }
@@ -36,8 +35,9 @@ class AccountController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request request for update
+     * @param int                      $id      id user
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(EditAccountRequest $request, $id)
@@ -48,5 +48,4 @@ class AccountController extends Controller
         
         return redirect('account');
     }
-
 }
