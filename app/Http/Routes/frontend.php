@@ -68,5 +68,10 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('category', 'Frontend\CategoryController@category');
     Route::get('category/{id}', 'Frontend\ProductsController@listProducts');
     Route::get('search', 'Frontend\SearchController@index');
+    //orders routes....
+    Route::get('orders-tracking', 'Frontend\OrdersController@showOrderTracking');
+    Route::post('/orders-tracking', 'Frontend\OrdersController@search');
+
     Route::get('{detailsUrl}', 'Frontend\ProductsController@details');
+
 });

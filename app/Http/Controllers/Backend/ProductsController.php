@@ -86,10 +86,10 @@ class ProductsController extends Controller
     {
         $product = Product::findOrFail($id);
         $data = $request->all();
-
+        $product = new Product();
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $data['image'] = Product::upload($image);
+            $data['image'] = $product->upload($image);
 
             if ($request->file('image')->isValid()) {
                 $product->update($data);
