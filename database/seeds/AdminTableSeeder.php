@@ -11,7 +11,7 @@ class AdminTableSeeder extends Seeder
      */
     public function run()
     {
-    	App\Models\Backend\Admin::truncate();
+    	// App\Models\Backend\Admin::truncate();
         $faker = Faker\Factory::create();
 
 		$limit = 10;
