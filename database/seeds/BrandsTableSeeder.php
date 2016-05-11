@@ -11,10 +11,10 @@ class BrandsTableSeeder extends Seeder
      */
     public function run()
     {
-    	App\Models\Backend\Brand::truncate();
+    	// App\Models\Backend\Brand::truncate();
         $faker = Faker\Factory::create();
 
-		$limit = 65;
+		$limit = 5;
 		for ($i = 0; $i < $limit; $i++) 
 		{
 			DB::table('brands')->insert([

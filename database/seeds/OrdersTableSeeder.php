@@ -11,16 +11,16 @@ class OrdersTableSeeder extends Seeder
     {
         // DB::table('orders')->delete();
         $faker = Faker\Factory::create();
-		$limit = 10;
+		$limit = 20;
 		for ($i = 0; $i < $limit; $i++) 
 		{
 			DB::table('orders')->insert([
 				'user_name' => $faker->name,
-				'user_id' => 1,
+				'user_id' => rand(1,10),
 				'status' => 1,	
 				'user_address' => $faker->address,
-				'user_phone' => 1,
-				'total_price' => 123
+				'user_phone' => $faker->phoneNumber,
+				'total_price' => $faker->randomNumber(4)
 			]);
 		}
     }
