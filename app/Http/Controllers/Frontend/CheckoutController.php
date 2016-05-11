@@ -8,6 +8,10 @@ use App\Http\Requests\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Frontend\Product;
 use App\Http\Requests\Frontend\CartRequest;
+use App\Http\Requests\Frontend\CheckoutRequest;
+use Illuminate\Support\Facades\Auth;
+use Validator;
+use DB;
 
 class CheckoutController extends Controller
 {
@@ -127,5 +131,86 @@ class CheckoutController extends Controller
     {
         session()->forget('carts.'.$id);
         return back();
+    }
+
+    /**
+    * Display checkout page
+    *
+    * @return array
+    */
+    public function showCheckout()
+    {
+        if (!Auth::check()) {
+            return redirect('login');
+        } elseif (count(session()->get('carts')) <= 0) {
+            return redirect('cart');
+        }
+
+        if (!session()->has('carts')) {
+            session(['carts'=>array()]);
+        }
+
+        $carts = session()->get('carts');
+        return view('frontend.checkout.index', compact('carts'));
+    }
+
+    /**
+    * Action checkout
+    *
+    * @param request $request request
+    *
+    * @return array
+    */
+    public function checkout(CheckoutRequest $request)
+    {
+        $ordersData = $request->all();
+        $ordersData['user_id'] = $request->user()->id;
+        $ordersData['status'] = 1;
+        $carts = session()->get('carts');
+        
+        for ($i=0; $i < count($carts); $i++) {
+            $total += $carts[$i]['total'];
+        }
+
+        $ordersData['total_price'] = $total;
+        $orderId = DB::table('orders')->insertGetId($ordersData);
+        $detailsData = array();
+
+        for ($i=0; $i < count($carts); $i++) {
+            $detailsData['order_id'] = $orderId;
+            $detailsData['product_id'] = $carts[$i]['id'];
+            $detailsData['quantity'] = $carts[$i]['quantity'];
+            $detailsData['price'] = $carts[$i]['total'];
+
+            OrderDetails::create($detailsData);
+        }
+
+        session(['success'=>'']);
+
+        return redirect('checkout/success');
+    }
+
+    /**
+    * Display success
+    *
+    * @return array
+    */
+    public function success()
+    {
+        if (!Auth::check()) {
+            return redirect('login');
+        } elseif (count(session()->get('carts')) <= 0) {
+            return redirect('cart');
+        }
+        
+        if (session()->has('success')) {
+            session()->flash('message', 'Your orders are booked');
+            session()->forget('carts');
+
+            return view('frontend.checkout.success');
+        } else {
+            return redirect('cart');
+        }
+
     }
 }

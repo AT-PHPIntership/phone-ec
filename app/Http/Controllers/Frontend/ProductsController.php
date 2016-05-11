@@ -57,11 +57,14 @@ class ProductsController extends Controller
             $detailsUrl = $request->product_id;
             $array = explode('-', $detailsUrl);
             $productId = last($array);
+
             $data = $request->all();
             $data['user_id'] = $request->user()->id;
             $data['product_id'] = $productId;
+            
             Rating::create($data);
             $request->session()->flash('rating', 'Thank you for your rating!');
+            
             return redirect($detailsUrl);
         }
     }

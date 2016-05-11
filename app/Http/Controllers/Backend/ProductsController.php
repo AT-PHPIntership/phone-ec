@@ -45,10 +45,10 @@ class ProductsController extends Controller
         $data = $request->all();
         
         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $data['image'] = Product::upload($image);
-
             if ($request->file('image')->isValid()) {
+                $image = $request->file('image');
+                $data['image'] = Product::upload($image);
+
                 Product::create($data);
                 $request->session()->flash('message', 'Product was created successfully!');
 
@@ -88,10 +88,10 @@ class ProductsController extends Controller
         $data = $request->all();
 
         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $data['image'] = Product::upload($image);
-
             if ($request->file('image')->isValid()) {
+                $image = $request->file('image');
+                $data['image'] = Product::upload($image);
+                
                 $product->update($data);
                 $request->session()->flash('message', 'Product was updated successfully!');
 
