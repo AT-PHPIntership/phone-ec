@@ -44,8 +44,13 @@ class AccountController extends Controller
     {
         $user = User::findOrFail($id);
         $data = $request->all();
-        $user->update($data);
         
+        if ($user->update($data)) {
+            $request->session()->flash('message', 'Account information was updated successfully!');
+        } else {
+            $request->session()->flash('message', 'Update failed!');
+        }
+
         return redirect('account');
     }
 }
