@@ -53,7 +53,13 @@ class AccountsController extends Controller
 
         $adminUser->save();
 
-        $request->session()->flash('message', 'Admin user was created successfully!');
+        if ( !$adminUser ) {
+            $request->session()->flash('message', 'Wrong count\'t created admin user, please try againt!');
+        }
+        else {
+            $request->session()->flash('message', 'Admin user was created successfully!');
+        }
+        
 
         return redirect()->route('admin.account.index');
     }
@@ -93,7 +99,12 @@ class AccountsController extends Controller
 
         $adminUser->save();
 
-        $request->session()->flash('message', 'Admin user was edit successfully!');
+        if ( !$adminUser ) {
+            $request->session()->flash('message', 'Wrong count\'t edit admin user, please try againt!');
+        }
+        else {
+            $request->session()->flash('message', 'Admin user was edit successfully!');
+        }
 
         return redirect()->route('admin.account.index');
     }
