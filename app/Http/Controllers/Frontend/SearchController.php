@@ -25,7 +25,7 @@ class SearchController extends Controller
                             ->orWhere('brands.brand_name', 'LIKE', '%'. $search .'%')
                             ->paginate(10);
 
-        return view('frontend.dashboard.search', compact('results','search'));
+        return view('frontend.dashboard.search', compact('results', 'search'));
      
     }
 }
