@@ -51,7 +51,7 @@
                             <?php $total = 0 ?>
                             @foreach ($carts as $key => $cart)
                                 <tr>
-                                    <td class="image"><a href="{{ url(str_slug($cart['name']).'-'.$cart['id']) }}"><img src="{{ asset('assets/frontend/upload/'.$cart['image']) }}" alt="{{ $cart['name'] }}" /></a></td>
+                                    <td class="image"><a href="{{ url(str_slug($cart['name']).'-'.$cart['id']) }}"><img src="{{ asset('upload/'.$cart['image']) }}" alt="{{ $cart['name'] }}" /></a></td>
                                     <td class="name"><a href="{{ url(str_slug($cart['name']).'-'.$cart['id']) }}">{{ $cart['name'] }}</a></td>
                                     <td class="model">{{ $cart['brand'] }}</td>
                                     <td class="quantity">

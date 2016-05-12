@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Frontend\Product;
+use App\Models\Frontend\Order;
+use App\Models\Frontend\OrderDetails;
 use App\Http\Requests\Frontend\CartRequest;
 use App\Http\Requests\Frontend\CheckoutRequest;
 use Illuminate\Support\Facades\Auth;
@@ -163,29 +165,30 @@ class CheckoutController extends Controller
     */
     public function checkout(CheckoutRequest $request)
     {
-        $ordersData = $request->all();
+        $ordersData = $request->except('_token');
         $ordersData['user_id'] = $request->user()->id;
         $ordersData['status'] = 1;
         $carts = session()->get('carts');
         
-        for ($i=0; $i < count($carts); $i++) {
-            $total += $carts[$i]['total'];
+        foreach ($carts as $cart) {
+            $total += $cart['total'];
         }
 
         $ordersData['total_price'] = $total;
         $orderId = DB::table('orders')->insertGetId($ordersData);
         $detailsData = array();
 
-        for ($i=0; $i < count($carts); $i++) {
+        foreach ($carts as $cart) {
             $detailsData['order_id'] = $orderId;
-            $detailsData['product_id'] = $carts[$i]['id'];
-            $detailsData['quantity'] = $carts[$i]['quantity'];
-            $detailsData['price'] = $carts[$i]['total'];
+            $detailsData['product_id'] = $cart['id'];
+            $detailsData['quantity'] = $cart['quantity'];
+            $detailsData['price'] = $cart['total'];
 
             OrderDetails::create($detailsData);
         }
 
         session(['success'=>'']);
+        session()->flash('order_id', $orderId);
 
         return redirect('checkout/success');
     }

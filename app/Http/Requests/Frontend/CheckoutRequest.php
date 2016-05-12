@@ -24,9 +24,9 @@ class CheckoutRequest extends Request
     public function rules()
     {
         return [
-            'name'      => 'required',
-            'address'   => 'required',
-            'phone'     => 'required'
+            'user_name'      => 'required',
+            'user_address'   => 'required',
+            'user_phone'     => 'required'
         ];
     }
 }
