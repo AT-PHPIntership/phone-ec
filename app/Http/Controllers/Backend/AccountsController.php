@@ -53,10 +53,9 @@ class AccountsController extends Controller
 
         $adminUser->save();
 
-        if ( !$adminUser ) {
+        if (!$adminUser) {
             $request->session()->flash('message', 'Wrong count\'t created admin user, please try againt!');
-        }
-        else {
+        } else {
             $request->session()->flash('message', 'Admin user was created successfully!');
         }
         
@@ -99,10 +98,9 @@ class AccountsController extends Controller
 
         $adminUser->save();
 
-        if ( !$adminUser ) {
+        if (!$adminUser) {
             $request->session()->flash('message', 'Wrong count\'t edit admin user, please try againt!');
-        }
-        else {
+        } else {
             $request->session()->flash('message', 'Admin user was edit successfully!');
         }
 
