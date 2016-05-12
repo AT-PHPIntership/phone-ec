@@ -10,35 +10,12 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-            @if (count($errors) > 0)
-                <!-- Form Error List -->
-                <div class="alert alert-danger">
-                    <strong>Whoops! Something went wrong!</strong>
-                    <br><br>
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            @if (count($errors) > 0)
-                            <!-- Form Error List -->
-                            <div class="alert alert-danger">
-                                <strong>Whoops! Something went wrong!</strong>
-                                <br><br>
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                            @endif
+                            @include('common.errors')
                             <div class="row">
                                 <div class="col-lg-12">
                                     <form role="form" action="{{ url('admin/users') }}" method="POST" enctype="multipart/form-data">

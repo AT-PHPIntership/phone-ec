@@ -22,43 +22,48 @@
                             <div class="clearfix"></div>
                         </div>
                         <!-- /.panel-heading -->
-                        @if (count($users) > 0 )
-                        <div class="panel-body">
-                            <div class="dataTable_wrapper">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Email(s)</th>
-                                            <th>Address</th>
-                                            <th>Phone number</th>
-                                            <th>Active</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($users as $user)
-                                        <tr class="gradeA">
-                                            <td>{{$user['id']}}</td>
-                                            <td>{{$user['name']}}</td>
-                                            <td>{{$user['email']}}</td>
-                                            <td>{{$user['address']}}</td>
-                                            <td>{{$user['phone']}}</td>
-                                            <td class="text-center">{{$user['active']}}</td>
-                                            <td class="text-center">
-                                                <a href="{{ url('admin/users/'.$user->id.'/edit') }}" class="btn btn-circle btn-outline btn-primary" ><i class="fa fa-edit"></i></a>
-                                                <button type="submit" data-toggle="modal" data-target="#confirmDelete" class="btn btn-circle btn-outline btn-danger btnDel"><i class="fa fa-trash-o"></i></button>
-                                                <input type="hidden" value="{{ $user['id'] }}">
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                        @if (count($users) > 0)
+                            @if (Session::has('message'))
+                                <div class="alert alert-success">{{ Session::get('message') }}</div>
+                            @endif
+
+                            <div class="panel-body">
+                                <div class="dataTable_wrapper">
+                                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Name</th>
+                                                <th>Email(s)</th>
+                                                <th>Address</th>
+                                                <th>Phone number</th>
+                                                <th>Active</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($users as $user)
+                                            <tr class="gradeA">
+                                                <td>{{$user['id']}}</td>
+                                                <td>{{$user['name']}}</td>
+                                                <td>{{$user['email']}}</td>
+                                                <td>{{$user['address']}}</td>
+                                                <td>{{$user['phone']}}</td>
+                                                <td class="text-center">{{$user['active']}}</td>
+                                                <td class="text-center">
+                                                    <a href="{{ url('admin/users/'.$user->id.'/edit') }}" class="btn btn-circle btn-outline btn-primary" ><i class="fa fa-edit"></i></a>
+                                                    <button type="submit" data-toggle="modal" data-target="#confirmDelete" class="btn btn-circle btn-outline btn-danger btnDel"><i class="fa fa-trash-o"></i></button>
+                                                    <input type="hidden" value="{{ $user['id'] }}">
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.table-responsive -->
+                                {!! $users->links() !!}
                             </div>
-                            <!-- /.table-responsive -->
-                        </div>
-                        <!-- /.panel-body -->
+                            <!-- /.panel-body -->
                         @else 
                             <br>
                             <div class="alert alert-info">

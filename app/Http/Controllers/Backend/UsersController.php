@@ -18,7 +18,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-            $users = User::all();
+            $users = User::paginate(10);
             return view('backend.users.index', compact('users'));
     }
 
@@ -42,7 +42,11 @@ class UsersController extends Controller
     public function store(UserRequest $request)
     {
         $data = $request->all();
-        User::create($data);
+        if (User::create($data)) {
+            $request->session()->flash('message', 'User was create successfully!');
+        } else {
+            $request->session()->flash('message', 'Create failed!');
+        }
 
         return redirect('admin/users');
     }
@@ -72,8 +76,13 @@ class UsersController extends Controller
     {
         $user = User::findOrFail($id);
         $data = $request->all();
-        $user->update($data);
-        return redirect()->route('admin.users.index');
+        if ($user->update($data)) {
+            $request->session()->flash('message', 'User was updated successfully!');
+        } else {
+            $request->session()->flash('message', 'Update failed!');
+        }
+
+        return redirect('admin/users');
     }
 
     /**

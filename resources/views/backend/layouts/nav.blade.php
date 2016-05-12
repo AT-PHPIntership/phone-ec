@@ -97,14 +97,20 @@
                             <a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="{{ url('admin/products') }}"><i class="fa fa-table fa-fw"></i> Products</a>
+                            <a href="{{ url('admin/users') }}"><i class="fa fa-users fa-fw"></i> Users</a>
                         </li>
                         <li>
-                            <a href="{{ url('admin/brands') }}"><i class="fa fa-edit fa-fw"></i> Brands</a>
+                            <a href="{{ url('admin/products') }}"><i class="fa fa-mobile fa-fw"></i> Products</a>
+                        </li>
+                        <li>
+                            <a href="{{ url('admin/rating') }}"><i class="fa fa-line-chart fa-fw"></i> Rating</a>
+                        </li>
+                        <li>
+                            <a href="{{ url('admin/brands') }}"><i class="fa fa-flag-checkered fa-fw"></i> Brands</a>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="{{ url('admin/orders') }}"><i class="fa fa-edit fa-fw"></i> Orders</a>
+                            <a href="{{ url('admin/orders') }}"><i class="fa fa-file-word-o fa-fw"></i> Orders</a>
                             <!-- /.nav-second-level -->
                         </li>
                     </ul>
