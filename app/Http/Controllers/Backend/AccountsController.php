@@ -18,7 +18,7 @@ class AccountsController extends Controller
      */
     public function index()
     {
-        $adminUsers = Admin::all();
+        $adminUsers = Admin::select('id', 'name', 'email', 'address', 'phone', 'active')->get();
 
         return view('backend.admin_users.index', compact('adminUsers'));
     }
@@ -101,7 +101,8 @@ class AccountsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id delete admin users Request
+     * @param int                      $id      id user
+     * @param \Illuminate\Http\Request $request request for delete
      *
      * @return \Illuminate\Http\Response
      */
