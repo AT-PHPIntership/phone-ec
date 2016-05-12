@@ -66,7 +66,7 @@
         <!--Pagination Part Start-->
 
         <div class="pagination">
-          <div class="links">{!! $results->links() !!}</div>
+          <div class="links">{!! $results->appends(['search'=>$search])->links() !!}</div>
         </div>
         <!--Pagination Part End-->
 @endsection
