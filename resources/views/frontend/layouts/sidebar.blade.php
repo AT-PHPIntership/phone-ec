@@ -31,7 +31,7 @@
       @else
       <ul class="list-item">
         <li><a href="{{ url('account') }}">My Account</a></li>
-        <li><a href="{{ url('account') }}">Order History</a></li>
+        <li><a href="{{ url('orders') }}">Order History</a></li>
         <li><a href="{{ url('account') }}">Change Password</a></li>
         <li><a href="{{ url('logout') }}">Log out</a></li>
       </ul>
