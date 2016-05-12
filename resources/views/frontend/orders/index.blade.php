@@ -25,10 +25,15 @@
                         <div class="panel-body">
                             <div class="dataTable_wrapper">
                                  <div id="dataTables-example_filter" class="dataTables_filter">
+
                                  <form action="{{url('orders-tracking')}}" method="post">
                                  {{csrf_field()}}
                                     <label>Search:
                                     <input class="form-control input-sm" type="search" placeholder="" name="searchorders" aria-controls="dataTables-example">
+                                    </label>
+
+                                    <label>Email:
+                                    <input class="form-control input-sm" type="search" placeholder="" name="email" aria-controls="dataTables-example">
                                     </label>
                                     
                                     <input type="submit" value="search" name="search">               
@@ -37,9 +42,14 @@
                                 </form>
                                 </div>
                             </div>
-                            <!-- /.table-responsive -->
-                            <h2>Your order status:  
+                            <!-- /.table-responsive --> 
+                            <h2>
                             @if (!empty($orderItem))
+                                Your email: ($userItem->email)
+                            @endif
+                            </h2>
+                            @if (!empty($orderItem))
+                            <h2>Your order status:  
                                 @if ($orderItem->status == 1)
                                     Orders are comfirmed
                                 @elseif ($orderItem->status == 2)
@@ -49,6 +59,7 @@
                                 @endif
                              @endif
                             </h2>
+                            
 
                          
                         </div> 

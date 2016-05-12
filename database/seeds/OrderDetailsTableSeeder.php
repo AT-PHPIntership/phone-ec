@@ -15,10 +15,10 @@ class OrderDetailsTableSeeder extends Seeder
 		for ($i = 0; $i < $limit; $i++) 
 		{
 			DB::table('orderdetails')->insert([
-				'order_id' => 2,
-				'product_id' => 1,
-				'quantity' => 1,	
-				'price' => 100,
+				'order_id' => rand(1,10),
+				'product_id' => rand(1,20),
+				'quantity' => $faker->randomNumber(1),	
+				'price' => $faker->randomNumber(4),
 			]);
 		}
     }

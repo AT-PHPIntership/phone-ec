@@ -39,12 +39,17 @@
         @if (count($results)>0)
           @foreach($results as $result)
             <div>
-              <div class="image"><a href="product.html"><img src="{!! asset('assets/frontend/image/product/apple_cinema_30-162x162.jpg') !!}" title="{{ $result->name }}" alt="{{ $result->name }}" /></a></div>
-              <div class="name"><a href="product.html">{{ $result->name }}</a></div>
+              <div class="image"><a href="{{ url(str_slug($result->name).'-'.$result->id) }}"><img src="{!! asset('assets/frontend/image/product/apple_cinema_30-162x162.jpg') !!}" title="{{ $result->name }}" alt="{{ $result->name }}" /></a></div>
+              <div class="name"><a href="{{ url(str_slug($result->name).'-'.$result->id) }}">{{ $result->name }}</a></div>
               <div class="description">{{ $result->description }}</div>
               <div class="price"> <span class="price-old">{{ $result->old_price }}</span> <span class="price-new">{{ $result->current_price }}</span> <br /></div>
               <div class="cart">
-                <input type="button" value="Add to Cart" class="button" />
+                <form action="{{ url('cart') }}" method="post">
+                  {{ csrf_field() }}
+                  <input type="hidden" name="quantity" value="1" />
+                  <input type="hidden" name="id" value="{{ url(str_slug($result->name).'-'.$result->id) }}" />
+                  <input type="submit" value="Add to Cart" id="button-cart" class="button" />
+                </form>
               </div>
               <div class="rating"><img src="{!! asset('assets/frontend/image/stars-4.png') !!}" alt="Based on 1 reviews." /></div>
             </div>

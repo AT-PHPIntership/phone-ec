@@ -7,17 +7,16 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Frontend\Order;
-use App\Models\Frontend\User;
 use App\Models\Frontend\OrderDetails;
 
-class OrdersController extends Controller
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function showOrderTracking()
+    public function showUsersTracking()
     {
         return view('frontend.orders.index');
     }
@@ -31,11 +30,10 @@ class OrdersController extends Controller
      */
     public function search(Request $request)
     {
-        $orderId = $request->searchorders;
-        $email = $request->email;
-        $user = User::where('email', $email)->first();
-        $orderItem = Order::where('id', $orderId)->where('user_id', $user->id)->first();
-        // dd($orderItem);
-        return view('frontend.orders.index', compact('orderItem'));
+        
+        $username = $request->searchemail;
+        $userItem = User::findOrFail($username);
+
+        return view('frontend.orders.index', compact('userItem' ));
     }
 }

@@ -43,12 +43,13 @@ class ProductsController extends Controller
     public function store(ProductsRequest $request)
     {
         $data = $request->all();
-        
+        $productObj = new Product;
+            
         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $data['image'] = Product::upload($image);
-
             if ($request->file('image')->isValid()) {
+                $image = $request->file('image');
+                $data['image'] = $productObj->upload($image);
+
                 Product::create($data);
                 $request->session()->flash('message', 'Product was created successfully!');
 
@@ -56,7 +57,7 @@ class ProductsController extends Controller
             }
         }
 
-        return redirect('admin/products/create');
+            return redirect('admin/products/create');
     }
 
     /**
@@ -86,19 +87,27 @@ class ProductsController extends Controller
     {
         $product = Product::findOrFail($id);
         $data = $request->all();
+
         $product = new Product();
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $data['image'] = $product->upload($image);
 
-            if ($request->file('image')->isValid()) {
-                $product->update($data);
-                $request->session()->flash('message', 'Product was updated successfully!');
 
-                return redirect('admin/products');
+            $productObj = new Product;
+            
+            if ($request->hasFile('image')) {
+                if ($request->file('image')->isValid()) {
+                    $image = $request->file('image');
+                    $data['image'] = $productObj->upload($image);
+                    
+                    $product->update($data);
+                    $request->session()->flash('message', 'Product was updated successfully!');
+
+                    return redirect('admin/products');
+                }
             }
         }
-
         return redirect('admin/products/'.$id.'/edit');
     }
 
