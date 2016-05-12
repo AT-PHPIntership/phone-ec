@@ -70,6 +70,9 @@ Route::get('category/{id}', 'Frontend\ProductsController@listProducts');
 
 Route::resource('account', 'Frontend\AccountController');
 
+Route::get('orders', 'Frontend\OrdersController@index');
+Route::get('order/{id}', 'Frontend\OrdersController@show');
+
 Route::get('search', 'Frontend\SearchController@index');
 
 Route::get('{detailsUrl}', 'Frontend\ProductsController@details');

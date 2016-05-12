@@ -184,7 +184,7 @@ label {cursor: pointer;}
 .error { display: block; color: #FF0000; }
 .help { color: #999; font-size: 10px; font-weight: normal; font-family: Verdana, Geneva, sans-serif; display: block; }
 table.form { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
-table.form tr td:first-child { width: 150px; }
+table.form tr td:first-child { width: 80px; }
 table.form > * > * > td { color: #333; }
 table.form td { padding:8px 4px; }
 input.large-field, select.large-field { width: 300px; }
