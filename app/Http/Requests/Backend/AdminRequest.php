@@ -23,9 +23,26 @@ class AdminRequest extends Request
      */
     public function rules()
     {
-        return [
-            'email' => 'required',
-            'password' => 'required'
-        ];
+        // id_update: this is id of admin user need edit (get in url)
+        $id_update = Request::segment(3);
+
+        if ( empty($id_update) ) 
+        {
+            // request for function create
+            return [
+                'name'     => 'required',
+                'email'    => 'required|email|unique:admin,email',
+                'password' => 'required|min:6'
+            ];
+        }
+        else
+        {
+            // request for function update
+            return [
+                'name'     => 'required',
+                'email'    => 'required|email|unique:admin,email,' . $id_update,
+                'password' => 'required|min:6'
+            ];
+        }        
     }
 }

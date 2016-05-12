@@ -21,4 +21,5 @@ Route::group(['middleware' => ['auth:admin'],'prefix'=>'admin'], function () {
     Route::resource('users', 'Backend\UsersController');
     Route::resource('rating', 'Backend\RatingController', ['only' => ['index','destroy']]);
     Route::resource('orders', 'Backend\OrdersController');
+    Route::resource('account', 'Backend\AccountsController');
 });
