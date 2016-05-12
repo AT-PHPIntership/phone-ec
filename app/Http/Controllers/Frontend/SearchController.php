@@ -5,7 +5,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use DB;
-use Illuminate\Support\Facades\Input;
 
 class SearchController extends Controller
 {
@@ -19,17 +18,14 @@ class SearchController extends Controller
         $search = \Request::get('search');
 
         $products = DB::table('products');
-        
+
         $results = $products->join('brands', 'products.brand_id', '=', 'brands.id')
                             ->where('products.name', 'LIKE', '%'. $search .'%')
                             ->orWhere('products.description', 'LIKE', '%'. $search .'%')
                             ->orWhere('brands.brand_name', 'LIKE', '%'. $search .'%')
                             ->paginate(10);
 
-        $results->appends(['search' => Input::get('search')])
-                ->render();
-
-        return view('frontend.dashboard.search', compact('results'));
+        return view('frontend.dashboard.search', compact('results','search'));
      
     }
 }
