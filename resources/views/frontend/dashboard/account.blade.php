@@ -32,42 +32,48 @@
 @endsection
 
 @section('content')
-<h1>My Account</h1>
-<form enctype="multipart/form-data" method="post" action="#">
-  <h2>Your Details</h2>
-  <div class="content">
-    <table class="form">
-      <tbody>
-        <tr>
-          <td>Name:</td>
-          <td>Pham Tan Hoang</td>
-          <td><a href="#">Edit</a></td>
-        </tr>
-        <tr>
-          <td>E-Mail:</td>
-          <td>phamtanhoang@gmail.com</td>
-          <td><a href="#">Edit</a></td>
-        </tr>
-        <tr>
-          <td>Address:</td>
-          <td>27/24 Phan Tu</td>
-          <td><a href="#">Edit</a></td>
-        </tr>
-        <tr>
-          <td>Telephone:</td>
-          <td>0917214096</td>
-          <td><a href="#">Edit</a></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <h2>Change Password</h2>
-  <div class="content">
-    <table class="form">
+<h1>Account Details</h1>
+<h2>Your Details</h2>
+<div class="content">
+  <table class="form">
+    <tbody>
+      <tr>
+        <td>Name:</td>
+        <td>{{ Auth::user()->name }}</td>
+      </tr>
+      <tr>
+        <td>E-Mail:</td>
+        <td>{{ Auth::user()->email }}</td>
+      </tr>
+      <tr>
+        <td>Address:</td>
+        <td>{{ Auth::user()->address }}</td>
+      </tr>
+      <tr>
+        <td>Telephone:</td>
+        <td>{{ Auth::user()->phone }}</td>
+      </tr>
+      <tr>
+        <td>
+          <div class="left">
+            <a href="{{ url('account/'.Auth::user()->id.'/edit') }}">
+              <input type="button" class="button" value="Edit information">
+            </a>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<h2>Change Password</h2>
+<div class="content">
+  <table class="form">
+    <form enctype="multipart/form-data" method="post" action="{{ url('changepass/'.Auth::user()->id) }}">
+    {!! csrf_field() !!}
       <tbody>
         <tr>
           <td>Old Password:</td>
-          <td><input class="large-field" type="password" value="" name="password"></td>
+          <td><input class="large-field" type="password" value="" name="old_password"></td>
         </tr>
         <tr>
           <td>New Password:</td>
@@ -75,17 +81,18 @@
         </tr>
         <tr>
           <td>New Password Confirm:</td>
-          <td><input class="large-field" type="password" value="" name="confirm"></td>
+          <td><input class="large-field" type="password" value="" name="password_confirmation"></td>
         </tr>
         <tr>
           <td>
             <div class="left">
-              <input type="submit" class="button" value="Save">
+              <input type="submit" class="button" value="Change">
             </div>
           </td>
         </tr>
       </tbody>
-    </table>
-  </div>
-</form>
+    </form>
+  </table>
+</div>
+
 @endsection
