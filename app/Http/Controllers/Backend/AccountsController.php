@@ -18,9 +18,9 @@ class AccountsController extends Controller
      */
     public function index()
     {
-    	$admin_users = Admin::all();
+        $adminUsers = Admin::all();
 
-        return view('backend.admin_users.index', compact('admin_users'));
+        return view('backend.admin_users.index', compact('adminUsers'));
     }
 
     /**
@@ -29,8 +29,8 @@ class AccountsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    { 
-    	return view('backend.admin_users.create');
+    {
+        return view('backend.admin_users.create');
     }
 
     /**
@@ -42,16 +42,16 @@ class AccountsController extends Controller
      */
     public function store(AdminRequest $request)
     {
-        $admin_user = new Admin;
+        $adminUser = new Admin;
 
-        $admin_user->name     = trim($request->name);
-        $admin_user->email    = trim($request->email);
-        $admin_user->password = bcrypt($request->password);
-        $admin_user->address  = trim($request->address);
-        $admin_user->phone    = $request->phone;
-        $admin_user->active   = $request->active;
+        $adminUser->name     = trim($request->name);
+        $adminUser->email    = trim($request->email);
+        $adminUser->password = bcrypt($request->password);
+        $adminUser->address  = trim($request->address);
+        $adminUser->phone    = $request->phone;
+        $adminUser->active   = $request->active;
 
-        $admin_user->save();
+        $adminUser->save();
 
         $request->session()->flash('message', 'Admin user was created successfully!');
 
@@ -67,9 +67,9 @@ class AccountsController extends Controller
      */
     public function edit($id)
     {
-    	$admin_user = Admin::findOrFail($id);
+        $adminUser = Admin::findOrFail($id);
 
-        return view('backend.admin_users.edit', compact('admin_user'));
+        return view('backend.admin_users.edit', compact('adminUser'));
     }
 
     /**
@@ -82,16 +82,16 @@ class AccountsController extends Controller
      */
     public function update(AdminRequest $request, $id)
     {
-        $admin_user = Admin::findOrFail($id);
+        $adminUser = Admin::findOrFail($id);
 
-        $admin_user->name     = trim($request->name);
-        $admin_user->email    = trim($request->email);
-        $admin_user->password = bcrypt($request->password);
-        $admin_user->address  = trim($request->address);
-        $admin_user->phone    = $request->phone;
-        $admin_user->active   = $request->active;
+        $adminUser->name     = trim($request->name);
+        $adminUser->email    = trim($request->email);
+        $adminUser->password = bcrypt($request->password);
+        $adminUser->address  = trim($request->address);
+        $adminUser->phone    = $request->phone;
+        $adminUser->active   = $request->active;
 
-        $admin_user->save();
+        $adminUser->save();
 
         $request->session()->flash('message', 'Admin user was edit successfully!');
 
@@ -101,7 +101,7 @@ class AccountsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id delete admin users
+     * @param int $id delete admin users Request
      *
      * @return \Illuminate\Http\Response
      */

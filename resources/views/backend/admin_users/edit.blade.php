@@ -29,41 +29,41 @@
                             @endif
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form role="form" action="{{ url('admin/account/' . $admin_user->id) }}" method="POST" enctype="multipart/form-data">
+                                    <form role="form" action="{{ url('admin/account/' . $adminUser->id) }}" method="POST" enctype="multipart/form-data">
                                         {!! csrf_field() !!}
                                         {!! method_field('PATCH') !!}
                                         <div class="form-group">
                                             <label>Name</label>
-                                            <input type="text" name="name" value="{{ $admin_user->name }}" class="form-control" placeholder="Enter name">
+                                            <input type="text" name="name" value="{{ $adminUser->name }}" class="form-control" placeholder="Enter name">
                                         </div>
                                         <div class="form-group">
                                             <label>Email</label>
-                                            <input type="text" name="email" value="{{ $admin_user->email }}" class="form-control" placeholder="Enter email">
+                                            <input type="text" name="email" value="{{ $adminUser->email }}" class="form-control" placeholder="Enter email">
                                         </div>
                                         <div class="form-group">
                                             <label>Address</label>
-                                            <input type="text" name="address" value="{{ $admin_user->address }}" class="form-control" placeholder="Enter address">
+                                            <input type="text" name="address" value="{{ $adminUser->address }}" class="form-control" placeholder="Enter address">
                                         </div>
                                         <div class="form-group">
                                             <label>Phone number</label>
-                                            <input type="text" name="phone" value="{{ $admin_user->phone }}" class="form-control" placeholder="Enter phone number">
+                                            <input type="text" name="phone" value="{{ $adminUser->phone }}" class="form-control" placeholder="Enter phone number">
                                         </div>
                                         <div class="form-group">
                                             <label>Password</label>
-                                            <input type="password" name="password" value="{{ $admin_user->password }}" class="form-control" placeholder="Enter password">
+                                            <input type="password" name="password" value="{{ $adminUser->password }}" class="form-control" placeholder="Enter password">
                                         </div>
                                         <div class="form-group">
                                             <label>Status : </label>
                                             <label class="radio-inline">
                                                 <input type="radio" name="active" id="optionsRadiosInline1" value="1"
-                                                @if ($admin_user->active == 1) 
+                                                @if ($adminUser->active == 1) 
                                                    checked="" 
                                                 @endif>
                                                     Activated
                                             </label>
                                             <label class="radio-inline">
                                                 <input type="radio" name="active" id="optionsRadiosInline2" value="0"
-                                                @if ($admin_user->active == 0)
+                                                @if ($adminUser->active == 0)
                                                     checked=""
                                                 @endif>
                                                     Deactivated

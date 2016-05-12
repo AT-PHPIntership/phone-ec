@@ -22,7 +22,7 @@
                             <div class="clearfix"></div>
                         </div>
                         <!-- /.panel-heading -->
-                    @if (count($admin_users))
+                    @if (count($adminUsers))
                         @if (Session::has('message'))
                             <div class="alert alert-success">{{ Session::get('message') }}</div>
                         @endif
@@ -41,21 +41,21 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach ($admin_users as $item_user)
+                                    @foreach ($adminUsers as $itemUser)
                                         <tr class="gradeA">
-                                            <td>{{ $item_user->id }}</td>
-                                            <td>{{ $item_user->name }}</td>
-                                            <td>{{ $item_user->email }}</td>
-                                            <td>{{ $item_user->address }}</td>
-                                            <td>{{ $item_user->phone }}</td>
+                                            <td>{{ $itemUser->id }}</td>
+                                            <td>{{ $itemUser->name }}</td>
+                                            <td>{{ $itemUser->email }}</td>
+                                            <td>{{ $itemUser->address }}</td>
+                                            <td>{{ $itemUser->phone }}</td>
                                             <td class="text-center">
-                                            {{ $item_user->active }}
+                                            {{ $itemUser->active }}
                                             </td>
                                             <td class="text-center">
-                                                <a href="{{ url('admin/account/' . $item_user->id . '/edit') }}" class="btn btn-circle btn-outline btn-primary" ><i class="fa fa-edit"></i></a>
+                                                <a href="{{ url('admin/account/' . $itemUser->id . '/edit') }}" class="btn btn-circle btn-outline btn-primary" ><i class="fa fa-edit"></i></a>
 
                                                 <button type="submit" data-toggle="modal" data-target="#confirmDelete" class="btn btn-circle btn-outline btn-danger btnDel"><i class="fa fa-trash-o"></i></button>
-                                                <input type="hidden" value="{{ $item_user->id }}">
+                                                <input type="hidden" value="{{ $itemUser->id }}">
                                             </td>
                                         </tr>
                                     @endforeach 
@@ -79,7 +79,7 @@
             <!-- /.row -->
         </div>
 
-        @if (count($admin_users))
+        @if (count($adminUsers))
         <div class="modal fade" id="confirmDelete" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -91,7 +91,7 @@
                         <h3 class="text-danger">Are you sure delete this admin user?</h3>
                     </div>
                     <div class="modal-footer">
-                        <form action="{{ url('admin/account/' . $item_user->id) }}" method="POST">
+                        <form action="{{ url('admin/account/' . $itemUser->id) }}" method="POST">
                         {!! csrf_field() !!}
                         {!! method_field('DELETE') !!}
                         <button type="submit" class="btn btn-danger btn-sm">Delete</button>
