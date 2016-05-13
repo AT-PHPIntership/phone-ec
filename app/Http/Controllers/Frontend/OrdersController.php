@@ -7,8 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Frontend\Order;
+use App\Models\Frontend\User;
 use App\Models\Frontend\OrderDetails;
-use Auth;
+use DB;
 
 class OrdersController extends Controller
 {
@@ -17,27 +18,33 @@ class OrdersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function showOrderTracking()
     {
-
-        $orders = Order::where('user_id', Auth::user()->id)->paginate(10);
-
-        return view('frontend.dashboard.orderHistory', compact('orders'));
+        return view('frontend.orders.index');
     }
 
     /**
-     * Display the specified resource.
+     * Update the specified resource in storage.
      *
-     * @param int $id id
+     * @param \Illuminate\Http\Request $request request request
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function search(Request $request)
     {
+        //$orderId = $request->searchorders;
+        //$email = $request->email;
+        //$user = User::where('email', $email)->first();
+        //$orderItem = Order::where('id', $orderId)->where('user_id', $user->id)->first();
 
-        $orderId = $id;
-        $details = OrderDetails::with('products')->where('order_id', $id)->get();
+        $data = DB::table('orders')
+            ->join('users', 'orders.user_id', '=', 'users.id')
+            ->join('orders', 'orders.id', '=', 'orders.id')
+            ->select('orders.id as id', 'posts.name as post_name', 'users.name as user_name', 'image', 'categories.name as cate_name', 'posts.created_at as day_created', 'views')
+            ->paginate(5);
 
-        return view('frontend.dashboard.orderDetails', compact('details', 'orderId'));
+        return view('backend.pages.post.list', compact('data'));
+        
+        //return view('frontend.orders.index', compact('orderItem'));
     }
 }

@@ -6,12 +6,29 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    protected $fillable = [
-        'user_id',
-        'user_name',
-        'user_phone',
-        'user_address',
-        'total_price',
-        'status'
-    ];
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @return array
+     */
+    protected $fillable = ['status'];
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @return array
+     */
+    public function users()
+    {
+        return $this->hasOne('App\Models\Frontend\User', 'id', 'user_id');
+    }
+     /**
+     * The attributes that are mass assignable.
+     *
+     * @return array
+     */
+    public function orderdetails()
+    {
+        return $this->hasMany('App\Models\Frontend\OrderDetails', 'order_id', 'id');
+    }
 }
