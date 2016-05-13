@@ -75,4 +75,7 @@ Route::get('order/{id}', 'Frontend\OrdersController@show');
 
 Route::get('search', 'Frontend\SearchController@index');
 
+Route::get('contact', ['as' => 'getContact', 'uses' => 'Frontend\ContactController@index']);
+Route::post('contact', 'Frontend\ContactController@store');
+
 Route::get('{detailsUrl}', 'Frontend\ProductsController@details');
