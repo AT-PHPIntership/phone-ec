@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Frontend\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
@@ -19,6 +19,14 @@ class PasswordController extends Controller
     */
 
     use ResetsPasswords;
+    
+    protected $redirectTo = '/';
+
+    protected $linkRequestView = 'frontend.auth.passwords.email';
+
+    protected $resetView = 'frontend.auth.passwords.reset';
+
+    protected $emailView = 'frontend.auth.emails.password';
 
     /**
      * Create a new password controller instance.
@@ -27,6 +35,7 @@ class PasswordController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest:web');
     }
+    
 }

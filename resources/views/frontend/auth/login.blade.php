@@ -66,7 +66,7 @@
                     </span>
                 @endif
                 <br>
-                <a href="#">Forgotten Password</a><br>
+                <a href="{{ url('/password/reset') }}">Forgotten Password</a><br>
                 <br>
                 <input type="submit" class="button" value="Login">
               </div>
