@@ -23,7 +23,7 @@ class AdminTableSeeder extends Seeder
 				'password' => bcrypt('admin1'),
 				'address' => $faker->address,
 				'phone' => $faker->phoneNumber,
-				'active' => 0
+				'active' => 1
 			]);
 		}
     }
