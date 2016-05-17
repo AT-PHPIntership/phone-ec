@@ -30,7 +30,7 @@
                         </div>
                         <!-- /.row (nested) -->
                     </div>
-                    @if(count($errors) > 0)
+                    @if (isset($errors) && $errors->any())
                         <div class="alert alert-danger">
                             <strong>Whoops!</strong> There were some problems with your input.<br><br>
                             <ul>

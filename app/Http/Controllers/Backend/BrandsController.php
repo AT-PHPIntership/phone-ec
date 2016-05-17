@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Backend\BrandsRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Backend\Brand;
+use App\Models\Backend\Product;
 
 class BrandsController extends Controller
 {
@@ -87,9 +88,17 @@ class BrandsController extends Controller
      */
     public function destroy($id)
     {
-        $brand = Brand::findOrFail($id);
-        $brand->delete();
+        $products = Product::where('brand_id', $id)->first();
 
+        if ($products === null) {
+            $brand = Brand::findOrFail($id);
+            $brand->delete();
+
+            session()->flash('message', 'Brand was deleted successfully!');
+        } else {
+            session()->flash('message', 'You can\'t deleted this brand!');
+        }
+        
         return redirect('admin/brands');
     }
 }

@@ -16,7 +16,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         Brands Manage
-                        <a href="{{ url('admin/brands/create') }}" class="btn btn-primary btn-sm pull-right"><i class="fa fa-plus-circle"></i> Add new brand</a>
+                        <a href="{{ url('admin/brands/create') }}" id="create" class="btn btn-primary btn-sm pull-right"><i class="fa fa-plus-circle"></i> Add new brand</a>
                         <div class="clearfix"></div>
                     </div> 
                     <!-- /.panel-heading -->
@@ -41,8 +41,8 @@
                                                 <td>{{ $brand['id'] }}</td>
                                                 <td>{{ $brand['brand_name'] }}</td>
                                                 <td class="text-right">
-                                                    <a href="{{ url('admin/brands/'.$brand->id.'/edit') }}" class="btn btn-circle btn-outline btn-primary" ><i class="fa fa-edit"></i></a>
-                                                    <button type="submit" data-toggle="modal" data-target="#confirmDelete" class="btn btn-circle btn-outline btn-danger btnDel"><i class="fa fa-trash-o"></i></button>
+                                                    <a href="{{ url('admin/brands/'.$brand->id.'/edit') }}" id="update" class="btn btn-circle btn-outline btn-primary" ><i class="fa fa-edit"></i></a>
+                                                    <a data-toggle="modal" data-target="#confirmDelete" id="del" class="btn btn-circle btn-outline btn-danger btnDel"><i class="fa fa-trash-o"></i></a>
                                                     <input type="hidden" value="{{ $brand['id'] }}">
                                                 </td>
                                             </tr>
