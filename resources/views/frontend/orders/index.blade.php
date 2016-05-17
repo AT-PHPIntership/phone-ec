@@ -43,19 +43,7 @@
                                 </div>
                             </div>
                             <!-- /.table-responsive --> 
-                            @if (!empty($orderItem))
-
-                                @foreach ($orderItem as $item)
-                            <h2>Your Email is Found:
-                                    {!! $user = DB::table('users')->where('id',$item["user_id"])->first(); !!}
-                                    @if (!empty($user->email))
-                                        {!! $user->email !!}       
-
-                                    @endif
-
-                            </h2>
-                                @endforeach
-                              @endif  
+                            <h2></h2> 
                             @if (!empty($orderItem))
                             <h2>Your order status:  
                                 @if ($orderItem->status == 1)
