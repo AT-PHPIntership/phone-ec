@@ -27,6 +27,7 @@
                                         <div class="form-group">
                                             <label>Brands</label>
                                             <select class="form-control" name="brand_id">
+                                                <option value="">Select a brand</option>
                                                 @foreach ($brands as $brand)
                                                     <option value="{{ $brand->id }}">{{ $brand->brand_name }}</option>
                                                 @endforeach

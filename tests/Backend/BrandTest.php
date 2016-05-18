@@ -91,13 +91,19 @@ class BrandTest extends TestCase
     public function testDeleteBrand()
     {
         $admin = factory(Admin::class)->create();
-        $brand = Brand::all()->last();
-        $isBrandId = Product::where('brand_id',$brand->id)->first();
+        $brand = Brand::all();
+        $isBrandId = Product::where('brand_id',$brand->last()->id)->first();
+
+        if (count($brand) > 10) {
+            $link = 'admin/brands?page='.count($brand)/10;
+        } else {
+            $link = 'admin/brands';
+        }
 
         if ($isBrandId === null)
         {
             $this->actingAs($admin, 'admin')
-                 ->visit('admin/brands')
+                 ->visit($link)
                  ->click('del')
                  ->see('Are you sure delete this brand?')
                  ->press('Delete')
@@ -106,12 +112,11 @@ class BrandTest extends TestCase
         else
         {
             $this->actingAs($admin, 'admin')
-                 ->visit('admin/brands')
+                 ->visit($link)
                  ->click('del')
                  ->see('Are you sure delete this brand?')
                  ->press('Delete')
                  ->see('You can\'t deleted this brand!');
         }
-
     }
 }

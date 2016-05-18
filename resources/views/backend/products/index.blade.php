@@ -16,7 +16,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         Products Manage
-                        <a href="{{ url('admin/products/create') }}" class="btn btn-primary btn-sm pull-right"><i class="fa fa-plus-circle"></i> Add new product</a>
+                        <a href="{{ url('admin/products/create') }}" id="create" class="btn btn-primary btn-sm pull-right"><i class="fa fa-plus-circle"></i> Add new product</a>
                         <div class="clearfix"></div>
                     </div> 
                     <!-- /.panel-heading -->
@@ -55,8 +55,8 @@
                                                 <td>{{ $product->description }}</td>
                                                 <td>{{ $product->des_tech }}</td>
                                                 <td class="text-right">
-                                                    <a href="{{ url('admin/products/'.$product->id.'/edit') }}" class="btn btn-circle btn-outline btn-primary" ><i class="fa fa-edit"></i></a>
-                                                    <button type="submit" data-toggle="modal" data-target="#confirmDelete" class="btn btn-circle btn-outline btn-danger btnDel"><i class="fa fa-trash-o"></i></button>
+                                                    <a href="{{ url('admin/products/'.$product->id.'/edit') }}" id="edit" class="btn btn-circle btn-outline btn-primary" ><i class="fa fa-edit"></i></a>
+                                                    <a id="del" data-toggle="modal" data-target="#confirmDelete" class="btn btn-circle btn-outline btn-danger btnDel"><i class="fa fa-trash-o"></i></a>
                                                     <input type="hidden" value="{{ $product['id'] }}">
                                                 </td>
                                             </tr>
