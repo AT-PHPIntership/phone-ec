@@ -35,10 +35,10 @@ class ContactTest extends TestCase
     {
     	$this->visit('contact')
     		 ->type('name'.rand(), 'name')
-    		 ->type(rand().'@gmail.com', 'email')
+    		 ->type('email@gmail.com', 'email')
     		 ->type('enquiry'.rand(), 'enquiry')
     		 ->press('send')
-             ->seeInDatabase('contacts', ['email'=>'email1@gmail.com'])
+             ->seeInDatabase('contacts', ['email'=>'email@gmail.com'])
              ->see('Thank you for your contact');
     }
 }
