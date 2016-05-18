@@ -33,6 +33,7 @@ class ContactTest extends TestCase
 
     public function test_show_message_when_send_contact_ok()
     {
+        
     	$this->visit('contact')
     		 ->type('name'.rand(), 'name')
     		 ->type('email@gmail.com', 'email')
