@@ -79,7 +79,7 @@
   </div>
   <div class="buttons">
     <div class="right">
-      <input type="submit" class="button" value="Continue">
+      <input type="submit" class="button" value="Continue" id="send">
     </div>
   </div>
 </form>

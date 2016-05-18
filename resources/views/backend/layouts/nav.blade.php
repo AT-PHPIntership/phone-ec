@@ -107,6 +107,14 @@
                             <a href="{{ url('admin/orders') }}"><i class="fa fa-edit fa-fw"></i> Orders</a>
                             <!-- /.nav-second-level -->
                         </li>
+                        <li>
+                            <a href="{{ url('admin/contact') }}"><i class="fa fa-phone fa-fw"></i> Contact</a>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="{{ url('admin/account') }}"><i class="fa fa-user fa-fw"></i> Account</a>
+                            <!-- /.nav-second-level -->
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
