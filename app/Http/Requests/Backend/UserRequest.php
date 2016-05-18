@@ -23,10 +23,23 @@ class UserRequest extends Request
      */
     public function rules()
     {
-        return [
-            'name' => 'required',
-            'email'    => 'required|email|max:255|unique:users,email',
-            'password' => 'required|min:6',
-        ];
+        // idUpdate: this is id of admin user need edit (get in url)
+        $idUpdate = Request::segment(3);
+
+        if (empty($idUpdate)) {
+        // request for function create
+            return [
+                'name'     => 'required',
+                'email'    => 'required|email|unique:users,email',
+                'password' => 'required|min:6'
+            ];
+        } else {
+            // request for function update
+            return [
+                'name'     => 'required',
+                'email'    => 'required|email|unique:users,email,' . $idUpdate,
+                'password' => 'required|min:6'
+            ];
+        }
     }
 }

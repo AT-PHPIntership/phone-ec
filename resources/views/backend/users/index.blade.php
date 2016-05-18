@@ -16,7 +16,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             DataTables Advanced Tables
-                            <a href="{!! url('admin/users/create') !!}" class="btn btn-primary btn-sm pull-right" >
+                            <a href="{!! url('admin/users/create') !!}" id="create" class="btn btn-primary btn-sm pull-right" >
                                 <i class="fa fa-plus-circle"></i> Add new user
                             </a>
                             <div class="clearfix"></div>
@@ -25,8 +25,11 @@
                         @if (count($users) > 0)
                             @if (Session::has('message'))
                                 <div class="alert alert-success">{{ Session::get('message') }}</div>
+                            @elseif (Session::has('message-success'))
+                                <div class="alert alert-success">{{ Session::get('message-success') }}</div>
+                            @elseif (Session::has('message-warning'))
+                                <div class="alert alert-danger">{{ Session::get('message-warning') }}</div>
                             @endif
-
                             <div class="panel-body">
                                 <div class="dataTable_wrapper">
                                     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
@@ -51,8 +54,8 @@
                                                 <td>{{$user['phone']}}</td>
                                                 <td class="text-center">{{$user['active']}}</td>
                                                 <td class="text-center">
-                                                    <a href="{{ url('admin/users/'.$user->id.'/edit') }}" class="btn btn-circle btn-outline btn-primary" ><i class="fa fa-edit"></i></a>
-                                                    <button type="submit" data-toggle="modal" data-target="#confirmDelete" class="btn btn-circle btn-outline btn-danger btnDel"><i class="fa fa-trash-o"></i></button>
+                                                    <a href="{{ url('admin/users/'.$user->id.'/edit') }}" id='edit' class="btn btn-circle btn-outline btn-primary" ><i class="fa fa-edit"></i></a>
+                                                    <a id='del' data-toggle="modal" data-target="#confirmDelete" class="btn btn-circle btn-outline btn-danger btnDel"><i class="fa fa-trash-o"></i></a>
                                                     <input type="hidden" value="{{ $user['id'] }}">
                                                 </td>
                                             </tr>

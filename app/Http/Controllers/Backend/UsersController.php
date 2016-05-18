@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\Backend\UserRequest;
 use App\Models\Backend\User;
+Use App\Models\Backend\Order;
 use App\Http\Controllers\Controller;
 
 class UsersController extends Controller
@@ -94,8 +95,17 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        $users = User::findOrFail($id);
-        $users->delete();
+        $order = Order::where('user_id', $id)->first();
+
+        if ($order === null) {
+            $users = User::findOrFail($id);
+            $users->delete();
+
+            session()->flash('message-success', 'User was deleted successfully!');
+        } else {
+            session()->flash('message-warning', 'You can\'t delete this user!');
+        }
+
         return redirect('admin/users');
     }
 }
