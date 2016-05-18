@@ -32,6 +32,7 @@
                                             <th>Name</th>
                                             <th>Email(s)</th>
                                             <th>Enquiry</th>
+                                            <th>Create At</th>
                                             <th colspan="2">Action</th>
                                         </tr>
                                     </thead>
@@ -42,6 +43,7 @@
                                             <td>{{ $itemContact->name }}</td>
                                             <td>{{ $itemContact->email }}</td>
                                             <td>{{ $itemContact->enquiry }}</td>
+                                            <td>{{ date('Y-m-d',strtotime($itemContact->created_at)) }}</td>
                                             <td class="text-center">
                                                 <a name="show" href="{{ url('admin/contact/'.$itemContact->id) }}" class="btn btn-circle btn-outline btn-primary"><i class="fa fa-eye"></i></a>
                                                 <a name="del" type="submit" data-toggle="modal" data-target="#confirmDelete" class="btn btn-circle btn-outline btn-danger btnDel"><i class="fa fa-trash-o"></i></a>
@@ -74,7 +76,11 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+<<<<<<< HEAD
                         <h4 class="modal-title">Delete Contact "<b><span id='idDel'></span></b>"</h4>
+=======
+                        <h4 class="modal-title">Delete contact "<b><span id='idDel'></span></b>"</h4>
+>>>>>>> c1f6ea03d8d42e6f577ce09c8527709df07a9c29
                     </div>
                     <div class="modal-body text-center alert alert-danger">
                         <h3 class="text-danger">Are you sure delete this contact?</h3>
@@ -91,6 +97,7 @@
             </div>
         </div>
         @endif
+<<<<<<< HEAD
         <script>
             $(document).ready(function(){
                 $(document).on('click',".btnDel", function(){
@@ -100,4 +107,6 @@
                 });
             });
         </script>
+=======
+>>>>>>> c1f6ea03d8d42e6f577ce09c8527709df07a9c29
 @endsection

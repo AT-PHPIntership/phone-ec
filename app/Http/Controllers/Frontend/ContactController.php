@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Requests\Frontend\ContactRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Frontend\Contact;
+use Mail;
 
 class ContactController extends Controller
 {
@@ -30,6 +31,10 @@ class ContactController extends Controller
      */
     public function store(ContactRequest $request)
     {
+        // send mail to polishop
+        $this->sendMail($request);
+
+        // save contact to database
         $contact = new Contact;
 
         $contact->name    = $request->name;
@@ -45,5 +50,26 @@ class ContactController extends Controller
         }
 
         return redirect()->route('getContact');
+    }
+
+    /**
+     * Function send mail to mail of polishop, when user send contact.
+     *
+     * @param \Illuminate\Http\Request $request request for send mail
+     *
+     * @return \Illuminate\Http\Response
+     */
+    private function sendMail($request)
+    {
+        $data = [
+            'name'    => $request->name,
+            'email'   => $request->email,
+            'enquiry' => $request->enquiry,
+        ];
+
+        Mail::send('frontend.dashboard.mail', $data, function ($message) {
+            $message->from('intership.asiantech@gmail.com', 'user');
+            $message->to('intership.asiantech@gmail.com', 'Polishop')->subject('This is contact form User');
+        });
     }
 }
