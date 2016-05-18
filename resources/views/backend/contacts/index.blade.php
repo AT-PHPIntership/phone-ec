@@ -76,11 +76,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-<<<<<<< HEAD
                         <h4 class="modal-title">Delete Contact "<b><span id='idDel'></span></b>"</h4>
-=======
-                        <h4 class="modal-title">Delete contact "<b><span id='idDel'></span></b>"</h4>
->>>>>>> c1f6ea03d8d42e6f577ce09c8527709df07a9c29
                     </div>
                     <div class="modal-body text-center alert alert-danger">
                         <h3 class="text-danger">Are you sure delete this contact?</h3>
@@ -97,7 +93,6 @@
             </div>
         </div>
         @endif
-<<<<<<< HEAD
         <script>
             $(document).ready(function(){
                 $(document).on('click',".btnDel", function(){
@@ -107,6 +102,4 @@
                 });
             });
         </script>
-=======
->>>>>>> c1f6ea03d8d42e6f577ce09c8527709df07a9c29
 @endsection
