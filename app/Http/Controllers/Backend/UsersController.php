@@ -101,7 +101,7 @@ class UsersController extends Controller
             $users = User::findOrFail($id);
             $users->delete();
 
-            session()->flash('message-success', 'User was deleted successfully!');
+            session()->flash('message', 'User was deleted successfully!');
         } else {
             session()->flash('message-warning', 'You can\'t delete this user!');
         }

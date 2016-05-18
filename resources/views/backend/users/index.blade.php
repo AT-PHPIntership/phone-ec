@@ -25,8 +25,6 @@
                         @if (count($users) > 0)
                             @if (Session::has('message'))
                                 <div class="alert alert-success">{{ Session::get('message') }}</div>
-                            @elseif (Session::has('message-success'))
-                                <div class="alert alert-success">{{ Session::get('message-success') }}</div>
                             @elseif (Session::has('message-warning'))
                                 <div class="alert alert-danger">{{ Session::get('message-warning') }}</div>
                             @endif
