@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\Backend\UserRequest;
 use App\Models\Backend\User;
-Use App\Models\Backend\Order;
+use App\Models\Backend\Order;
 use App\Http\Controllers\Controller;
 
 class UsersController extends Controller
