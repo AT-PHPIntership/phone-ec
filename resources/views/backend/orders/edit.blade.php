@@ -29,7 +29,7 @@
                                                 <option value="3">Orders was shipped successfully</option>
                                             </select>
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Update</button>
+                                        <button type="submit" class="btn btn-primary" name='Update'>Update</button>
                                     </form>
                                 </div>
                                 <!-- /.col-lg-12 (nested) -->
