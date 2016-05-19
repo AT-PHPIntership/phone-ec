@@ -26,7 +26,7 @@
       <ul class="list-item">
         <li><a href="{{ url('login') }}">Login</a></li>
         <li><a href="{{ url('register') }}">Register</a></li>
-        <li><a href="#">Forgotten Password</a></li>
+        <li><a href="{{ url('/password/reset') }}">Forgotten Password</a></li>
       </ul>
       @else
       <ul class="list-item">

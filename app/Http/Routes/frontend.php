@@ -65,6 +65,11 @@ Route::get('logout', 'Frontend\Auth\AuthController@getLogout');
 Route::get('register', 'Frontend\Auth\AuthController@getRegister');
 Route::post('register', 'Frontend\Auth\AuthController@postRegister');
 
+Route::get('password/email', 'Frontend\Auth\PasswordController@getEmail');
+Route::post('password/email', 'Frontend\Auth\PasswordController@postEmail');
+Route::get('password/reset/{token?}', 'Frontend\Auth\PasswordController@getReset');
+Route::post('password/reset', 'Frontend\Auth\PasswordController@postReset');
+
 Route::get('category', 'Frontend\CategoryController@category');
 Route::get('category/{id}', 'Frontend\ProductsController@listProducts');
 
