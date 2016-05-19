@@ -22,7 +22,7 @@ class OrderTest extends TestCase
         $this->actingAs($admin, 'admin')
              ->visit('admin/orders')
              ->click('update')
-             ->select($order->status . '1', 'Update', 'status')
+             ->select($order->status . '3', 'Update', 'status')
              ->press('Update')
              ->seePageIs('/admin/orders')
              ->see('Order was updated successfully!');
@@ -38,7 +38,7 @@ class OrderTest extends TestCase
         $this->actingAs($admin, 'admin')
              ->visit('admin/orders')
              ->click('update')
-             ->select($order->status . '1', 'Update', 'status')
+             ->select($order->status . '2', 'Update', 'status')
              ->press('Update')
              ->seePageIs('/admin/orders');
              
