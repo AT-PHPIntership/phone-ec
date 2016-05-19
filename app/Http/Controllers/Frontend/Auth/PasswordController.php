@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Frontend\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
@@ -19,6 +19,15 @@ class PasswordController extends Controller
     */
 
     use ResetsPasswords;
+
+    //Show Link Request Form
+    protected $linkRequestView = 'frontend.auth.passwords.email';
+
+    //Show Reset Form
+    protected $resetView = 'frontend.auth.passwords.reset';
+
+    //Email content
+    protected $emailView = 'frontend.auth.emails.password';
 
     /**
      * Create a new password controller instance.
