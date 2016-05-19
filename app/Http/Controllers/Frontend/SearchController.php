@@ -5,10 +5,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\SearchRequest;
 use Illuminate\Support\Facades\Input;
 use DB;
+
 class SearchController extends Controller
 {
     /**
     * Display search products
+    *
+    * @param \App\Http\Requests\Frontend\SearchRequest $request request for search
     *
     * @return array
     */
@@ -28,4 +31,3 @@ class SearchController extends Controller
      
     }
 }
-
