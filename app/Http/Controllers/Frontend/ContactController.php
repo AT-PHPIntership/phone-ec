@@ -31,25 +31,29 @@ class ContactController extends Controller
      */
     public function store(ContactRequest $request)
     {
-        // send mail to polishop
-        $this->sendMail($request);
+        // sent mail to polishop successully
+        if ($this->sendMail($request)) {
+            // save contact to database
+            $contact = new Contact;
 
-        // save contact to database
-        $contact = new Contact;
+            $contact->name    = $request->name;
+            $contact->email   = $request->email;
+            $contact->enquiry = $request->enquiry;
 
-        $contact->name    = $request->name;
-        $contact->email   = $request->email;
-        $contact->enquiry = $request->enquiry;
+            $contact->save();
 
-        $contact->save();
+            if (!$contact) {
+                $request->session()->flash('message', 'Your contact count\'t send, please try again');
+            } else {
+                $request->session()->flash('message', 'Thank you for your contact');
+            }
 
-        if (!$contact) {
-            $request->session()->flash('message', 'Your contact count\'t send, please try againt');
+            return redirect()->route('getContact');
         } else {
-            $request->session()->flash('message', 'Thank you for your contact');
+            // sent mail to polishop not successfully
+            $request->session()->flash('message', 'Your contact count\'t send, please try again');
+            return redirect()->route('getContact');
         }
-
-        return redirect()->route('getContact');
     }
 
     /**
@@ -69,7 +73,10 @@ class ContactController extends Controller
 
         Mail::send('frontend.dashboard.mail', $data, function ($message) {
             $message->from('intership.asiantech@gmail.com', 'user');
-            $message->to('intership.asiantech@gmail.com', 'Polishop')->subject('This is contact form User');
+            $message->to('intership.asiantech@gmail', 'Polishop')->subject('This is contact form User');
         });
+
+        // check mail sent successfully?
+        return count(Mail::failures()) > 0 ? false : true;
     }
 }

@@ -33,13 +33,23 @@ class ContactTest extends TestCase
 
     public function test_show_message_when_send_contact_ok()
     {
-        
-    	$this->visit('contact')
-    		 ->type('name'.rand(), 'name')
-    		 ->type('email@gmail.com', 'email')
-    		 ->type('enquiry'.rand(), 'enquiry')
-    		 ->press('send')
+        $this->visit('contact')
+             ->type('name'.rand(), 'name')
+             ->type('email@gmail.com', 'email')
+             ->type('enquiry'.rand(), 'enquiry')
+             ->press('send')
              ->seeInDatabase('contacts', ['email'=>'email@gmail.com'])
              ->see('Thank you for your contact');
+    }
+
+    public function test_show_message_error_when_send_contact_not_ok()
+    {
+    	$this->visit('contact')
+    		 ->type('name'.rand(), 'name')
+    		 ->type('email3@gmail.com', 'email')
+    		 ->type('enquiry'.rand(), 'enquiry')
+    		 ->press('send')
+             ->notSeeInDatabase('contacts', ['email'=>'email3@gmail.com'])
+             ->see('Your contact count\'t send, please try again');
     }
 }
