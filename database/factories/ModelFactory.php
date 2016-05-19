@@ -11,11 +11,11 @@
 |
 */
 
-$factory->define(App\Models\Backend\Admin::class, function (Faker\Generator $faker) {
+$factory->define(App\Models\Backend\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
 		'email' => $faker->email,
-		'password' => bcrypt('admin1'),
+		'password' => bcrypt('847464'),
 		'address' => $faker->address,
 		'phone' => $faker->phoneNumber,
 		'active' => 1
@@ -36,5 +36,16 @@ $factory->define(App\Models\Backend\Admin::class, function (Faker\Generator $fak
 $factory->define(App\Models\Backend\Brand::class, function (Faker\Generator $faker) {
     return [
         'brand_name' => $faker->name,
+    ];
+});
+
+$factory->define(App\Models\Backend\Rating::class, function (Faker\Generator $faker) {
+    return [
+        'product_id' => rand(1,10),
+		'user_id' => 1,
+		'score' => rand(1,5),
+		'comment' => $faker->realText,
+		'created_at' => Carbon\Carbon::now(),
+		'updated_at' => Carbon\Carbon::now()
     ];
 });
