@@ -1,11 +1,10 @@
 <?php
 namespace App\Http\Controllers\Frontend;
 
-use Illuminate\Http\Request;
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Frontend\SearchRequest;
+use Illuminate\Support\Facades\Input;
 use DB;
-
 class SearchController extends Controller
 {
     /**
@@ -13,9 +12,9 @@ class SearchController extends Controller
     *
     * @return array
     */
-    public function index()
+    public function index(SearchRequest $request)
     {
-        $search = \Request::get('search');
+        $search = Input::get('search');
 
         $products = DB::table('products');
 
@@ -29,3 +28,4 @@ class SearchController extends Controller
      
     }
 }
+
