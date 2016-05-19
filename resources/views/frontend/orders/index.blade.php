@@ -29,14 +29,14 @@
                                  <form action="{{url('orders-tracking')}}" method="post">
                                  {{csrf_field()}}
                                     <label>Search:
-                                    <input class="form-control input-sm" type="search" placeholder="" name="searchorders" aria-controls="dataTables-example">
+                                    <input class="form-control input-sm" type="text" placeholder="" name="searchorders" aria-controls="dataTables-example" required="">
                                     </label>
 
                                     <label>Email:
-                                    <input class="form-control input-sm" type="search" placeholder="" name="email" aria-controls="dataTables-example">
+                                    <input class="form-control input-sm" type="email" placeholder="" name="email" aria-controls="dataTables-example" required="">
                                     </label>
                                     
-                                    <input type="submit" value="search" name="search">               
+                                    <button type="submit" name="Search" id="search" value="search">Search</button>              
                                                  
                                     
                                 </form>
