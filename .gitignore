@@ -1,5 +1,6 @@
 vendor/
 .vagrant
+public/upload
 
 #netbean ide
 nbproject
