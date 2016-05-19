@@ -112,6 +112,7 @@
     </div>
     <div id="tab-review" class="tab-content">
         @if (Auth::check())
+            @if ($isReview === null)
             <div id="review"></div>
             <form action="{{ url('products/rating') }}" method="post" id="RatingForm">
                 {{ csrf_field() }}
@@ -131,6 +132,9 @@
                 </div>
                 <input type="hidden" name="product_id" value="{{ url()->current() }}">
             </form>
+            @else
+                <div class="alert alert-success">You have rated this product. Please help us rating the other products!</div>
+            @endif
         @else
             You must be login to review this product.<br>
             <a href="{{ url('login') }}"><strong>Click here to login<strong></a>
