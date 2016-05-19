@@ -3,7 +3,6 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\SearchRequest;
-use Illuminate\Support\Facades\Input;
 use DB;
 
 class SearchController extends Controller
@@ -17,7 +16,7 @@ class SearchController extends Controller
     */
     public function index(SearchRequest $request)
     {
-        $search = Input::get('search');
+        $search = $request->get('search');
 
         $products = DB::table('products');
 
