@@ -59,9 +59,7 @@
                                         <form action="{{ url('cart/'.$key) }}" method="POST">
                                             {!! csrf_field() !!}
                                             {!! method_field('DELETE') !!}
-                                            <button type="submit" id="delete-cart-{{ $key }}" class="btn btn-danger">
-                                                <i class="fa fa-btn fa-trash"></i>Delete
-                                            </button>
+                                            <input type="submit" id="delete-cart-{{ $key }}" class="button" value="Delete">
                                         </form>
                                     </td>
                                     <td class="price" id="price-{{ $key }}">{{ number_format($cart['price']) }} VND</td>
@@ -85,7 +83,7 @@
             <div class="buttons">
                 <div class="right"><a class="button" href="{{ url('checkout') }}">Checkout</a></div>
                 <div class="right" style="margin-right: 15px">
-                    <button class="button" id="btnUpdate">Update Cart</button>
+                    <a class="button" id="btnUpdate">Update Cart</a>
                     <input type="hidden" value="{{ count($carts) }}" id="countCart">
                 </div>
             </div>
