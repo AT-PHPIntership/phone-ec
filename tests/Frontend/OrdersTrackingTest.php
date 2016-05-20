@@ -34,6 +34,15 @@ class OrdersTrackingTest extends TestCase
     */
     public function testSearchRequest()
     {
+    	$admin = factory(Admin::class)->create();
+        $order = Order::first();
+
+        $this->actingAs($admin, 'admin')
+        	 ->visit('orders-tracking')
+        	 ->type('2', 'searchorders')
+        	 ->type('lorna.kutch@hotmail.com', 'email')
+        	 ->press('Search')
+        	 ->seePageIs('orders-tracking');
 
     }
 }
