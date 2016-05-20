@@ -4,9 +4,7 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use App\Models\Backend\Product;
-use App\Models\Backend\Admin;
 use App\Models\Backend\Brand;
-use App\Models\Backend\OrderDetails;
 
 class CartTest extends TestCase
 {
@@ -51,6 +49,7 @@ class CartTest extends TestCase
         ->type('3', 'quantity')
         ->click('btnUpdate')
         ->seePageIs('/cart')
+        //Check price total
         ->see(number_format($product->current_price)*3);
     }
 
