@@ -19,6 +19,8 @@ class PasswordController extends Controller
     */
 
     use ResetsPasswords;
+    
+    protected $redirectTo = '/';
 
     //Show Link Request Form
     protected $linkRequestView = 'frontend.auth.passwords.email';
