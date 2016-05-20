@@ -25,7 +25,7 @@ class ContactManagerTest extends TestCase
     public function test_delete_contact()
     {
     	$admin = factory(Admin::class)->create();
-    	$contact = Contact::first();
+    	$contact = Contact::all()->last();
 
     	$this->actingAs($admin, 'admin')
     		 ->visit('admin/contact')
