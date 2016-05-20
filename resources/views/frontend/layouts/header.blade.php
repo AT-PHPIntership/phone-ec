@@ -67,8 +67,12 @@
         <div id="logo"><a href="/"><img src="{!! asset('assets/frontend/image/logo.png') !!}" title="Polishop" alt="Polishop" /></a></div>
         <form action="{{ url('search') }}" method="GET" role="search">
         <div id="search">
-          <button class="button-search" type="submit"></button>
-          <input type="text" name="search" placeholder="Search" required="" value="" />
+          <button class="button-search" type="submit" name="search"></button>
+          @if ($errors->has('search'))
+          <input type="text" name="search" placeholder="{{ $errors->first('search') }}" value="" />
+          @else
+          <input type="text" name="search" placeholder="Search" value="" />
+          @endif
         </div>
         </form>
         <!--Mini Shopping Cart Start-->

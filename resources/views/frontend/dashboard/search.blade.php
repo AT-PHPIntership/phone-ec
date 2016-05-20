@@ -37,6 +37,7 @@
         <!--Product Grid Start-->
         <div class="product-grid">
         @if (count($results)>0)
+          <h3>Search Results for {{ $search }}</h3>
           @foreach($results as $result)
             <div>
               <div class="image"><a href="{{ url(str_slug($result->name).'-'.$result->id) }}"><img src="{!! asset('assets/frontend/image/product/apple_cinema_30-162x162.jpg') !!}" title="{{ $result->name }}" alt="{{ $result->name }}" /></a></div>
