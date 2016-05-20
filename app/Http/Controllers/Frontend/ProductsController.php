@@ -33,6 +33,13 @@ class ProductsController extends Controller
         $scoreAverage = Rating::where('product_id', $id)->avg('score');
         $ratings = Rating::with('users')->where('product_id', $id)
                                         ->paginate(10);
+        if (Auth::check()) {
+            $isReview = Rating::where('product_id', $id)->where('user_id', Auth::user()->id)
+                                                        ->first();
+        } else {
+            $isReview = '';
+        }
+        
         return view(
             'frontend.dashboard.detailProduct',
             compact(
@@ -40,7 +47,8 @@ class ProductsController extends Controller
                 'productLatest',
                 'ratings',
                 'countRatings',
-                'scoreAverage'
+                'scoreAverage',
+                'isReview'
             )
         );
     }

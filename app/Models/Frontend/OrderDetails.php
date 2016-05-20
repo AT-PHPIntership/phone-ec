@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class OrderDetails extends Model
 {
     protected $table = 'orderdetails';
+    
+    protected $fillable = [
+        'order_id',
+        'product_id',
+        'quantity',
+        'price'
+    ];
      /**
      * The attributes that are mass assignable.
      *

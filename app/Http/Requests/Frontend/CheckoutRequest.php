@@ -25,8 +25,8 @@ class CheckoutRequest extends Request
     {
         return [
             'user_name'      => 'required',
-            'user_address'   => 'required',
-            'user_phone'     => 'required'
+            'user_address'   => 'required|max:255',
+            'user_phone'     => 'required|max:255'
         ];
     }
 }
