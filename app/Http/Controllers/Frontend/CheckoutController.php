@@ -169,6 +169,7 @@ class CheckoutController extends Controller
         $ordersData['user_id'] = $request->user()->id;
         $ordersData['status'] = 1;
         $carts = session()->get('carts');
+        $total = 0;
         
         foreach ($carts as $cart) {
             $total += $cart['total'];
