@@ -61,6 +61,20 @@ Route::get('login', 'Frontend\Auth\AuthController@getLogin');
 Route::post('login', 'Frontend\Auth\AuthController@postLogin');
 Route::get('logout', 'Frontend\Auth\AuthController@getLogout');
 
+
+    Route::post('products/rating', 'Frontend\ProductsController@rating');
+    Route::get('/', 'Frontend\ProductsController@listAllProducts');
+    Route::get('category', 'Frontend\CategoryController@category');
+    Route::get('category/{id}', 'Frontend\ProductsController@listProducts');
+    Route::get('search', 'Frontend\SearchController@index');
+    //orders routes....
+    Route::get('orders-tracking', 'Frontend\OrdersController@showOrderTracking');
+    Route::post('/orders-tracking', 'Frontend\OrdersController@search');
+
+    Route::get('{detailsUrl}', 'Frontend\ProductsController@details');
+
+
+
 // Registration routes...
 Route::get('register', 'Frontend\Auth\AuthController@getRegister');
 Route::post('register', 'Frontend\Auth\AuthController@postRegister');
@@ -73,11 +87,6 @@ Route::post('password/reset', 'Frontend\Auth\PasswordController@postReset');
 
 Route::get('category', 'Frontend\CategoryController@category');
 Route::get('category/{id}', 'Frontend\ProductsController@listProducts');
-
-Route::resource('account', 'Frontend\AccountController');
-
-Route::get('orders', 'Frontend\OrdersController@index');
-Route::get('order/{id}', 'Frontend\OrdersController@show');
 
 Route::get('search', 'Frontend\SearchController@index');
 
