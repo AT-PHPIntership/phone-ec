@@ -4,14 +4,16 @@ namespace App\Http\Requests\Backend;
 
 use App\Http\Requests\Request;
 
-class CategoryRequest extends Request {
+class CategoryRequest extends Request
+{
 
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize() {
+    public function authorize()
+    {
         return true;
     }
 
@@ -20,14 +22,15 @@ class CategoryRequest extends Request {
      *
      * @return array
      */
-    public function rules() {
-        if($this->segment(3)){
+    public function rules()
+    {
+        if ($this->segment(3)) {
             return [
                 'cate_name' => 'required|min:3|unique:product_category,cate_name,'.$this->segment(3),
-                // 'txtcatename' => 'required|min:3|unique:category,cate_name,'.$this->segment(3), 
+                // 'txtcatename' => 'required|min:3|unique:category,cate_name,'.$this->segment(3),
                 'cate_image' => 'mimes:jpeg,jpg,png|image',
             ];
-        }else{
+        } else {
             return [
                 'parent_id' => 'required',
                 'cate_name' => 'required|min:3|unique:product_category,cate_name',
@@ -37,8 +40,14 @@ class CategoryRequest extends Request {
         }
         
     }
-
-    public function messages() {
+    
+    /**
+     * Get the validation rules that apply to the request
+     *
+     * @return array
+     */
+    public function messages()
+    {
         return [
             'parent_id.required' => 'Please enter choose Category',
             'cate_name.required' => 'Please enter Category Name',
@@ -46,5 +55,4 @@ class CategoryRequest extends Request {
             'cate_image.image' => 'This file isn\'t Image',
         ];
     }
-
 }

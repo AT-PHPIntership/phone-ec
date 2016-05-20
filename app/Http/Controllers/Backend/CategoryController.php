@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers\Backend;
 
-use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
+
 use App\Http\Requests\Backend\CategoryRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Backend\Category;
 
-class CategoryController extends Controller {
-
+class CategoryController extends Controller
+{
     /**
-     * Display a listing of the resource.
+     * Display a listing of the products.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
+    public function index()
+    {
         $cates = Category::paginate(10);
         $parent = Category::select('id', 'cate_name', 'parent_id')->get()->toArray();
         return view('backend.categories.index', compact('cates', 'parent'));
@@ -26,7 +27,8 @@ class CategoryController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() {
+    public function create()
+    {
         $cates = Category::select('id', 'cate_name', 'parent_id')->get()->toArray();
         return view('backend.categories.create', compact('cates'));
     }
@@ -34,10 +36,12 @@ class CategoryController extends Controller {
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request request
+     *
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryRequest $request) {
+    public function store(CategoryRequest $request)
+    {
         $addcate = new Category;
         $addcate->cate_name = $request->cate_name;
         $addcate->cate_description = $request->cate_description;
@@ -54,22 +58,14 @@ class CategoryController extends Controller {
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id) {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id id
+     *
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) {
+    public function edit($id)
+    {
         $cates = Category::findOrFail($id);
         $parent = Category::select('id', 'cate_name', 'parent_id')->get()->toArray();
         return view('backend.categories.edit', compact('cates', 'parent'));
@@ -78,11 +74,13 @@ class CategoryController extends Controller {
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request CategoryRequest
+     * @param int                      $id      id
+     *
      * @return \Illuminate\Http\Response
      */
-    public function update(CategoryRequest $request, $id) {
+    public function update(CategoryRequest $request, $id)
+    {
         $editcate = Category::findOrFail($id);
         $editcate->cate_name = $request->cate_name;
         $editcate->cate_description = $request->cate_description;
@@ -104,10 +102,12 @@ class CategoryController extends Controller {
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id id
+     *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id) {
+    public function destroy($id)
+    {
         $delcate = Category::findOrFail($id);
         $cate = Category::all();
         $stemp = 0;
@@ -128,5 +128,4 @@ class CategoryController extends Controller {
         }
         return redirect()->route('admin.categories.index');
     }
-
 }
