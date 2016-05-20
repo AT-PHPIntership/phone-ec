@@ -34,7 +34,7 @@
                                         <label>Category Parent</label>
                                         <select  class="form-control"name="parent_id">
                                             <option value="0">----------Root----------</option>
-                                            <?php cate_parent($parent,0,"--",$cates['parent_id']) ?>
+                                            <?php cateParent($parent,0,"--",$cates['parent_id']) ?>
                                         </select>
                                     </div>
                                     <div class="form-group">

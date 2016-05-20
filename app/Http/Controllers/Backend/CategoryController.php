@@ -48,9 +48,9 @@ class CategoryController extends Controller
         $addcate->cate_status = $request->cate_status;
         $addcate->parent_id = $request->parent_id;
         if ($request->hasFile('cate_image')) {
-            $file_name = $request->file('cate_image')->getClientOriginalName();
-            $addcate->cate_image = $file_name;
-            $request->file('cate_image')->move(public_path('upload/'), $file_name);
+            $fileName = $request->file('cate_image')->getClientOriginalName();
+            $addcate->cate_image = $fileName;
+            $request->file('cate_image')->move(public_path('upload/'), $fileName);
         }
         $addcate->save();
         $request->session()->flash('message', 'Category was add successfully!');
@@ -90,9 +90,9 @@ class CategoryController extends Controller
             if ($editcate->cate_image) {
                 file::delete(public_path('upload/') . $editcate->cate_image);
             }
-            $file_name = $request->file('cate_image')->getClientOriginalName();
-            $editcate->cate_image = $file_name;
-            $request->file('cate_image')->move(public_path('upload/'), $file_name);
+            $fileName = $request->file('cate_image')->getClientOriginalName();
+            $editcate->cate_image = $fileName;
+            $request->file('cate_image')->move(public_path('upload/'), $fileName);
         }
         $editcate->save();
         $request->session()->flash('message', 'Category was update successfully!');

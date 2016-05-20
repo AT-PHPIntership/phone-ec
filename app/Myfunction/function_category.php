@@ -9,18 +9,18 @@
      *
      * @return array
      */
-function cate_parent($cates, $parent = 0, $str = "--", $select = 0)
+function cateParent($cates, $parent = 0, $str = "--", $select = 0)
 {
     foreach ($cates as $cate) {
         $id = $cate['id'];
-        $cate_name = $cate['cate_name'];
+        $cateName = $cate['cate_name'];
         if ($cate['parent_id'] == $parent) {
             if ($select != 0 && $id == $select) {
-                echo "<option value='$id' selected='selected'>$str $cate_name</option>";
+                echo "<option value='$id' selected='selected'>$str $cateName</option>";
             } else {
-                echo "<option value='$id'>$str $cate_name</option>";
+                echo "<option value='$id'>$str $cateName</option>";
             }
-            cate_parent($cates, $id, $str."--");
+            cateParent($cates, $id, $str."--");
         }
     }
 }
