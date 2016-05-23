@@ -57,7 +57,7 @@
                                                     @endif
                                                 </td>
                                                 <td class="text-right">
-                                                    <a href="{{ url('admin/orders/'.$order->id.'/edit') }}" class="btn btn-circle btn-outline btn-primary" ><i class="fa fa-edit"></i></a>
+                                                    <a href="{{ url('admin/orders/'.$order->id.'/edit') }}" class="btn btn-circle btn-outline btn-primary" name='update' ><i class="fa fa-edit" ></i></a>
                                                     <input type="hidden" value="{{ $order['id'] }}">
                                                 </td>
                                             </tr>

@@ -44,11 +44,12 @@
                             </div>
                             <!-- /.table-responsive --> 
                             <h2></h2> 
+                            
+                            <h2>
                             @if (!empty($orderItem))
-                            <h2>Your order status:  
+                            Your order status:  
                                 @if ($orderItem->status == 1)
                                     Orders are comfirmed
-                                @elseif ($orderItem->status == 2)
                                     Orders was moved
                                 @elseif ($orderItem->status == 3)
                                     Orders was shipped successfully
