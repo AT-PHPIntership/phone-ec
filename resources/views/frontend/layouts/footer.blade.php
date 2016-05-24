@@ -13,11 +13,23 @@
         <!-- Custom Column Part End-->
         <!-- Twitter Feeds Part Start-->
         <div id="twitter_footer" class="part3">
-          <h3>Twitter Feed</h3>
-          <ul id="twitter_update_list" class="twitt_icon">
-            <script type="text/javascript" src="http://twitter.com/javascripts/blogger.js"></script>
-            <script type="text/javascript" src="https://api.twitter.com/1/statuses/user_timeline.json?screen_name=harnishdesign &amp;callback=twitterCallback2&amp;count=3"></script>
-          </ul>
+          <h3>NEWSLETTER</h3>
+          <form action="{{ url('sub') }}" method="post">
+            {{ csrf_field() }}
+            <!-- start cms-block NEWSLETTER -->
+            <div>Subscribe and Get 50.000 VND Instantly!</div>
+            <div style="margin: 10px 0 5px 0"><strong>YOUR EMAIL :</strong></div>
+            <input name="sub_email" type="text" placeholder="Your email">
+            <input type="submit" class="button" name="subscription" value="Send">
+            @if (isset($errors) && $errors->any())
+              @foreach ($errors->all() as $error)
+                <p><strong>{{ $error }}</strong></p>
+              @endforeach
+            @elseif (Session::has('message'))
+              <p><strong>{{ Session::get('message') }}</strong></p>
+            @endif
+            <!-- end cms-block NEWSLETTER -->
+        </form>
         </div>
         <!-- Twitter Feeds Part End-->
         <!-- Facebook Box Part Start-->
