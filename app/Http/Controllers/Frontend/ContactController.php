@@ -35,11 +35,11 @@ class ContactController extends Controller
             $contact->name    = $request->name;
             $contact->email   = $request->email;
             $contact->enquiry = $request->enquiry;
-            $contact->save();
-            if (!$contact) {
-                $request->session()->flash('message', 'Your contact count\'t send, please try again');
-            } else {
+            
+            if ($contact->save()) {
                 $request->session()->flash('message', 'Thank you for your contact');
+            } else {
+                $request->session()->flash('message', 'Your contact count\'t send, please try again');
             }
             return redirect()->route('getContact');
         } else {

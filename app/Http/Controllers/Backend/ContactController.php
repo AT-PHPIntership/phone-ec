@@ -41,11 +41,11 @@ class ContactController extends Controller
     public function destroy(Request $request, $id)
     {
         $contact = Contact::findOrFail($id);
-        $contact->delete();
-        if (!$contact) {
-            $request->session()->flash('message', 'Wrong!, Can\'t delete this Contact, please try againt!');
-        } else {
+
+        if ($contact->delete()) {
             $request->session()->flash('message', 'Contact was delete successfully!');
+        } else {
+            $request->session()->flash('message', 'Wrong!, Can\'t delete this Contact, please try againt!');
         }
         return redirect()->route('admin.contact.index');
     }
