@@ -90,4 +90,7 @@ Route::get('category/{id}', 'Frontend\ProductsController@listProducts');
 
 Route::get('search', 'Frontend\SearchController@index');
 
+Route::get('contact', ['as' => 'getContact', 'uses' => 'Frontend\ContactController@index']);
+Route::post('contact', 'Frontend\ContactController@store');
+
 Route::get('{detailsUrl}', 'Frontend\ProductsController@details');
