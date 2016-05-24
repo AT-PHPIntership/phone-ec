@@ -23,7 +23,10 @@
         ],
         "psr-4": {
             "App\\": "app/"
-        }
+        },
+        "files" : [
+            "app/Myfunction/function_category.php"
+        ]
     },
     "autoload-dev": {
         "classmap": [
