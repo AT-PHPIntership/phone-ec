@@ -11,7 +11,7 @@
             @endif
           </li>
           <li><a href="about-us">About Us</a></li>
-          <li><a href="contact-us">Contact Us</a></li>
+          <li><a name="contact" href="{{ url('contact') }}">Contact Us</a></li>
           <li><a>Account</a>
             <div>
               @if (Auth::guest()) 
