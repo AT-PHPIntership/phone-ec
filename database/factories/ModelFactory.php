@@ -70,4 +70,5 @@ $factory->define(App\Models\Backend\Order::class, function (Faker\Generator $fak
 		'user_phone' => $faker->phoneNumber,
 		'total_price' => $faker->randomNumber(4),
     ];
+    
 });
