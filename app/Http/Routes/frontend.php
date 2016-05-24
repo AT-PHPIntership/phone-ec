@@ -56,11 +56,13 @@ Route::get('checkout/success', 'Frontend\CheckoutController@success');
 Route::post('products/rating', 'Frontend\ProductsController@rating');
 Route::get('/', 'Frontend\ProductsController@listAllProducts');
 
+Route::get('contact', ['as' => 'getContact', 'uses' => 'Frontend\ContactController@index']);
+Route::post('contact', 'Frontend\ContactController@store');
+
 // Authentication routes...
 Route::get('login', 'Frontend\Auth\AuthController@getLogin');
 Route::post('login', 'Frontend\Auth\AuthController@postLogin');
 Route::get('logout', 'Frontend\Auth\AuthController@getLogout');
-
 
     Route::post('products/rating', 'Frontend\ProductsController@rating');
     Route::get('/', 'Frontend\ProductsController@listAllProducts');
@@ -72,8 +74,6 @@ Route::get('logout', 'Frontend\Auth\AuthController@getLogout');
     Route::post('/orders-tracking', 'Frontend\OrdersController@search');
 
     Route::get('{detailsUrl}', 'Frontend\ProductsController@details');
-
-
 
 // Registration routes...
 Route::get('register', 'Frontend\Auth\AuthController@getRegister');
@@ -88,6 +88,9 @@ Route::post('password/reset', 'Frontend\Auth\PasswordController@postReset');
 Route::get('category', 'Frontend\CategoryController@category');
 Route::get('category/{id}', 'Frontend\ProductsController@listProducts');
 
+
 Route::get('search', 'Frontend\SearchController@index');
+
+
 
 Route::get('{detailsUrl}', 'Frontend\ProductsController@details');
