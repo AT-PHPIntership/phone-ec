@@ -11,6 +11,8 @@
 |
 */
 
+
+
 $factory->define(App\Models\Backend\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
@@ -22,16 +24,6 @@ $factory->define(App\Models\Backend\User::class, function (Faker\Generator $fake
     ];
 });
 
-$factory->define(App\Models\Backend\Admin::class, function (Faker\Generator $faker) {
-    return [
-        'name' => $faker->name,
-		'email' => $faker->email,
-		'password' => bcrypt('admin1'),
-		'address' => $faker->address,
-		'phone' => $faker->phoneNumber,
-		'active' => 1
-    ];
-});
 
 $factory->define(App\Models\Backend\Brand::class, function (Faker\Generator $faker) {
     return [
@@ -70,5 +62,4 @@ $factory->define(App\Models\Backend\Order::class, function (Faker\Generator $fak
 		'user_phone' => $faker->phoneNumber,
 		'total_price' => $faker->randomNumber(4),
     ];
-    
 });
