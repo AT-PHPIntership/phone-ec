@@ -94,4 +94,3 @@ Route::get('search', 'Frontend\SearchController@index');
 
 
 Route::get('{detailsUrl}', 'Frontend\ProductsController@details');
-
