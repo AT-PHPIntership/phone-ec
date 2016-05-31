@@ -19,5 +19,9 @@ class DatabaseSeeder extends Seeder
         $this->call(OrderDetailsTableSeeder::class);
         $this->call(RatingTableSeeder::class);
         $this->call(ContactTableSeeder::class);
+        $this->call(PermissionsTableSeeder::class);
+        $this->call(GroupsTableSeeder::class);
+        $this->call(GroupPermisstionsTableSeeder::class);
+        $this->call(AdminGroupTableSeeder::class);
     }
 }

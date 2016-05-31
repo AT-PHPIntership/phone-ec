@@ -103,7 +103,7 @@
                             <a href="{{ url('admin/products') }}"><i class="fa fa-mobile fa-fw"></i> Products</a>
                         </li>
                         <li>
-                            <a href="{{ url('admin/rating') }}"><i class="fa fa-line-chart fa-fw"></i> Rating</a>
+                            <a href="{{ url('admin/ratings') }}"><i class="fa fa-line-chart fa-fw"></i> Ratings</a>
                         </li>
                         <li>
                             <a href="{{ url('admin/brands') }}"><i class="fa fa-flag-checkered fa-fw"></i> Brands</a>
@@ -114,11 +114,19 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="{{ url('admin/contact') }}"><i class="fa fa-phone fa-fw"></i> Contact</a>
+                            <a href="{{ url('admin/contacts') }}"><i class="fa fa-phone fa-fw"></i> Contacts</a>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="{{ url('admin/account') }}"><i class="fa fa-user fa-fw"></i> Account</a>
+                            <a href="{{ url('admin/accounts') }}"><i class="fa fa-user fa-fw"></i> Accounts</a>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="{{ url('admin/permissions') }}"><i class="fa fa-key fa-fw"></i> Permissions</a>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="{{ url('admin/groups') }}" name="groups"><i class="fa fa-wrench fa-fw"></i> Group Roles</a>
                             <!-- /.nav-second-level -->
                         </li>
                     </ul>

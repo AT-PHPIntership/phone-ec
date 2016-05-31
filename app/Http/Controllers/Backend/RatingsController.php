@@ -10,7 +10,7 @@ use App\Models\Backend\Rating;
 use App\Models\Backend\Product;
 use App\Models\Backend\User;
 
-class RatingController extends Controller
+class RatingsController extends Controller
 {
     /**
      * List of all rating.

@@ -6,7 +6,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Backend\Contact;
 
-class ContactController extends Controller
+class ContactsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -47,6 +47,6 @@ class ContactController extends Controller
         } else {
             $request->session()->flash('message', 'Wrong!, Can\'t delete this Contact, please try againt!');
         }
-        return redirect()->route('admin.contact.index');
+        return redirect()->route('admin.contacts.index');
     }
 }

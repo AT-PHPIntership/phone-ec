@@ -45,7 +45,7 @@
                                             <td>{{ $itemContact->enquiry }}</td>
                                             <td>{{ date('Y-m-d',strtotime($itemContact->created_at)) }}</td>
                                             <td class="text-center">
-                                                <a name="show" href="{{ url('admin/contact/'.$itemContact->id) }}" class="btn btn-circle btn-outline btn-primary"><i class="fa fa-eye"></i></a>
+                                                <a name="show" href="{{ url('admin/contacts/'.$itemContact->id) }}" class="btn btn-circle btn-outline btn-primary"><i class="fa fa-eye"></i></a>
                                                 <a name="del" type="submit" data-toggle="modal" data-target="#confirmDelete" class="btn btn-circle btn-outline btn-danger btnDel"><i class="fa fa-trash-o"></i></a>
                                                 <input type="hidden" value="{{ $itemContact->id }}">
                                             </td>
@@ -82,7 +82,7 @@
                         <h3 class="text-danger">Are you sure delete this contact?</h3>
                     </div>
                     <div class="modal-footer">
-                        <form action="{{ url('admin/contact/'.$itemContact->id) }}" method="POST">
+                        <form action="{{ url('admin/contacts/'.$itemContact->id) }}" method="POST">
                         {!! csrf_field() !!}
                         {!! method_field('DELETE') !!}
                         <button type="submit" class="btn btn-danger btn-sm">Delete</button>
@@ -97,7 +97,7 @@
             $(document).ready(function(){
                 $(document).on('click',".btnDel", function(){
                     var id = $(this).next().val();
-                    $('form').attr('action','contact/'+id);
+                    $('form').attr('action','contacts/'+id);
                     $('#idDel').text(id);
                 });
             });

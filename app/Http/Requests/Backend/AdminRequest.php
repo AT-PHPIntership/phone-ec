@@ -30,15 +30,13 @@ class AdminRequest extends Request
         // request for function create
             return [
                 'name'     => 'required',
-                'email'    => 'required|email|unique:admin,email',
-                'password' => 'required|min:6'
+                'email'    => 'required|email|unique:admin,email'
             ];
         } else {
             // request for function update
             return [
                 'name'     => 'required',
-                'email'    => 'required|email|unique:admin,email,' . $idUpdate,
-                'password' => 'required|min:6'
+                'email'    => 'required|email|unique:admin,email,' . $idUpdate
             ];
         }
     }

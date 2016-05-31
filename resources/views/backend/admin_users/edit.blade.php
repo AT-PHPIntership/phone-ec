@@ -29,7 +29,7 @@
                             @endif
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form role="form" action="{{ url('admin/account/' . $adminUser->id) }}" method="POST" enctype="multipart/form-data">
+                                    <form role="form" action="{{ url('admin/accounts/' . $adminUser->id) }}" method="POST" enctype="multipart/form-data">
                                         {!! csrf_field() !!}
                                         {!! method_field('PATCH') !!}
                                         <div class="form-group">
@@ -50,7 +50,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Password</label>
-                                            <input type="password" name="password" value="{{ $adminUser->password }}" class="form-control" placeholder="Enter password">
+                                            <input type="password" name="password" class="form-control" placeholder="Enter new password">
                                         </div>
                                         <div class="form-group">
                                             <label>Status : </label>
@@ -69,8 +69,80 @@
                                                     Deactivated
                                             </label>
                                         </div>
+                                        <div class="form-group">
+                                            <div class="panel panel-default">
+                                              <!-- Default panel contents -->
+                                              <div class="panel-heading"><strong>Group Role:</strong></div>
+                                            @foreach ($group as $value)  
+                                                <div class="panel-body">
+                                                <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" value="{{ $value['id'] }}" name="{{ $value['name'] }}" 
+                                                    @foreach ($adminGroups as $itemGroups)
+                                                        @if ($itemGroups->group == $value['name'])
+                                                           checked="checked"
+                                                        @endif
+                                                    @endforeach
+                                                    >
+                                                    {{ $value['name'] }}
+                                                </label>
+                                                </div>
+                                                </div>
+                                                <table class="table table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th style="text-align: center;">Module</th>
+                                                            <th style="text-align: center;">Show</th>
+                                                            <th style="text-align: center;">Create</th>
+                                                            <th style="text-align: center;">Update</th>
+                                                            <th style="text-align: center;">Delete</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    @foreach ($groupPermission as $valuePermission)
+                                                        @if ($value['name'] == $valuePermission->name)
+                                                        <tr>
+                                                            <td style="text-align: center">
+                                                                {{ $valuePermission->module }}
+                                                            </td>
+                                                            <td style="text-align: center">
+                                                                @if ($valuePermission->see == 1)
+                                                                <i class="fa fa-check" aria-hidden="true" style="color: green"></i>
+                                                                @else
+                                                                <i class="fa fa-times" aria-hidden="true" style="color: red"></i>
+                                                                @endif
+                                                            </td>
+                                                            <td style="text-align: center">
+                                                                @if ($valuePermission->addNew == 1)
+                                                                <i class="fa fa-check" aria-hidden="true" style="color: green"></i>
+                                                                @else
+                                                                <i class="fa fa-times" aria-hidden="true" style="color: red"></i>
+                                                                @endif
+                                                            </td>
+                                                            <td style="text-align: center">
+                                                                @if ($valuePermission->edit == 1)
+                                                                <i class="fa fa-check" aria-hidden="true" style="color: green"></i>
+                                                                @else
+                                                                <i class="fa fa-times" aria-hidden="true" style="color: red"></i>
+                                                                @endif
+                                                            </td>
+                                                            <td style="text-align: center">
+                                                                @if ($valuePermission->destroy == 1)
+                                                                <i class="fa fa-check" aria-hidden="true" style="color: green"></i>
+                                                                @else
+                                                                <i class="fa fa-times" aria-hidden="true" style="color: red"></i>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                        @endif
+                                                    @endforeach
+                                                    </tbody>
+                                                </table>
+                                            @endforeach
+                                            </div>
+                                        </div>
+                                        <a class="btn btn-sm btn-default" href="{!! url('admin/accounts') !!}">Cancel</a>
                                         <button type="submit" class="btn btn-sm btn-primary">Update</button>
-                                        <a class="btn btn-sm btn-primary" href="{!! url('admin/account') !!}">Cancel</a>
                                     </form>
                                 </div>
                                 <!-- /.col-lg-12 (nested) -->
