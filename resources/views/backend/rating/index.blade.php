@@ -87,7 +87,7 @@
                         <h3 class="text-danger">Are you sure delete this rating?</h3>
                     </div>
                     <div class="modal-footer">
-                        <form action="{{ url('admin/rating/'.$rating->id) }}" method="POST">
+                        <form action="{{ url('admin/ratings/'.$rating->id) }}" method="POST">
                             {!! csrf_field() !!}
                             {!! method_field('DELETE') !!}
                             <button type="submit" class="btn btn-danger btn-sm">Delete</button>
@@ -102,7 +102,7 @@
         $(document).ready(function(){
             $(document).on('click',".btnDel", function(){
                 var id = $(this).next().val();
-                $('form').attr('action','rating/'+id);
+                $('form').attr('action','ratings/'+id);
                 $('#idDel').text(id);
             });
         });

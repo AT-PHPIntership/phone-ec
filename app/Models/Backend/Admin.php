@@ -12,9 +12,9 @@ class Admin extends Authenticatable
      * @var array
      */
     protected $table = 'admin';
-
+    protected $primaryKey = 'id';
     protected $fillable = [
-        'name', 'email', 'password', 'address', 'phone', 'active',
+       'id', 'name', 'email', 'password', 'address', 'phone', 'active',
     ];
 
     /**
@@ -25,4 +25,14 @@ class Admin extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Table Admin hasMany with table AdminGroup.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function adminGroup()
+    {
+        return $this->hasMany('App\Models\Backend\AdminGroup', 'id', 'admin_id');
+    }
 }

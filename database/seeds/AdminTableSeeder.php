@@ -15,7 +15,7 @@ class AdminTableSeeder extends Seeder
         $faker = Faker\Factory::create();
 
 		$limit = 10;
-		for ($i = 0; $i < $limit; $i++) 
+		for ($i = 1; $i < $limit; $i++) 
 		{
 			DB::table('admin')->insert([
 				'name' => $faker->name,

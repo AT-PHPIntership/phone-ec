@@ -25,7 +25,7 @@
                                 <p><strong>Email:</strong> {{ $contact->email }}</p>
                                 <p><strong>Enquiry:</strong> {{ $contact->enquiry }}</p>
                                 <p><strong>Day send contact:</strong> {{ date('Y-m-d', strtotime($contact->created_at)) }}</p>
-                                <a class="btn btn-sm btn-primary" href="{!! url('admin/contact') !!}">Cancel</a>
+                                <a class="btn btn-sm btn-primary" href="{!! url('admin/contacts') !!}">Cancel</a>
                             </div>
                             <!-- /.table-responsive -->
                         </div>

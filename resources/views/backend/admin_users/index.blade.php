@@ -15,8 +15,8 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            DataTables Advanced Tables
-                            <a href="{!! url('admin/account/create') !!}" class="btn btn-primary btn-sm pull-right" >
+                            Account Manager
+                            <a href="{!! url('admin/accounts/create') !!}" class="btn btn-primary btn-sm pull-right" >
                                 <i class="fa fa-plus-circle"></i> Add new user
                             </a>
                             <div class="clearfix"></div>
@@ -34,8 +34,7 @@
                                             <th>ID</th>
                                             <th>Name</th>
                                             <th>Email(s)</th>
-                                            <th>Address</th>
-                                            <th>Phone number</th>
+                                            <th width="12%">Group Role</th>
                                             <th>Active</th>
                                             <th>Action</th>
                                         </tr>
@@ -46,13 +45,18 @@
                                             <td>{{ $itemUser->id }}</td>
                                             <td>{{ $itemUser->name }}</td>
                                             <td>{{ $itemUser->email }}</td>
-                                            <td>{{ $itemUser->address }}</td>
-                                            <td>{{ $itemUser->phone }}</td>
+                                            <td>
+                                            @foreach ($adminGroups as $itemGroups)
+                                                @if ($itemGroups->id == $itemUser->id)
+                                                   {{ $itemGroups->group }} <br>
+                                                @endif
+                                            @endforeach
+                                            </td>
                                             <td class="text-center">
                                             {{ $itemUser->active }}
                                             </td>
                                             <td class="text-center">
-                                                <a href="{{ url('admin/account/' . $itemUser->id . '/edit') }}" class="btn btn-circle btn-outline btn-primary" ><i class="fa fa-edit"></i></a>
+                                                <a href="{{ url('admin/accounts/' . $itemUser->id . '/edit') }}" class="btn btn-circle btn-outline btn-primary" ><i class="fa fa-edit"></i></a>
 
                                                 <button type="submit" data-toggle="modal" data-target="#confirmDelete" class="btn btn-circle btn-outline btn-danger btnDel"><i class="fa fa-trash-o"></i></button>
                                                 <input type="hidden" value="{{ $itemUser->id }}">
@@ -91,7 +95,7 @@
                         <h3 class="text-danger">Are you sure delete this admin user?</h3>
                     </div>
                     <div class="modal-footer">
-                        <form action="{{ url('admin/account/' . $itemUser->id) }}" method="POST">
+                        <form action="{{ url('admin/accounts/' . $itemUser->id) }}" method="POST">
                         {!! csrf_field() !!}
                         {!! method_field('DELETE') !!}
                         <button type="submit" class="btn btn-danger btn-sm">Delete</button>
@@ -107,7 +111,7 @@
             $(document).ready(function(){
                 $(document).on('click',".btnDel", function(){
                     var id = $(this).next().val();
-                    $('form').attr('action','account/'+id);
+                    $('form').attr('action','accounts/'+id);
                     $('#idDel').text(id);
                 });
             });

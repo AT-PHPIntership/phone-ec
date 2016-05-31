@@ -3,6 +3,7 @@
 @section('title', 'Create Admin Users')
 
 @section('content')
+
 <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
@@ -30,7 +31,7 @@
                            
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form role="form" action="{{ url('admin/account') }}" method="POST" enctype="multipart/form-data">
+                                    <form role="form" action="{{ url('admin/accounts') }}" method="POST" enctype="multipart/form-data">
                                         {!! csrf_field() !!}
                                         <div class="form-group">
                                             <label>Name</label>
@@ -61,6 +62,73 @@
                                                 <input type="radio" name="active" id="optionsRadiosInline2" value="0">Deactivated
                                             </label>
                                         </div>
+                                        <div class="form-group">
+                                            <div class="panel panel-default">
+                                              <!-- Default panel contents -->
+                                              <div class="panel-heading"><strong>Group Role:</strong></div>
+                                            @foreach ($group as $value)  
+                                                <div class="panel-body">
+                                                <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" value="{{ $value['id'] }}" name="{{ $value['name'] }}">
+                                                    {{ $value['name'] }}
+                                                </label>
+                                                </div>
+                                                </div>
+                                                <table class="table table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th style="text-align: center;">Module</th>
+                                                            <th style="text-align: center;">Show</th>
+                                                            <th style="text-align: center;">Create</th>
+                                                            <th style="text-align: center;">Update</th>
+                                                            <th style="text-align: center;">Delete</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    @foreach ($groupPermission as $valuePermission)
+                                                        @if ($value['name'] == $valuePermission->name)
+                                                        <tr>
+                                                            <td style="text-align: center">
+                                                                {{ $valuePermission->module }}
+                                                            </td>
+                                                            <td style="text-align: center">
+                                                                @if ($valuePermission->see == 1)
+                                                                <i class="fa fa-check" aria-hidden="true" style="color: green"></i>
+                                                                @else
+                                                                <i class="fa fa-times" aria-hidden="true" style="color: red"></i>
+                                                                @endif
+                                                            </td>
+                                                            <td style="text-align: center">
+                                                                @if ($valuePermission->addNew == 1)
+                                                                <i class="fa fa-check" aria-hidden="true" style="color: green"></i>
+                                                                @else
+                                                                <i class="fa fa-times" aria-hidden="true" style="color: red"></i>
+                                                                @endif
+                                                            </td>
+                                                            <td style="text-align: center">
+                                                                @if ($valuePermission->edit == 1)
+                                                                <i class="fa fa-check" aria-hidden="true" style="color: green"></i>
+                                                                @else
+                                                                <i class="fa fa-times" aria-hidden="true" style="color: red"></i>
+                                                                @endif
+                                                            </td>
+                                                            <td style="text-align: center">
+                                                                @if ($valuePermission->destroy == 1)
+                                                                <i class="fa fa-check" aria-hidden="true" style="color: green"></i>
+                                                                @else
+                                                                <i class="fa fa-times" aria-hidden="true" style="color: red"></i>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                        @endif
+                                                    @endforeach
+                                                    </tbody>
+                                                </table>
+                                            @endforeach
+                                            </div>
+                                        </div>
+                                        <button type="reset" class="btn btn-sm btn-default">Reset</button>
                                         <button type="submit" class="btn btn-sm btn-primary">Create</button>
                                     </form>
                                 </div>
