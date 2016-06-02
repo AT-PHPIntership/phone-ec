@@ -4,7 +4,8 @@ namespace App\Models\Backend;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model {
+class Category extends Model
+{
 
     protected $table = "product_category";
     protected $fillable = ['id', 'cate_name', 'cate_description', 'cate_status', 'cate_image', 'parent_id'];
@@ -19,7 +20,8 @@ class Category extends Model {
      *
      * @return \Illuminate\Http\Response
      */
-    public function cateParent($cates, $parent = 0, $str = "--", $select = 0) {
+    public function cateParent($cates, $parent = 0, $str = "--", $select = 0)
+    {
         foreach ($cates as $cate) {
             $cateId = $cate['id'];
             $cateName = $cate['cate_name'];
@@ -33,5 +35,4 @@ class Category extends Model {
             }
         }
     }
-
 }
