@@ -31,7 +31,7 @@ class CategoryController extends Controller
     public function create()
     {
         $cates = Category::select('id', 'cate_name', 'parent_id')->get()->toArray();
-        $list  = new Category;
+        $list = new Category;
         return view('backend.categories.create', compact('cates', 'list'));
     }
 
@@ -70,7 +70,7 @@ class CategoryController extends Controller
     {
         $data = Category::findOrFail($id);
         $cates = Category::select('id', 'cate_name', 'parent_id')->get()->toArray();
-        $list  = new Category;
+        $list = new Category;
         return view('backend.categories.edit', compact('data', 'cates', 'list'));
     }
 
