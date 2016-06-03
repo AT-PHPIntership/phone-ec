@@ -8,7 +8,7 @@
         <!-- /#page-wrapper -->
     </div>
     <!-- /#wrapper -->
-
+    @yield('script')
     <!-- Bootstrap Core JavaScript -->
     <script src="{!! asset('assets/backend/bower_components/bootstrap/dist/js/bootstrap.min.js') !!}"></script>
 

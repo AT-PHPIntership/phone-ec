@@ -20,7 +20,8 @@ class OrdersTableSeeder extends Seeder
 				'status' => 1,	
 				'user_address' => $faker->address,
 				'user_phone' => $faker->phoneNumber,
-				'total_price' => $faker->randomNumber(4)
+				'total_price' => $faker->randomNumber(4),
+				'created_at' => Carbon\Carbon::now()
 			]);
 		}
     }

@@ -12,6 +12,7 @@ use App\Models\Frontend\OrderDetails;
 use App\Http\Requests\Frontend\CartRequest;
 use App\Http\Requests\Frontend\CheckoutRequest;
 use Illuminate\Support\Facades\Auth;
+use Carbon;
 use Validator;
 use DB;
 
@@ -166,8 +167,9 @@ class CheckoutController extends Controller
     public function checkout(CheckoutRequest $request)
     {
         $ordersData = $request->except('_token');
-        $ordersData['user_id'] = $request->user()->id;
-        $ordersData['status'] = 1;
+        $ordersData['user_id']    = $request->user()->id;
+        $ordersData['status']     = 1;
+        $ordersData['created_at'] = Carbon\Carbon::now();
         $carts = session()->get('carts');
         $total = 0;
         
