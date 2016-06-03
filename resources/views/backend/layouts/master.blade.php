@@ -21,6 +21,10 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="{!! asset('assets/backend/dist/js/sb-admin-2.js') !!}"></script>
+    
+    <!-- My Javascript -->
+    <script src="{!! asset('assets/backend/dist/js/myjavascript.js') !!}"></script>
+    
 
         <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
