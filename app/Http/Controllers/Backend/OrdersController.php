@@ -46,8 +46,7 @@ class OrdersController extends Controller
     public function edit($id)
     {
         $orders = Order::with('users')->findOrFail($id);
-        $details = OrderDetails::with('products')->where('order_id', $id)->get();
-        return view('backend.orders.edit', compact('orders', 'details'));
+        return view('backend.orders.edit', compact('orders'));
     }
 
     /**
@@ -80,8 +79,6 @@ class OrdersController extends Controller
         } else {
             $request->session()->flash('message', 'Update failed!');
         }
-
-
         return redirect('admin/orders');
     }
 }
