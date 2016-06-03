@@ -12,8 +12,9 @@ class DashboardController extends Controller
 {
     /**
      * Index admmin
-     * @param   $condition condition of group by
-     * 
+     *
+     * @param string $condition this is of group by
+     *
      * @return view index of admin
      */
     public function index($condition = 'DAYNAME')
@@ -24,11 +25,11 @@ class DashboardController extends Controller
         // check condition group by.
         // only group by with condition = DAYNAME or MONTHNAME of created_at
         // if condition != DAYNAME or MONTHNAME then group by with DAYNAME
-    	if ($condition == 'DAYNAME' or $condition == 'MONTHNAME') {
-    		$data['order']   = $this->getReportOrder($condition);
+        if ($condition == 'DAYNAME' or $condition == 'MONTHNAME') {
+            $data['order']   = $this->getReportOrder($condition);
             $data['user']    = $this->getReportUser($condition);
             $data['product'] = $this->getReportProduct($condition);
-    	} else {
+        } else {
             $data['order']   = $this->getReportOrder('DAYNAME');
             $data['user']    = $this->getReportUser('DAYNAME');
             $data['product'] = $this->getReportProduct('DAYNAME');
@@ -38,9 +39,10 @@ class DashboardController extends Controller
     }
 
     /**
-     * get report order with condition
-     * @param   $con is condition of group by (DAYNAME or MONTHNAME)
-     * 
+     * Get report order with condition
+     *
+     * @param string $con is condition of group by (DAYNAME or MONTHNAME)
+     *
      * @return view index of admin
      */
     private function getReportOrder($con)
@@ -51,32 +53,34 @@ class DashboardController extends Controller
     }
 
     /**
-     * get report user with condition
-     * @param   $con is condition of group by (DAYNAME or MONTHNAME)
-     * 
+     * Get report user with condition
+     *
+     * @param string $con is condition of group by (DAYNAME or MONTHNAME)
+     *
      * @return view index of admin
      */
     private function getReportUser($con)
     {
         return DB::table('orders')
             ->selectRaw("name, sum(total_price) as total, $con(orders.created_at) as date")
-            ->join('users', 'orders.user_id', '=','users.id')
+            ->join('users', 'orders.user_id', '=', 'users.id')
             ->groupBy(DB::raw("$con(orders.created_at)"), 'orders.user_id')
             ->orderBy(DB::raw("sum(total_price)"), 'desc')
             ->take(3)->get();
     }
 
     /**
-     * get report product with condition
-     * @param   $con is condition of group by (DAYNAME or MONTHNAME)
-     * 
+     * Get report product with condition
+     *
+     * @param string $con is condition of group by (DAYNAME or MONTHNAME)
+     *
      * @return view index of admin
      */
     private function getReportProduct($con)
     {
-       return DB::table('orderdetails')
+        return DB::table('orderdetails')
             ->selectRaw("name, sum(price) as total, $con(orders.created_at) as date")
-            ->join('orders',   'order_id',   '=', 'orders.id')
+            ->join('orders', 'order_id', '=', 'orders.id')
             ->join('products', 'product_id', '=', 'products.id')
             ->groupBy(DB::raw("$con(orders.created_at)"), 'product_id')
             ->orderBy(DB::raw("sum(price)"), 'desc')
