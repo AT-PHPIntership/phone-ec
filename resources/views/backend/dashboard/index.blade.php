@@ -6,12 +6,12 @@
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Report</h1>
+            <h1 class="page-header">{{ trans('labels.LabelReport') }}</h1>
         </div>
         <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
-  @if (count($data) > 0)
+  @if (count($orders) > 0)
     <section class="content">
       <div class="row">
         <div class="col-md-12">
@@ -20,8 +20,8 @@
             <div class="box-header with-border">
               <h3 class="box-title">Total Order Chart</h3>
               <div class="box-tools">
-                  <a href="{{ action('Backend\DashboardController@index', 'DAYNAME') }}" class="btn btn-sm btn-success">With Day</a>
-                  <a href="{{ action('Backend\DashboardController@index', 'MONTHNAME') }}" class="btn btn-sm btn-success">With Month</a>
+                  <a href="{{ action('Backend\DashboardController@index', Config::get('app.ITEM_CONDITION')[0]) }}" class="btn btn-sm btn-success">With Day</a>
+                  <a href="{{ action('Backend\DashboardController@index', Config::get('app.ITEM_CONDITION')[1]) }}" class="btn btn-sm btn-success">With Month</a>
               </div>
             </div>
             <div class="box-body">
@@ -45,7 +45,7 @@
                   <th>Total Order</th>
                   <th>Date</th>
                 </tr>
-              @foreach ($data['user'] as $key => $value)
+              @foreach ($users as $key => $value)
                 <tr>
                   <td>{{ $key }}.</td>
                   <td>{{ $value->name }}</td>
@@ -71,7 +71,7 @@
                   <th>Total Order</th>
                   <th>Date</th>
                 </tr>
-              @foreach ($data['product'] as $key => $value)
+              @foreach ($products as $key => $value)
                 <tr>
                   <td>{{ $key }}.</td>
                   <td>{{ $value->name }}</td>
@@ -94,8 +94,6 @@
 @endsection
 
 @section('script')
-    <script src="{!! asset('assets/backend/plugins/jquery.flot.min.js') !!}"></script>
-    <script src="{!! asset('assets/backend/plugins/jquery.flot.categories.min.js') !!}"></script>
     <script>
       $(function () {
         /*
@@ -103,13 +101,16 @@
          * ---------
          */
         // get array report from controller
-        var arr = <?php echo json_encode($data['order']) ?>;
+        var arr    = {!! json_encode($orders) !!};
+
+        // get array condition (0=>DAYNAME,1=>MONTHNAME)
+        var config = {!! json_encode(Config::get('app.ITEM_CONDITION')) !!}
 
         // get condition of report (WEEKDAY or MONTH)
         var reportCondition = Object.keys(arr[0])[0];
 
         // check condition report then set data for char
-        if (reportCondition == 'DAYNAME') {
+        if (reportCondition == config[0]) {
           //set value default for bar_data
           var bar_data = {
             data: [["Monday", 0], ["Tuesday", 0], ["Wednesday", 0], ["Thursday", 0], ["Friday", 0], ["Saturday", 0], ["Sunday", 0]],
@@ -125,7 +126,7 @@
               }
             }
           }
-        } else if (reportCondition == 'MONTHNAME') {
+        } else if (reportCondition == config[1]) {
           //set value default for bar_data
           var bar_data = {
             data: [["January", 0], ["February", 0], ["March", 0], ["April", 0], ["May", 0], ["June", 0], ["July", 0], ["August", 0], ["September", 0], ["October", 0], ["November", 0], ["December", 0]],

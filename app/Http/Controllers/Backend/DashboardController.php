@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Backend\Order;
 use DB;
+use config;
 
 class DashboardController extends Controller
 {
@@ -17,25 +18,29 @@ class DashboardController extends Controller
      *
      * @return view index of admin
      */
-    public function index($condition = 'DAYNAME')
+    public function index($condition = null)
     {
         // create array save data report
         $data = array();
+        
+        // get array conditon of report() define in config/app
+        // config[0] = DAYNAME, config[1]= MONTHNAME
+        $config = config('app.ITEM_CONDITION');
 
         // check condition group by.
         // only group by with condition = DAYNAME or MONTHNAME of created_at
         // if condition != DAYNAME or MONTHNAME then group by with DAYNAME
-        if ($condition == 'DAYNAME' or $condition == 'MONTHNAME') {
-            $data['order']   = $this->getReportOrder($condition);
-            $data['user']    = $this->getReportUser($condition);
-            $data['product'] = $this->getReportProduct($condition);
+        if (in_array($condition, $config)) {
+            $data['orders']   = $this->getReportOrder($condition);
+            $data['users']    = $this->getReportUser($condition);
+            $data['products'] = $this->getReportProduct($condition);
         } else {
-            $data['order']   = $this->getReportOrder('DAYNAME');
-            $data['user']    = $this->getReportUser('DAYNAME');
-            $data['product'] = $this->getReportProduct('DAYNAME');
+            $data['orders']   = $this->getReportOrder($config[0]);
+            $data['users']    = $this->getReportUser($config[0]);
+            $data['products'] = $this->getReportProduct($config[0]);
         }
         
-        return view('backend.dashboard.index', compact('data'));
+        return view('backend.dashboard.index')->with($data);
     }
 
     /**
