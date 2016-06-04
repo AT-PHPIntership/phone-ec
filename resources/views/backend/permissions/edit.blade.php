@@ -88,7 +88,7 @@
                                     </div>
                                 </div>
                                 <a class="btn btn-sm btn-default" href="{!! url('admin/permissions') !!}" name="cancel">{{ trans('labels.BtnCancel') }}</a>
-                                <input type="submit" class="btn btn-sm btn-primary" name="edit">{{ trans('labels.BtnUpdate') }}>
+                                <input type="submit" class="btn btn-sm btn-primary" name="edit" value="{{ trans('labels.BtnUpdate') }}">
                             </form>
                         </div>
                         <!-- /.col-lg-12 (nested) -->
