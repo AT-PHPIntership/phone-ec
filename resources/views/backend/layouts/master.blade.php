@@ -23,6 +23,7 @@
     <script src="{!! asset('assets/backend/dist/js/sb-admin-2.js') !!}"></script>
 
         <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    @yield('script')
     <script>
     $(document).ready(function() {
         $('#dataTables-example').DataTable({
