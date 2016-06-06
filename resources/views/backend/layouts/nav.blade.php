@@ -110,6 +110,10 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
+                            <a href="{{ url('admin/categories') }}"><i class="fa fa-flag-checkered fa-fw"></i> Categories</a>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
                             <a href="{{ url('admin/orders') }}"><i class="fa fa-file-word-o fa-fw"></i> Orders</a>
                             <!-- /.nav-second-level -->
                         </li>
