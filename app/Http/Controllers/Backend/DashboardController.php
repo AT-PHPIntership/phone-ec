@@ -27,7 +27,7 @@ class DashboardController extends Controller
         $getDay   = config('app.get_day');
         $getMonth = config('app.get_month');
 
-        if (is_null($condition)) {
+        if (empty($condition)) {
             $condition = $getDay;
         }
        

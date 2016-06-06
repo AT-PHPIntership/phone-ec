@@ -20,8 +20,8 @@
             <div class="box-header with-border">
               <h3 class="box-title">{{ trans('labels.LabelChart') }}</h3>
               <div class="box-tools">
-                  <a href="{{ action('Backend\DashboardController@index', config('app.get_day')) }}" class="btn btn-sm btn-success">With Day</a>
-                  <a href="{{ action('Backend\DashboardController@index', config('app.get_month')) }}" class="btn btn-sm btn-success">With Month</a>
+                  <a href="{{ action('Backend\DashboardController@index', config('app.get_day')) }}" class="btn btn-sm btn-success">{{ trans('labels.LabelDay') }}</a>
+                  <a href="{{ action('Backend\DashboardController@index', config('app.get_month')) }}" class="btn btn-sm btn-success">{{ trans('labels.LabelMonth') }}</a>
               </div>
             </div>
             <div class="box-body">
@@ -34,16 +34,16 @@
         <div class="col-md-6">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Top {{ config('app.get_top_report') }} {{ trans('labels.LabelUser') }}</h3>
+              <h3 class="box-title">{{ trans('labels.LabelTop') }} {{ config('app.get_top_report') }} {{ trans('labels.LabelUser') }}</h3>
             </div><!-- /.box-header -->
             <div class="box-body no-padding">
               <table class="table table-striped">
 
                 <tr>
-                  <th style="width: 10px">#</th>
-                  <th>Name User</th>
-                  <th>Total Order</th>
-                  <th>Date</th>
+                  <th style="width: 10px">{{ trans('labels.Labelspec') }}</th>
+                  <th>{{ trans('labels.LabelNameUSer') }}</th>
+                  <th>{{ trans('labels.LabelTotalOrder') }}</th>
+                  <th>{{ trans('labels.LabelDate') }}</th>
                 </tr>
               @foreach ($users as $key => $value)
                 <tr>
@@ -61,15 +61,15 @@
         <div class="col-md-6">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Top {{ config('app.get_top_report') }} {{ trans('labels.LabelProduct') }}</h3>
+              <h3 class="box-title">{{ trans('labels.LabelTop') }} {{ config('app.get_top_report') }} {{ trans('labels.LabelProduct') }}</h3>
             </div><!-- /.box-header -->
             <div class="box-body no-padding">
               <table class="table table-striped">
                 <tr>
-                  <th style="width: 10px">#</th>
-                  <th>Name Product</th>
-                  <th>Total Order</th>
-                  <th>Date</th>
+                  <th style="width: 10px">{{ trans('labels.Labelspec') }}</th>
+                  <th>{{ trans('labels.LabelProductName') }}</th>
+                  <th>{{ trans('labels.LabelTotalOrder') }}</th>
+                  <th>{{ trans('labels.LabelDate') }}</th>
                 </tr>
               @foreach ($products as $key => $value)
                 <tr>
