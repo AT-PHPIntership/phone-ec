@@ -47,7 +47,7 @@ class PermissionTest extends TestCase
     	$role  = Permission::first();
     	$has_role = \Config::get('app.has_permission');
 
-    	if ($role->see == $has_role && $role->addNew == $has_role && $role->edit == $has_role && $role->destroy == $has_role) {
+    	if ($role->see == $has_role && $role->inset == $has_role && $role->edit == $has_role && $role->destroy == $has_role) {
 			$this->actingAs($admin, 'admin')
 	    	 	 ->visit('admin/permissions')
 	    		 ->click('create')
@@ -70,7 +70,7 @@ class PermissionTest extends TestCase
     	$role  = Permission::first();
     	$has_role = \Config::get('app.has_permission');
 
-    	if ($role->see == $has_role && $role->addNew == $has_role && $role->edit == $has_role && $role->destroy == $has_role) {
+    	if ($role->see == $has_role && $role->inset == $has_role && $role->edit == $has_role && $role->destroy == $has_role) {
 	    	$this->actingAs($admin, 'admin')
 	        	 ->visit('admin/permissions')
 	        	 ->click('edit')
@@ -106,7 +106,7 @@ class PermissionTest extends TestCase
     	$role  = Permission::first();
     	$has_role = \Config::get('app.has_permission');
 
-    	if ($role->see == $has_role && $role->addNew == $has_role && $role->edit == $has_role && $role->destroy == $has_role) {
+    	if ($role->see == $has_role && $role->inset == $has_role && $role->edit == $has_role && $role->destroy == $has_role) {
 	    	$this->actingAs($admin, 'admin')
 	        	 ->visit('admin/permissions')
 	        	 ->click('edit')
@@ -143,7 +143,7 @@ class PermissionTest extends TestCase
     		 ->click('delete')
     		 ->see('Are you sure delete this permission?')
 			 ->press('Cancel')
-    		 ->seeInDatabase('permissions', ['module' => $permission->module, 'see' => $permission->see, 'addNew' => $permission->addNew, 'edit' => $permission->edit, 'destroy' => $permission->destroy]);
+    		 ->seeInDatabase('permissions', ['module' => $permission->module, 'see' => $permission->see, 'inset' => $permission->inset, 'edit' => $permission->edit, 'destroy' => $permission->destroy]);
     }
 
     public function testAddPermission()
@@ -157,7 +157,7 @@ class PermissionTest extends TestCase
     		 ->check('create')
     		 ->check('update')
     		 ->press('Create')
-    		 ->seeInDatabase('permissions', ['module' => 'Brands', 'see' => 0, 'addNew' => 1, 'edit' => 1, 'destroy' => 0])
+    		 ->seeInDatabase('permissions', ['module' => 'Brands', 'see' => 0, 'inset' => 1, 'edit' => 1, 'destroy' => 0])
     		 ->seePageIs('admin/permissions')
     		 ->see('Permission was created successfully!');
     }

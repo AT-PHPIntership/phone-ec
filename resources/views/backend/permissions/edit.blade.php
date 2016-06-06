@@ -1,6 +1,6 @@
 @extends('backend.layouts.master')
 
-@section('title', 'Create Admin Users')
+@section('title', trans('labels.labelEditPermission'))
 
 @section('content')
 <div id="page-wrapper">
@@ -61,7 +61,7 @@
 
                                         <label>
                                             <input type="checkbox" name="create" value="1" 
-                                            @if ($permission->addNew == \Config::get('app.has_permission'))
+                                            @if ($permission->inset == \Config::get('app.has_permission'))
                                                 checked
                                             @endif
                                             >

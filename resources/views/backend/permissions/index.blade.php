@@ -1,6 +1,6 @@
 @extends('backend.layouts.master')
 
-@section('title', 'Permission manage')
+@section('title', trans('labels.LabelPermissionsManager'))
 
 @section('content')
 
@@ -54,7 +54,7 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                @if ($item->addNew == \Config::get('app.no_permission'))
+                                                @if ($item->inset == \Config::get('app.no_permission'))
                                                     <span style="color: red">{{ trans('labels.LableNo') }}</span>
                                                 @else
                                                     <span style="color: green">{{ trans('labels.LableYes') }}</span>

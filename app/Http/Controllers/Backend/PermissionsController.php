@@ -15,8 +15,8 @@ class PermissionsController extends Controller
      */
     public function index()
     {
-        $data = Permission::all();
-        return view('backend.permissions.index')->with('data', $data);
+        $data['data'] = Permission::all();
+        return view('backend.permissions.index')->with($data);
     }
 
     /**
@@ -26,8 +26,8 @@ class PermissionsController extends Controller
      */
     public function create()
     {
-        $modules = $this->getModule();
-        return view('backend.permissions.create')->with('modules', $modules);
+        $modules['modules'] = $this->getModule();
+        return view('backend.permissions.create')->with($modules);
     }
 
     /**
@@ -40,7 +40,7 @@ class PermissionsController extends Controller
     public function store(Request $request)
     {
         // check permission is exists?
-        if (!$this->checkExists($request)) {
+        if (!$this->checkPermissionExisted($request)) {
             // create new permission
             $newRole = new Permission;
             $newRole->module = $request->module;
@@ -48,7 +48,7 @@ class PermissionsController extends Controller
             // set permission
             $arrRole = $this->setPermission($request);
             $newRole->see     = $arrRole['see'];
-            $newRole->addNew  = $arrRole['addNew'];
+            $newRole->inset   = $arrRole['inset'];
             $newRole->edit    = $arrRole['edit'];
             $newRole->destroy = $arrRole['destroy'];
 
@@ -67,15 +67,23 @@ class PermissionsController extends Controller
     /**
      * Show the form for editing the specified Permissions.
      *
-     * @param int $id id
+     * @param int                      $id      id
+     * @param \Illuminate\Http\Request $request request
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
-        $modules = $this->getModule();
-        $permission = Permission::findOrFail($id);
-        return view('backend.permissions.edit')->with(['modules' => $modules, 'permission' => $permission]);
+        $data['modules']    = $this->getModule();
+        $data['permission'] = Permission::find($id);
+
+        // check permission is exists
+        if (empty($data['permission'])) {
+            $request->session()->flash('message', trans('labels.LabelError'));
+            return redirect('admin/permissions');
+        }
+
+        return view('backend.permissions.edit')->with($data);
     }
 
     /**
@@ -88,15 +96,23 @@ class PermissionsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if (!$this->checkExists($request)) {
+        if (!$this->checkPermissionExisted($request)) {
+
             // get permission with id
-            $role = Permission::findOrFail($id);
+            $role = Permission::find($id);
+
+            // check role is exists?
+            if (empty($role)) {
+                $request->session()->flash('message', trans('labels.LabelError'));
+                return redirect('admin/permissions');
+            }
+            
             $role->module = $request->module;
 
             // set permission
             $arrRole = $this->setPermission($request);
             $role->see     = $arrRole['see'];
-            $role->addNew  = $arrRole['addNew'];
+            $role->inset   = $arrRole['inset'];
             $role->edit    = $arrRole['edit'];
             $role->destroy = $arrRole['destroy'];
             
@@ -122,13 +138,21 @@ class PermissionsController extends Controller
      */
     public function destroy($id, Request $request)
     {
-        $permission = Permission::findOrFail($id);
+        $permission = Permission::find($id);
 
+        // check permission is exists?
+        if (empty($permission)) {
+            $request->session()->flash('message', trans('labels.LabelError'));
+            return redirect('admin/permissions');
+        }
+
+        // check delete permission ok?
         if ($permission->delete()) {
             $request->session()->flash('message', trans('labels.MessageDelRoleOk'));
         } else {
             $request->session()->flash('message', trans('labels.MessageDelRoleNotOk'));
         }
+
         return redirect()->route('admin.permissions.index');
     }
 
@@ -140,29 +164,35 @@ class PermissionsController extends Controller
     private function getModule()
     {
         $modules = [];
+        $routes = \Route::getRoutes()->getRoutes();
 
-        foreach (\Route::getRoutes()->getRoutes() as $route) {
+        foreach ($routes as $route) {
 
             // get list all routes
-            $action = $route->getAction();
+            $action     = $route->getAction();
+            $controller = config('app.get_controller');
             
             // get route have string 'controller'
-            if (array_key_exists(\Config::get('app.get_controller'), $action)) {
+            if (array_key_exists($controller, $action)) {
                 
-                // only get controller with action index
-                if (strpos($action['controller'], \Config::get('app.get_controller_backend')) !== false) {
+                // only get controller in folder Backend
+                $backend = config('app.get_controller_backend');
+
+                if (strpos($action['controller'], $backend) !== false) {
                     
-                    // only get controller in folder Backend
-                    if (strpos($action['controller'], \Config::get('app.get_action_index')) !== false) {
+                    // only get controller with action index
+                    $index = config('app.get_action_index');
+                    
+                    if (strpos($action['controller'], $index) !== false) {
                         
                         // get route => App\Http\Controllers\Backend\BrandsController@index
                         $route = $action['controller'];
                         
                         // get position start name Controller
-                        $positionStart = strrpos($route, \Config::get('app.get_controller_action')) + 1;
+                        $positionStart = strrpos($route, config('app.get_controller_action')) + 1;
 
                         // get position end name Controller
-                        $positionEnd   = strpos($route, \Config::get('app.get_length_controller')) + 1;
+                        $positionEnd   = strpos($route, config('app.get_length_controller')) + 1;
 
                         // get length of name Controller
                         $lengthController = $positionEnd - $positionStart;
@@ -171,7 +201,7 @@ class PermissionsController extends Controller
                         $controller = substr($route, $positionStart, $lengthController);
 
                         // length of module form first name Controller to position start string 'Controller'
-                        $lengthModule = strpos($controller, \Config::get('app.get_module'));
+                        $lengthModule = strpos($controller, config('app.get_module'));
 
                         // get modules in string controller (remove 'Controller') and set value for array modules
                         $modules[] = substr($controller, 0, $lengthModule);
@@ -180,7 +210,7 @@ class PermissionsController extends Controller
             }
         }
         // remove module except without array
-        $modules = array_diff($modules, \Config::get('app.except_module'));
+        $modules = array_diff($modules, config('app.except_module'));
         
         return $modules;
     }
@@ -192,17 +222,17 @@ class PermissionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    private function checkExists($request)
+    private function checkPermissionExisted($request)
     {
         // set condition where
         $arrRole = $this->setPermission($request);
 
         $see  = $arrRole['see'];
-        $add  = $arrRole['addNew'];
+        $add  = $arrRole['inset'];
         $edit = $arrRole['edit'];
         $del  = $arrRole['destroy'];
 
-        $where = "module = '$request->module' and see = $see and addNew = $add and edit = $edit and destroy = $del";
+        $where = "module = '$request->module' and see = $see and inset = $add and edit = $edit and destroy = $del";
         
         // check permission is exists?
         $check = Permission::whereRaw($where)->get();
@@ -221,31 +251,45 @@ class PermissionsController extends Controller
     {
         // create array
         $arrRole = array();
+
         // set permission
-        $noPermission = \Config::get('app.no_permission');
+        $noPermission  = config('app.no_permission');
+        $hasPermission = config('app.has_permission');
 
-        if ($request->has('see')) {
-            $arrRole['see'] = $request->see;
-        } else {
-            $arrRole['see'] = $noPermission;
+        switch ($request->see) {
+            case $hasPermission:
+                $arrRole['see'] = $request->see;
+                break;
+            default:
+                $arrRole['see'] = $noPermission;
+                break;
         }
 
-        if ($request->has('create')) {
-            $arrRole['addNew'] = $request->create;
-        } else {
-            $arrRole['addNew'] = $noPermission;
+        switch ($request->create) {
+            case $hasPermission:
+                $arrRole['inset'] = $request->create;
+                break;
+            default:
+                $arrRole['inset'] = $noPermission;
+                break;
         }
 
-        if ($request->has('update')) {
-            $arrRole['edit'] = $request->update;
-        } else {
-            $arrRole['edit'] = $noPermission;
+        switch ($request->update) {
+            case $hasPermission:
+                $arrRole['edit'] = $request->update;
+                break;
+            default:
+                $arrRole['edit'] = $noPermission;
+                break;
         }
 
-        if ($request->has('delete')) {
-            $arrRole['destroy'] = $request->delete;
-        } else {
-            $arrRole['destroy'] = $noPermission;
+        switch ($request->delete) {
+            case $hasPermission:
+                $arrRole['destroy'] = $request->delete;
+                break;
+            default:
+                $arrRole['destroy'] = $noPermission;
+                break;
         }
         
         return $arrRole;

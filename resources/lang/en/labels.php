@@ -10,11 +10,12 @@ return [
 	"LabelAccounts"         => "Accounts",
 
 	// permission
-	"LabelPermissions"      => "Permissions",
-	"labelDeletePermission" => "Delete Permission",
-	"labelAddPermission"    => "Add new permission",
-	"labelEditPermission"   => "Edit permission",
-	"labelModule"           => "Module",
+	"LabelPermissions"        => "Permissions",
+	"LabelPermissionsManager" => "Permission manage",
+	"labelDeletePermission"   => "Delete Permission",
+	"labelAddPermission"      => "Add new permission",
+	"labelEditPermission"     => "Edit permission",
+	"labelModule"             => "Module",
 
 	// infor
 	"LabelNoData"           => "Info! There are no data!",

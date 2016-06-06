@@ -1,6 +1,6 @@
 @extends('backend.layouts.master')
 
-@section('title', 'Create Admin Users')
+@section('title', trans('labels.labelAddPermission'))
 
 @section('content')
 <div id="page-wrapper">
