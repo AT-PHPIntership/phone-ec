@@ -16,6 +16,8 @@ return [
 	"labelAddPermission"      => "Add new permission",
 	"labelEditPermission"     => "Edit permission",
 	"labelModule"             => "Module",
+	"labelId"                 => "ID",
+	"labelAction"             => "Action",
 
 	// infor
 	"LabelNoData"           => "Info! There are no data!",

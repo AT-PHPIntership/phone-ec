@@ -32,13 +32,13 @@
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
-                                            <th>Module</th>
-                                            <th>Show</th>
-                                            <th>Create</th>
-                                            <th>Edit</th>
-                                            <th>Delete</th>
-                                            <th>Action</th>
+                                            <th>{{ trans('labels.labelId') }}</th>
+                                            <th>{{ trans('labels.labelModule') }}</th>
+                                            <th>{{ trans('labels.BtnShow') }}</th>
+                                            <th>{{ trans('labels.BtnCreate') }}</th>
+                                            <th>{{ trans('labels.BtnUpdate') }}</th>
+                                            <th>{{ trans('labels.BtnDelete') }}</th>
+                                            <th>{{ trans('labels.labelAction') }}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
