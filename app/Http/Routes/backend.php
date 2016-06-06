@@ -13,7 +13,6 @@ Route::group(['prefix'=>'admin'], function () {
     Route::get('logout', 'Backend\Auth\AuthController@logout');
 });
 
-/*--------------------------------Auth--------------------------------*/
 Route::group(['middleware' => ['auth:admin'],'prefix'=>'admin'], function () {
     Route::get('dashboard', 'Backend\DashboardController@index');
     Route::resource('brands', 'Backend\BrandsController', ['except'=>['show']]);
@@ -23,4 +22,8 @@ Route::group(['middleware' => ['auth:admin'],'prefix'=>'admin'], function () {
     Route::resource('orders', 'Backend\OrdersController');
     Route::resource('account', 'Backend\AccountsController');
     Route::resource('contact', 'Backend\ContactController');
+
+    Route::get('chat',function(){
+        return view('backend.chatwork.index');
+    });
 });

@@ -121,6 +121,10 @@
                             <a href="{{ url('admin/account') }}"><i class="fa fa-user fa-fw"></i> Account</a>
                             <!-- /.nav-second-level -->
                         </li>
+                        <li>
+                            <a href="{{ url('admin/chat') }}"><i class="fa fa-comments fa-fw"></i> Chat Box</a>
+                            <!-- /.nav-second-level -->
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
