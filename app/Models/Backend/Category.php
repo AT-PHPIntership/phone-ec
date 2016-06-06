@@ -4,8 +4,7 @@ namespace App\Models\Backend;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
-{
+class Category extends Model {
 
     protected $table = "product_category";
     protected $fillable = ['id', 'cate_name', 'cate_description', 'cate_status', 'cate_image', 'parent_id'];
@@ -20,19 +19,23 @@ class Category extends Model
      *
      * @return \Illuminate\Http\Response
      */
-    public function cateParent($cates, $parent = 0, $str = "--", $select = 0)
-    {
-        foreach ($cates as $cate) {
-            $cateId = $cate['id'];
-            $cateName = $cate['cate_name'];
-            if ($cate['parent_id'] == $parent) {
-                if ($select != 0 && $cateId === $select) {
-                    echo "<option value='$cateId' selected='selected'>$str $cateName</option>";
-                } else {
-                    echo "<option value='$cateId'>$str $cateName</option>";
-                }
-                $this->cateParent($cates, $cateId, $str . "--");
-            }
-        }
+
+    public function parent() {
+
+    return $this->hasOne('\App\Models\Backend\Category', 'id', 'parent_id');
+
     }
+
+    public function children() {
+
+        return $this->hasMany('\App\Models\Backend\Category', 'parent_id', 'id');
+    }
+
+    public static function tree() {
+        $parentId = 0;
+        $start_index = 0;
+        $num = 10;
+        return static::with(implode('.', array_fill($start_index, $num, 'children')))->where('parent_id', '=', $parentId)->get();
+    }
+
 }

@@ -16,7 +16,7 @@
                 <div class="panel panel-default">
                     @if (isset($errors) && $errors->any())
                         <div class="alert alert-danger">
-                            <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                            {!! trans('messages.proleminput') !!}
                             <ul>
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
@@ -32,9 +32,22 @@
                                     {!! method_field('PATCH') !!}
                                     <div class="form-group">
                                         <label>Category Parent</label>
-                                        <select  class="form-control"name="parent_id">
+                                        <select name="parent_id" class="form-control">
+                                            <option value="" selected disabled style="display:none">Please choose category parent</option>
                                             <option value="0">----------Root----------</option>
-                                            {!! $list->cateParent($cates,0,"--",$data->parent_id) !!}    
+                                            @foreach($cates as $cate)
+                                                <option value="{{ $cate->id }}">{{ $cate->cate_name }}</option>
+                                                    @foreach($cate['children'] as $childFirst)
+                                                        <option value='{{ $childFirst->id }}'>-- {{ $childFirst->cate_name }}</option> 
+                                                        @foreach($childFirst['children'] as $childSecond)
+                                                            <option value='{{ $childSecond->id }}'>---- {{ $childSecond->cate_name }}</option>
+                                                            @foreach($childSecond['children'] as $childThree)
+                                                                <option value='{{ $childThree->id }}'>------ {{ $childThree->cate_name }}</option>
+                                                            @endforeach
+                                                        @endforeach
+                                                    @endforeach
+                                                </li>
+                                            @endforeach                           
                                         </select>
                                     </div>
                                     <div class="form-group">

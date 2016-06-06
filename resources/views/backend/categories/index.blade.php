@@ -38,7 +38,8 @@
                                             <th></th>
                                         </tr>
                                     </thead>
-                                    <tbody>                                                                     
+                                    <tbody> 
+                                        
                                         @foreach ($cates as $cate)
                                             <tr class="odd gradeX">
                                                 <td>
@@ -81,7 +82,8 @@
                         <!-- /.panel-body -->
                     @else
                         <div class="alert alert-info">
-                            <strong>Info!</strong> There are no brands.
+                            {!! trans('messages.notcategory') !!}
+
                         </div>
                     @endif
                 </div>
@@ -116,13 +118,4 @@
     </div>
     @endif
 
-    <script>
-        $(document).ready(function(){
-            $(document).on('click',".btnDel", function(){
-                var id = $(this).next().val();
-                $('form').attr('action','categories/'+id);
-                $('#idDel').text(id);
-            });
-        });
-    </script>
 @endsection
