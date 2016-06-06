@@ -23,7 +23,7 @@ Route::group(['middleware' => ['auth:admin'],'prefix'=>'admin'], function () {
     Route::resource('account', 'Backend\AccountsController');
     Route::resource('contact', 'Backend\ContactController');
 
-    Route::get('chat',function(){
+    Route::get('chat', function () {
         return view('backend.chatwork.index');
     });
 });
