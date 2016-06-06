@@ -168,16 +168,10 @@ class CheckoutController extends Controller
     {
         $ordersData = $request->except('_token');
         $ordersData['user_id']    = $request->user()->id;
-        $ordersData['status']     = 1;
+        $ordersData['status']     = config('app.status_orders_comfirmed');
         $ordersData['created_at'] = Carbon\Carbon::now();
         $carts = session()->get('carts');
-        $total = 0;
-        
-        foreach ($carts as $cart) {
-            $total += $cart['total'];
-        }
 
-        $ordersData['total_price'] = $total;
         $orderId = DB::table('orders')->insertGetId($ordersData);
         $detailsData = array();
 

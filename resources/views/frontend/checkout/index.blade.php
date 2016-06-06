@@ -119,6 +119,7 @@
                       <tr>
                         <td class="price" colspan="5"><b>Total:</b></td>
                         <td class="total">{{ number_format($total) }} VND</td>
+                        <input type="hidden" name="total_price" value="{{ $total }}">
                       </tr>
                     </tfoot>
                   </table>

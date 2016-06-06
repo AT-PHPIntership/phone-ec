@@ -7,7 +7,6 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Backend\Order;
 use DB;
-use config;
 
 class DashboardController extends Controller
 {
@@ -20,25 +19,25 @@ class DashboardController extends Controller
      */
     public function index($condition = null)
     {
+
         // create array save data report
         $data = array();
         
-        // get array conditon of report() define in config/app
-        // config[0] = DAYNAME, config[1]= MONTHNAME
-        $config = config('app.ITEM_CONDITION');
+        // get conditon of report() define in config/app
+        $getDay   = config('app.get_day');
+        $getMonth = config('app.get_month');
 
-        // check condition group by.
-        // only group by with condition = DAYNAME or MONTHNAME of created_at
-        // if condition != DAYNAME or MONTHNAME then group by with DAYNAME
-        if (in_array($condition, $config)) {
-            $data['orders']   = $this->getReportOrder($condition);
-            $data['users']    = $this->getReportUser($condition);
-            $data['products'] = $this->getReportProduct($condition);
-        } else {
-            $data['orders']   = $this->getReportOrder($config[0]);
-            $data['users']    = $this->getReportUser($config[0]);
-            $data['products'] = $this->getReportProduct($config[0]);
+        if (is_null($condition)) {
+            $condition = $getDay;
         }
+       
+        if ($condition != $getDay && $condition != $getMonth) {
+            throw new \Exception(trans('labels.LabelWrong'));
+        }
+
+        $data['orders']   = $this->getReportOrder($condition);
+        $data['users']    = $this->getReportUser($condition);
+        $data['products'] = $this->getReportProduct($condition);
         
         return view('backend.dashboard.index')->with($data);
     }
@@ -71,7 +70,7 @@ class DashboardController extends Controller
             ->join('users', 'orders.user_id', '=', 'users.id')
             ->groupBy(DB::raw("$con(orders.created_at)"), 'orders.user_id')
             ->orderBy(DB::raw("sum(total_price)"), 'desc')
-            ->take(3)->get();
+            ->take(config('app.get_top_report'))->get();
     }
 
     /**
@@ -89,6 +88,6 @@ class DashboardController extends Controller
             ->join('products', 'product_id', '=', 'products.id')
             ->groupBy(DB::raw("$con(orders.created_at)"), 'product_id')
             ->orderBy(DB::raw("sum(price)"), 'desc')
-            ->take(3)->get();
+            ->take(config('app.get_top_report'))->get();
     }
 }

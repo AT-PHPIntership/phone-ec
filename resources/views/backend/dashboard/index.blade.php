@@ -18,10 +18,10 @@
           <!-- Bar chart -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Total Order Chart</h3>
+              <h3 class="box-title">{{ trans('labels.LabelChart') }}</h3>
               <div class="box-tools">
-                  <a href="{{ action('Backend\DashboardController@index', Config::get('app.ITEM_CONDITION')[0]) }}" class="btn btn-sm btn-success">With Day</a>
-                  <a href="{{ action('Backend\DashboardController@index', Config::get('app.ITEM_CONDITION')[1]) }}" class="btn btn-sm btn-success">With Month</a>
+                  <a href="{{ action('Backend\DashboardController@index', config('app.get_day')) }}" class="btn btn-sm btn-success">With Day</a>
+                  <a href="{{ action('Backend\DashboardController@index', config('app.get_month')) }}" class="btn btn-sm btn-success">With Month</a>
               </div>
             </div>
             <div class="box-body">
@@ -34,7 +34,7 @@
         <div class="col-md-6">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Top 3 User</h3>
+              <h3 class="box-title">Top {{ config('app.get_top_report') }} {{ trans('labels.LabelUser') }}</h3>
             </div><!-- /.box-header -->
             <div class="box-body no-padding">
               <table class="table table-striped">
@@ -61,7 +61,7 @@
         <div class="col-md-6">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Top 3 Product</h3>
+              <h3 class="box-title">Top {{ config('app.get_top_report') }} {{ trans('labels.LabelProduct') }}</h3>
             </div><!-- /.box-header -->
             <div class="box-body no-padding">
               <table class="table table-striped">
@@ -87,7 +87,7 @@
     </section><!-- /.content -->
   @else
     <div class="alert alert-info">
-        <strong>Info!</strong> There are no order.
+        {{ trans('labels.LabelNoData') }}
     </div>
   @endif
 </div>
@@ -103,14 +103,15 @@
         // get array report from controller
         var arr    = {!! json_encode($orders) !!};
 
-        // get array condition (0=>DAYNAME,1=>MONTHNAME)
-        var config = {!! json_encode(Config::get('app.ITEM_CONDITION')) !!}
-
+        // get condition (DAYNAME, MONTHNAME)
+        var getDay   = '{{ config('app.get_day') }}'
+        var getMonth = '{{ config('app.get_month') }}'
+        
         // get condition of report (WEEKDAY or MONTH)
         var reportCondition = Object.keys(arr[0])[0];
 
         // check condition report then set data for char
-        if (reportCondition == config[0]) {
+        if (reportCondition == getDay) {
           //set value default for bar_data
           var bar_data = {
             data: [["Monday", 0], ["Tuesday", 0], ["Wednesday", 0], ["Thursday", 0], ["Friday", 0], ["Saturday", 0], ["Sunday", 0]],
@@ -126,7 +127,7 @@
               }
             }
           }
-        } else if (reportCondition == config[1]) {
+        } else if (reportCondition == getMonth) {
           //set value default for bar_data
           var bar_data = {
             data: [["January", 0], ["February", 0], ["March", 0], ["April", 0], ["May", 0], ["June", 0], ["July", 0], ["August", 0], ["September", 0], ["October", 0], ["November", 0], ["December", 0]],
