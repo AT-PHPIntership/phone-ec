@@ -14,11 +14,11 @@ class Permission extends Model
     public $timestamps = false;
     
     /**
-     * Table Permission has Many Group.
+     * Permission has many Groups.
      *
      * @return \Illuminate\Http\Response
      */
-    public function Groups()
+    public function groups()
     {
         return $this->belongsToMany('App\Models\Backend\Group', 'GroupPermission');
     }
