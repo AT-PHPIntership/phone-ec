@@ -94,3 +94,8 @@ Route::get('search', 'Frontend\SearchController@index');
 
 
 Route::get('{detailsUrl}', 'Frontend\ProductsController@details');
+
+Route::get('auth/facebook', 'Frontend\Auth\AuthController@redirectToProvider');
+Route::get('auth/facebook/callback', 'Frontend\Auth\AuthController@handleProviderCallback');
+
+Route::get('contact', array('as' => 'contact', 'uses' => 'Frontend\ContactController@index'));
