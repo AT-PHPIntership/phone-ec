@@ -37,7 +37,7 @@ class AuthController extends Controller
 
     protected $loginView = 'frontend.auth.login';
     
-    protected $redirectPath = '/account';
+    protected $redirectPath = '/getContact';
 
     /**
      * Create a new authentication controller instance.
@@ -112,7 +112,7 @@ class AuthController extends Controller
 
         Auth::login($authUser, true);
 
-        return redirect()->route('account');
+        return redirect()->route('getContact');
     }
 
     /**
