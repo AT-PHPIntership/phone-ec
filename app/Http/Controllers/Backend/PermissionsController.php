@@ -43,7 +43,7 @@ class PermissionsController extends Controller
         if (!$this->checkPermissionExisted($request)) {
             
             // set permission and create Permission
-            $arrRole = $this->setPermission($request);
+            $arrRole = $this->getRequestPermission($request);
             $newRole = new Permission($arrRole);
             $newRole->module = $request->module;
 
@@ -89,7 +89,7 @@ class PermissionsController extends Controller
             $role->module = $request->module;
 
             // set permission
-            $arrRole = $this->setPermission($request);
+            $arrRole = $this->getRequestPermission($request);
                        
             // check save successfull?
             if ($role->update($arrRole)) {
@@ -158,10 +158,10 @@ class PermissionsController extends Controller
     private function checkPermissionExisted($request)
     {
         // set condition where
-        $arrRole = $this->setPermission($request);
+        $arrRole = $this->getRequestPermission($request);
         $check  = Permission::where('module', $request->module)
             ->where('see', $arrRole['see'])
-            ->where('inset', $arrRole['inset'])
+            ->where('insert', $arrRole['insert'])
             ->where('edit', $arrRole['edit'])
             ->where('destroy', $arrRole['destroy'])
            ->first();
@@ -175,34 +175,17 @@ class PermissionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    private function setPermission($request)
+    private function getRequestPermission($request)
     {
         // set permission
         $noPermission  = config('app.no_permission');
         $hasPermission = config('app.has_permission');
+        $permissions   = config('app.arr_permissions');
 
-        // create array
-        $arrRole = array(
-            'see'     => $noPermission,
-            'inset'   => $noPermission,
-            'edit'    => $noPermission,
-            'destroy' => $noPermission,
-        );
+        $arrRole = array();
 
-        if ($request->has('see')) {
-            $arrRole['see'] = $hasPermission;
-        }
-
-        if ($request->has('inset')) {
-            $arrRole['inset'] = $hasPermission;
-        }
-
-        if ($request->has('edit')) {
-            $arrRole['edit'] = $hasPermission;
-        }
-
-        if ($request->has('destroy')) {
-            $arrRole['destroy'] = $hasPermission;
+        foreach($permissions as $per){
+            $arrRole[$per] = $request->has($per);
         }
         return $arrRole;
     }

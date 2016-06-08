@@ -54,7 +54,7 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                @if ($item->inset == config('app.no_permission'))
+                                                @if ($item->insert == config('app.no_permission'))
                                                     <span style="color: red">{{ trans('labels.label_no') }}</span>
                                                 @else
                                                     <span style="color: green">{{ trans('labels.label_yes') }}</span>
@@ -116,7 +116,8 @@
                         <form action="{{ url('admin/permissions/' . $item->id) }}" method="POST">
                         {!! csrf_field() !!}
                         {!! method_field('DELETE') !!}
-                        <button type="submit" class="btn btn-danger btn-sm">{{ trans('labels.btn_delete') }}</button>
+                        <input type="hidden" id="module" value="{{ strtolower(trans('labels.label_permissions')) }}">
+                        <button type="submit" class="btn btn-danger btn-sm">{!! trans('labels.btn_delete') !!}</button>
                         <button type="button" class="btn btn-primary btn-sm pull-right" data-dismiss="modal">{{ trans('labels.btn_cancel') }}</button>
                         </form> 
                     </div>
@@ -124,15 +125,4 @@
             </div>
         </div>
         @endif
-@endsection
-@section('script')
-<script>
-    $(document).ready(function () {
-        $(".btnDel").on('click', function () {
-            var id = $(this).next().val();
-            $('form').attr('action', 'permissions/' + id);
-            $('#idDel').text(id);
-        });
-    });
-</script>
 @endsection

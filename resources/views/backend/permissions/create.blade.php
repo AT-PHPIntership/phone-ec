@@ -49,7 +49,7 @@
                                         </label>
 
                                         <label>
-                                            <input type="checkbox" name="inset" value="{{ config('app.has_permission') }}">
+                                            <input type="checkbox" name="insert" value="{{ config('app.has_permission') }}">
                                             {{ trans('labels.btn_create') }}
                                         </label>
 

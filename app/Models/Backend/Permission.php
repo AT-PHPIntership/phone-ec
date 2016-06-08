@@ -8,7 +8,7 @@ class Permission extends Model
     protected $table = 'permissions';
     
     protected $fillable = [
-        'id', 'module', 'see', 'inset', 'edit', 'destroy'
+        'id', 'module', 'see', 'insert', 'edit', 'destroy'
     ];
 
     public $timestamps = false;

@@ -38,9 +38,7 @@
                                     <select name="module" id="module" class="form-control" required="required">
                                         @foreach ($modules as $module)
                                         <option value="{{ $module }}" 
-                                        @if ($module == $permission->module)
-                                            selected
-                                        @endif    
+                                        {!! $module == $permission->module ? 'selected' : '' !!}
                                         >
                                             {{ $module }}
                                         </option>
@@ -52,36 +50,28 @@
                                     <div class="checkbox">
                                         <label>
                                             <input type="checkbox" name="see" value="{{ $permission->see }}" 
-                                            @if ($permission->see == config('app.has_permission'))
-                                                checked
-                                            @endif
+                                            {!! $permission->see == config('app.has_permission') ? 'checked' : '' !!}
                                             >
                                             {{ trans('labels.btn_show') }}
                                         </label>
 
                                         <label>
-                                            <input type="checkbox" name="inset" value="{{ $permission->inset }}" 
-                                            @if ($permission->inset == config('app.has_permission'))
-                                                checked
-                                            @endif
+                                            <input type="checkbox" name="insert" value="{{ $permission->insert }}" 
+                                            {!! $permission->insert == config('app.has_permission') ? 'checked' : '' !!}
                                             >
                                             {{ trans('labels.btn_create') }}
                                         </label>
 
                                         <label>
                                             <input type="checkbox" name="edit" value="{{ $permission->edit }}" 
-                                            @if ($permission->edit == config('app.has_permission'))
-                                                checked
-                                            @endif
+                                            {!! $permission->edit == config('app.has_permission') ? 'checked' : '' !!}
                                             >
                                             {{ trans('labels.btn_update') }}
                                         </label>
 
                                         <label>
                                             <input type="checkbox" name="destroy" value="{{ $permission->destroy }}" 
-                                            @if ($permission->destroy == config('app.has_permission'))
-                                                checked
-                                            @endif
+                                            {!! $permission->destroy == config('app.has_permission') ? 'checked' : '' !!}
                                             >
                                             {{ trans('labels.btn_delete') }}
                                         </label>
@@ -105,18 +95,3 @@
     <!-- /.row -->
 </div>
 @endsection
-
-{{--@section('script')
-    <script>
-        $(document).ready(function(){
-            $('input[type="checkbox"]').on('click', function(){
-                if ($(this).is(':checked'))
-                {
-                    $(this).val(1);
-                } else {
-                    $(this).val(0);
-                }
-            });
-        });
-    </script>
-@endsection--}}

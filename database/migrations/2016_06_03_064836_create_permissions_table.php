@@ -14,7 +14,7 @@ class CreatePermissionsTable extends Migration
             $table->increments('id');
             $table->string('module');
             $table->tinyInteger('see')->default(0);
-            $table->tinyInteger('inset')->default(0);
+            $table->tinyInteger('insert')->default(0);
             $table->tinyInteger('edit')->default(0);
             $table->tinyInteger('destroy')->default(0);
         });
