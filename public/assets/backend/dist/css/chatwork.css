@@ -5,19 +5,18 @@
 }
 		
 .chat {
-	height: calc(100% - 150px);
+	height: 450px;
 }
 
-#form {
-	height: 150px;
-	
-}
 #form textarea {
 	width: 100%;
 
 }
 .box-footer {
 	margin-top: 350px;
+}
+.box-header {
+	height: 460px;
 }
 /*!
  *   AdminLTE v2.3.3
