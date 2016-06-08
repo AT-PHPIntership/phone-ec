@@ -8,7 +8,9 @@
         <!-- /#page-wrapper -->
     </div>
     <!-- /#wrapper -->
-
+    <script src="{!! asset('assets/backend/plugins/jquery.flot.min.js') !!}"></script>
+    <script src="{!! asset('assets/backend/plugins/jquery.flot.categories.min.js') !!}"></script>
+    @yield('script')
     <!-- Bootstrap Core JavaScript -->
     <script src="{!! asset('assets/backend/bower_components/bootstrap/dist/js/bootstrap.min.js') !!}"></script>
 
