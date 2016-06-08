@@ -178,13 +178,11 @@ class PermissionsController extends Controller
     private function getRequestPermission($request)
     {
         // set permission
-        $noPermission  = config('app.no_permission');
-        $hasPermission = config('app.has_permission');
         $permissions   = config('app.arr_permissions');
 
         $arrRole = array();
 
-        foreach($permissions as $per){
+        foreach ($permissions as $per) {
             $arrRole[$per] = $request->has($per);
         }
         return $arrRole;
