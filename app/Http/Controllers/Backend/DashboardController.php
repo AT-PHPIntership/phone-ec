@@ -51,7 +51,7 @@ class DashboardController extends Controller
      */
     private function getReportOrder($condition)
     {
-        return Order::select("$condition(created_at) as $condition, sum(total_price) as total")
+        return Order::selectRaw("$condition(created_at) as $condition, sum(total_price) as total")
                     ->groupBy(DB::raw("$condition(created_at)"))
                     ->get()->toArray();
     }
