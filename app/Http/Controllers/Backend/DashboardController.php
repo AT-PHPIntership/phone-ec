@@ -45,30 +45,30 @@ class DashboardController extends Controller
     /**
      * Get report order with condition
      *
-     * @param string $con is condition of group by (DAYNAME or MONTHNAME)
+     * @param string $condition is condition of group by (DAYNAME or MONTHNAME)
      *
      * @return view index of admin
      */
-    private function getReportOrder($con)
+    private function getReportOrder($condition)
     {
-        return Order::selectRaw("$con(created_at) as $con, sum(total_price) as total")
-                    ->groupBy(DB::raw("$con(created_at)"))
+        return Order::select("$condition(created_at) as $condition, sum(total_price) as total")
+                    ->groupBy(DB::raw("$condition(created_at)"))
                     ->get()->toArray();
     }
 
     /**
      * Get report user with condition
      *
-     * @param string $con is condition of group by (DAYNAME or MONTHNAME)
+     * @param string $condition is condition of group by (DAYNAME or MONTHNAME)
      *
      * @return view index of admin
      */
-    private function getReportUser($con)
+    private function getReportUser($condition)
     {
         return DB::table('orders')
-            ->selectRaw("name, sum(total_price) as total, $con(orders.created_at) as date")
+            ->selectRaw("name, sum(total_price) as total, $condition(orders.created_at) as date")
             ->join('users', 'orders.user_id', '=', 'users.id')
-            ->groupBy(DB::raw("$con(orders.created_at)"), 'orders.user_id')
+            ->groupBy(DB::raw("$condition(orders.created_at)"), 'orders.user_id')
             ->orderBy(DB::raw("sum(total_price)"), 'desc')
             ->take(config('app.get_top_report'))->get();
     }
@@ -76,17 +76,17 @@ class DashboardController extends Controller
     /**
      * Get report product with condition
      *
-     * @param string $con is condition of group by (DAYNAME or MONTHNAME)
+     * @param string $condition is condition of group by (DAYNAME or MONTHNAME)
      *
      * @return view index of admin
      */
-    private function getReportProduct($con)
+    private function getReportProduct($condition)
     {
         return DB::table('orderdetails')
-            ->selectRaw("name, sum(price) as total, $con(orders.created_at) as date")
+            ->selectRaw("name, sum(price) as total, $condition(orders.created_at) as date")
             ->join('orders', 'order_id', '=', 'orders.id')
             ->join('products', 'product_id', '=', 'products.id')
-            ->groupBy(DB::raw("$con(orders.created_at)"), 'product_id')
+            ->groupBy(DB::raw("$condition(orders.created_at)"), 'product_id')
             ->orderBy(DB::raw("sum(price)"), 'desc')
             ->take(config('app.get_top_report'))->get();
     }
