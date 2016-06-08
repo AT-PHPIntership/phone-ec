@@ -22,10 +22,14 @@ Route::group(['middleware' => ['auth:admin'],'prefix'=>'admin'], function () {
     Route::resource('orders', 'Backend\OrdersController');
     Route::resource('account', 'Backend\AccountsController');
     Route::resource('contact', 'Backend\ContactController');
+
     
     Route::get('chat', function () {
         return view('backend.chatwork.index');
     });
+
+    Route::resource('permissions', 'Backend\PermissionsController');
+
 
     Route::resource('permissions', 'Backend\PermissionsController');
 

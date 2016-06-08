@@ -123,6 +123,7 @@
                         </li>
                         <li>
                             <a href="{{ url('admin/permissions') }}"><i class="fa fa-user fa-fw"></i> {{ trans('labels.label_permissions') }}</a>
+
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
