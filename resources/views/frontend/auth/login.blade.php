@@ -66,7 +66,13 @@
                     </span>
                 @endif
                 <br>
-                <a href="{{ url('password/reset') }}">Forgotten Password</a><br>
+                <a href="{{ url('password/reset') }}">Forgotten Password</a>
+                <br>
+                <div class="social-auth-links text-center">
+                    <a href="auth/facebook" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
+                        Facebook</a>
+                </div>
+                <!-- /.social-auth-links -->
                 <br>
                 <input type="submit" class="button" value="Login">
               </div>
