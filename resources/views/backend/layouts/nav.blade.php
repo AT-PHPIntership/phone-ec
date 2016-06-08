@@ -94,31 +94,35 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard fa-fw"></i> {{ trans('labels.label_dashboard') }}</a>
                         </li>
                         <li>
-                            <a href="{{ url('admin/users') }}"><i class="fa fa-users fa-fw"></i> Users</a>
+                            <a href="{{ url('admin/users') }}"><i class="fa fa-users fa-fw"></i> {{ trans('labels.label_users') }}</a>
                         </li>
                         <li>
-                            <a href="{{ url('admin/products') }}"><i class="fa fa-mobile fa-fw"></i> Products</a>
+                            <a href="{{ url('admin/products') }}"><i class="fa fa-mobile fa-fw"></i> {{ trans('labels.label_products') }}</a>
                         </li>
                         <li>
-                            <a href="{{ url('admin/rating') }}"><i class="fa fa-line-chart fa-fw"></i> Rating</a>
+                            <a href="{{ url('admin/rating') }}"><i class="fa fa-line-chart fa-fw"></i> {{ trans('labels.label_ratings') }}</a>
                         </li>
                         <li>
-                            <a href="{{ url('admin/brands') }}"><i class="fa fa-flag-checkered fa-fw"></i> Brands</a>
+                            <a href="{{ url('admin/brands') }}"><i class="fa fa-flag-checkered fa-fw"></i> {{ trans('labels.label_brands') }}</a>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="{{ url('admin/orders') }}"><i class="fa fa-file-word-o fa-fw"></i> Orders</a>
+                            <a href="{{ url('admin/orders') }}"><i class="fa fa-file-word-o fa-fw"></i> {{ trans('labels.label_orders') }}</a>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="{{ url('admin/contact') }}"><i class="fa fa-phone fa-fw"></i> Contact</a>
+                            <a href="{{ url('admin/contact') }}"><i class="fa fa-phone fa-fw"></i> {{ trans('labels.label_contacts') }}</a>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="{{ url('admin/account') }}"><i class="fa fa-user fa-fw"></i> Account</a>
+                            <a href="{{ url('admin/account') }}"><i class="fa fa-user fa-fw"></i> {{ trans('labels.label_accounts') }}</a>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="{{ url('admin/permissions') }}"><i class="fa fa-user fa-fw"></i> {{ trans('labels.label_permissions') }}</a>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>

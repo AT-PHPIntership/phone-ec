@@ -26,6 +26,7 @@
     <script src="{!! asset('assets/backend/dist/js/app.js') !!}"></script>
 
         <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    @yield('script')
     <script>
     $(document).ready(function() {
         $('#dataTables-example').DataTable({

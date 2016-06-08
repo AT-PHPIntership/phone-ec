@@ -1,3 +1,12 @@
+$(document).ready(function () {
+        $(".btnDel").on('click', function () {
+            var id = $(this).next().val();
+            var module = document.getElementById('module').value;
+            $('form').attr('action', module + '/' + id);
+            $('#idDel').text(id);
+        });
+});
+
 $(function() {
 
     $('#side-menu').metisMenu();
