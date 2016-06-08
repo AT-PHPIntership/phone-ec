@@ -1,12 +1,12 @@
 @extends('backend.layouts.master')
 
-@section('title', 'Categories Manage')
+@section('title', trans('labels.label_categories_manager'))
 
 @section('content')
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Categories</h1>
+                <h1 class="page-header">{!! trans('labels.label_categories') !!}</h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -15,7 +15,7 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Categories Manage
+                        {!! trans('labels.label_categories_manager') !!}
                         <a href="{{ url('admin/categories/create') }}" id="create" class="btn btn-primary btn-sm pull-right"><i class="fa fa-plus-circle"></i> Add new category</a>
                         <div class="clearfix"></div>
                     </div> 
@@ -82,7 +82,7 @@
                         <!-- /.panel-body -->
                     @else
                         <div class="alert alert-info">
-                            {!! trans('messages.notcategory') !!}
+                            {!! trans('labels.not_category') !!}
 
                         </div>
                     @endif
@@ -100,15 +100,16 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Delete a category "<span id='idDel'></span>"</h4>
+                    <h4 class="modal-title">{!! trans('labels.delete_cate') !!} "<span id='idDel'></span>"</h4>
                 </div>
                 <div class="modal-body text-center alert alert-danger">
-                    <h3 class="text-danger">Are you sure delete this category?</h3>
+                    <h3 class="text-danger">{!! trans('labels.cofirm_delete_cate') !!}</h3>
                 </div>
                 <div class="modal-footer">
                     <form action="{{ url('admin/categories/'.$cate->id) }}" method="POST">
                         {!! csrf_field() !!}
                         {!! method_field('DELETE') !!}
+                        <input type="hidden" id="module" value="{{ strtolower(trans('labels.label_categories')) }}">
                         <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                         <button type="button" class="btn btn-primary btn-sm pull-right" data-dismiss="modal">Cancel</button>
                     </form>

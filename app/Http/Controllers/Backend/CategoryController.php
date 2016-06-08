@@ -19,7 +19,6 @@ class CategoryController extends Controller
     public function index()
     {
         $data["cates"] = Category::paginate(config('app.ITEM_PER_PAGE'));
-        $data["parent"] = Category::select('id', 'cate_name', 'parent_id')->get()->toArray();
         return view('backend.categories.index')->with($data);
     }
 
@@ -44,18 +43,14 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-        $addcate = new Category;
-        $addcate->cate_name = $request->cate_name;
-        $addcate->cate_description = $request->cate_description;
-        $addcate->cate_status = $request->cate_status;
-        $addcate->parent_id = $request->parent_id;
+        $addcate = new Category($request->input());
         if ($request->hasFile('cate_image')) {
             $fileName = $request->file('cate_image')->getClientOriginalName();
             $addcate->cate_image = $fileName;
             $request->file('cate_image')->move(public_path(config('app.upload')), $fileName);
         }
         $addcate->save();
-        $request->session()->flash('message', trans('messages.categoryadd'));
+        $request->session()->flash('message', trans('messages.category_add'));
         return redirect()->route('admin.categories.index');
     }
 
@@ -97,7 +92,7 @@ class CategoryController extends Controller
             $request->file('cate_image')->move(public_path(config('app.upload')), $fileName);
         }
         $editcate->save();
-        $request->session()->flash('message', trans('messages.categoryupdate'));
+        $request->session()->flash('message', trans('messages.category_update'));
         return redirect()->route('admin.categories.index');
     }
 
@@ -110,23 +105,15 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $delcate = Category::findOrFail($id);
-        $cate = Category::all();
-        $stemp = 0;
-        foreach ($cate as $item) {
-            if ($item->parent_id == $id) {
-                $stemp = 1;
-                break;
-            }
-        }
-        if ($stemp == 1) {
-            session()->flash('message', trans('messages.categorynotdel'));
+        $delcate = Category::with('children')->findOrFail($id);
+        if ($delcate->children->count()) {
+            session()->flash('message', trans('messages.category_notdel'));
         } else {
             if (!empty($delcate->cate_image)) {
                 file::delete(public_path(config('app.upload')) . $delcate->cate_image);
             }
             $delcate->delete();
-            session()->flash('message', trans('messages.categorydel'));
+            session()->flash('message', trans('messages.category_del'));
         }
         return redirect()->route('admin.categories.index');
     }

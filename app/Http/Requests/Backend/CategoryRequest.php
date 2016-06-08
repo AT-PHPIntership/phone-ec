@@ -24,10 +24,9 @@ class CategoryRequest extends Request
      */
     public function rules()
     {
-        $cateId = 3;
-        if ($this->segment($cateId)) {
+        if ($this->id) {
             return [
-                'cate_name' => 'required|min:3|unique:product_category,cate_name,'.$this->segment($cateId),
+                'cate_name' => 'required|min:3|unique:product_category,cate_name,'.$this->id,
                 'cate_image' => 'mimes:jpeg,jpg,png|image',
             ];
         } else {

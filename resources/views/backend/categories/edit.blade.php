@@ -1,12 +1,12 @@
 @extends('backend.layouts.master')
 
-@section('title', 'Edit Products')
+@section('title', trans('labels.update_cate'))
 
 @section('content')
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Edit new category</h1>
+                <h1 class="page-header">{!! trans('labels.edit_cate') !!}</h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -16,7 +16,7 @@
                 <div class="panel panel-default">
                     @if (isset($errors) && $errors->any())
                         <div class="alert alert-danger">
-                            {!! trans('messages.proleminput') !!}
+                            {!! trans('labels.prolem_input') !!}
                             <ul>
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
