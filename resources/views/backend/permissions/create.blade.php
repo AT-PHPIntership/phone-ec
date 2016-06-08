@@ -1,19 +1,19 @@
 @extends('backend.layouts.master')
 
-@section('title', trans('labels.labelAddPermission'))
+@section('title', trans('labels.label_add_permission'))
 
 @section('content')
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">{{ trans('labels.labelAddPermission') }}</h1>
+            <h1 class="page-header">{{ trans('labels.label_add_permission') }}</h1>
         </div>
         <!-- /.col-lg-12 -->
     </div>
     @if (count($errors) > 0)
         <!-- Form Error List -->
         <div class="alert alert-danger">
-            <strong>{{ trans('labels.LabelError') }}</strong>
+            <strong>{{ trans('messages.error') }}</strong>
             <br><br>
             <ul>
                 @foreach ($errors->all() as $error)
@@ -33,7 +33,7 @@
                             <form role="form" action="{{ url('admin/permissions') }}" method="POST" enctype="multipart/form-data">
                                 {!! csrf_field() !!}
                                 <div class="form-group">
-                                    <label>{{ trans('labels.labelModule') }}</label>
+                                    <label>{{ trans('labels.label_module') }}</label>
                                     <select name="module" id="module" class="form-control" required="required">
                                         @foreach ($modules as $module)
                                         <option value="{{ $module }}">{{ $module }}</option>
@@ -41,31 +41,31 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>{{ trans('labels.LabelPermissions') }}</label>
+                                    <label>{{ trans('labels.label_permissions') }}</label>
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" name="see" value="1">
-                                            {{ trans('labels.BtnShow') }}
+                                            <input type="checkbox" name="see" value="{{ config('app.has_permission') }}">
+                                            {{ trans('labels.btn_show') }}
                                         </label>
 
                                         <label>
-                                            <input type="checkbox" name="create" value="1">
-                                            {{ trans('labels.BtnCreate') }}
+                                            <input type="checkbox" name="inset" value="{{ config('app.has_permission') }}">
+                                            {{ trans('labels.btn_create') }}
                                         </label>
 
                                         <label>
-                                            <input type="checkbox" name="update" value="1">
-                                            {{ trans('labels.BtnUpdate') }}
+                                            <input type="checkbox" name="edit" value="{{ config('app.has_permission') }}">
+                                            {{ trans('labels.btn_update') }}
                                         </label>
 
                                         <label>
-                                            <input type="checkbox" name="delete" value="1">
-                                            {{ trans('labels.BtnDelete') }}
+                                            <input type="checkbox" name="destroy" value="{{ config('app.has_permission') }}">
+                                            {{ trans('labels.btn_delete') }}
                                         </label>
                                     </div>
                                 </div>
-                                <button type="reset" class="btn btn-sm btn-default">{{ trans('labels.BtnReset') }}</button>
-                                <button type="submit" class="btn btn-sm btn-primary">{{ trans('labels.BtnCreate') }}</button>
+                                <button type="reset" class="btn btn-sm btn-default">{{ trans('labels.btn_reset') }}</button>
+                                <button type="submit" class="btn btn-sm btn-primary">{{ trans('labels.btn_create') }}</button>
                             </form>
                         </div>
                         <!-- /.col-lg-12 (nested) -->

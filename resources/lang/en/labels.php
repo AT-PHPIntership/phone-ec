@@ -1,48 +1,40 @@
 <?php
 return [
-	"LabelDashboard"        => "Dashboard",
-	"LabelUsers"            => "Users",
-	"LabelProducts"         => "Products",
-	"LabelRatings"          => "Ratings",
-	"LabelBrands"           => "Brands",
-	"LabelOrders"           => "Orders",
-	"LabelContacts"         => "Contacts",
-	"LabelAccounts"         => "Accounts",
+	"label_dashboard" => "Dashboard",
+	"label_users"     => "Users",
+	"label_products"  => "Products",
+	"label_ratings"   => "Ratings",
+	"label_brands"    => "Brands",
+	"label_orders"    => "Orders",
+	"label_contacts"  => "Contacts",
+	"label_accounts"  => "Accounts",
 
 	// permission
-	"LabelPermissions"        => "Permissions",
-	"LabelPermissionsManager" => "Permission manage",
-	"labelDeletePermission"   => "Delete Permission",
-	"labelAddPermission"      => "Add new permission",
-	"labelEditPermission"     => "Edit permission",
-	"labelModule"             => "Module",
-	"labelId"                 => "ID",
-	"labelAction"             => "Action",
+	"label_permissions"         => "Permissions",
+	"label_permissions_manager" => "Permission manage",
+	"label_delete_permission"   => "Delete Permission",
+	"label_add_permission"      => "Add new permission",
+	"label_edit_permission"     => "Edit permission",
+	"label_module"              => "Module",
+	"label_id"                  => "ID",
+	"label_action"              => "Action",
 
 	// infor
-	"LabelNoData"           => "Info! There are no data!",
-	"LabelError"            => "Whoops! Something went wrong!",
-	"MessageAddRoleOk"      => "Permission was created successfully!",
-	"MessageAddRoleNotOk"   => "Wrong count't created Permission, please try againt!",
-	"MessageEditRoleOk"     => "Permission was Edit successfully!",
-	"MessageEditRoleNotOk"  => "Wrong count't Edit Permission, please try againt!",
-	"MessageDelRoleOk"      => "Permission was Delete successfully!",
-	"MessageDelRoleNotOk"   => "Wrong count't Delete Permission, please try againt!",
-	"MessageRoleExists"     => "Permission was exists, please try againt!",
-	"LableYes"              => "YES",
-	"LableNo"               => "NO",
+	
+	"label_yes" => "YES",
+	"label_no"  => "NO",
 
 	// confirm
-	"confirmDeletePermission" => "Are you sure delete this permission?",
+	"confirm_delete_permission" => "Are you sure delete this permission?",
 
 	// title
-	"TitlePermission"  => "Permissions Manager",
+	"title_permission"  => "Permissions Manager",
 
 	// button
-	"BtnShow"   => "Show",
-	"BtnCreate" => "Create",
-	"BtnUpdate" => "Edit",
-	"BtnDelete" => "Delete",
-	"BtnReset"  => "Reset",
-	"BtnCancel" => "Cancel",
+	"btn_show"   => "Show",
+	"btn_create" => "Create",
+	"btn_update" => "Edit",
+	"btn_delete" => "Delete",
+	"btn_reset"  => "Reset",
+	"btn_cancel" => "Cancel",
 ];

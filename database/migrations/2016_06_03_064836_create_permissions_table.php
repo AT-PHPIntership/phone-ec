@@ -13,10 +13,10 @@ class CreatePermissionsTable extends Migration
         Schema::create('permissions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('module');
-            $table->tinyInteger('see');
-            $table->tinyInteger('inset');
-            $table->tinyInteger('edit');
-            $table->tinyInteger('destroy');
+            $table->tinyInteger('see')->default(0);
+            $table->tinyInteger('inset')->default(0);
+            $table->tinyInteger('edit')->default(0);
+            $table->tinyInteger('destroy')->default(0);
         });
     }
     

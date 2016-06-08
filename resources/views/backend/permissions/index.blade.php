@@ -1,13 +1,13 @@
 @extends('backend.layouts.master')
 
-@section('title', trans('labels.LabelPermissionsManager'))
+@section('title', trans('labels.label_permissions_manager'))
 
 @section('content')
 
 <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">{{ trans('labels.LabelPermissions') }}</h1>
+                    <h1 class="page-header">{{ trans('labels.label_permissions') }}</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -16,9 +16,9 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            {{ trans('labels.TitlePermission') }}
+                            {{ trans('labels.title_permission') }}
                             <a href="{!! url('admin/permissions/create') !!}" class="btn btn-primary btn-sm pull-right" id="create">
-                                <i class="fa fa-plus-circle"></i> {{ trans('labels.labelAddPermission') }}
+                                <i class="fa fa-plus-circle"></i> {{ trans('labels.label_add_permission') }}
                             </a>
                             <div class="clearfix"></div>
                         </div>
@@ -32,13 +32,13 @@
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th>{{ trans('labels.labelId') }}</th>
-                                            <th>{{ trans('labels.labelModule') }}</th>
-                                            <th>{{ trans('labels.BtnShow') }}</th>
-                                            <th>{{ trans('labels.BtnCreate') }}</th>
-                                            <th>{{ trans('labels.BtnUpdate') }}</th>
-                                            <th>{{ trans('labels.BtnDelete') }}</th>
-                                            <th>{{ trans('labels.labelAction') }}</th>
+                                            <th>{{ trans('labels.label_id') }}</th>
+                                            <th>{{ trans('labels.label_module') }}</th>
+                                            <th>{{ trans('labels.btn_show') }}</th>
+                                            <th>{{ trans('labels.btn_create') }}</th>
+                                            <th>{{ trans('labels.btn_update') }}</th>
+                                            <th>{{ trans('labels.btn_delete') }}</th>
+                                            <th>{{ trans('labels.label_action') }}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -47,31 +47,31 @@
                                             <td>{{ $item->id }}</td>
                                             <td>{{ $item->module }}</td>
                                             <td>
-                                                @if ($item->see == \Config::get('app.no_permission'))
-                                                    <span style="color: red">{{ trans('labels.LableNo') }}</span>
+                                                @if ($item->see == config('app.no_permission'))
+                                                    <span style="color: red">{{ trans('labels.label_no') }}</span>
                                                 @else
-                                                    <span style="color: green">{{ trans('labels.LableYes') }}</span>
+                                                    <span style="color: green">{{ trans('labels.label_yes') }}</span>
                                                 @endif
                                             </td>
                                             <td>
-                                                @if ($item->inset == \Config::get('app.no_permission'))
-                                                    <span style="color: red">{{ trans('labels.LableNo') }}</span>
+                                                @if ($item->inset == config('app.no_permission'))
+                                                    <span style="color: red">{{ trans('labels.label_no') }}</span>
                                                 @else
-                                                    <span style="color: green">{{ trans('labels.LableYes') }}</span>
+                                                    <span style="color: green">{{ trans('labels.label_yes') }}</span>
                                                 @endif
                                             </td>
                                             <td>
-                                                @if ($item->edit == \Config::get('app.no_permission'))
-                                                    <span style="color: red">{{ trans('labels.LableNo') }}</span>
+                                                @if ($item->edit == config('app.no_permission'))
+                                                    <span style="color: red">{{ trans('labels.label_no') }}</span>
                                                 @else
-                                                    <span style="color: green">{{ trans('labels.LableYes') }}</span>
+                                                    <span style="color: green">{{ trans('labels.label_yes') }}</span>
                                                 @endif
                                             </td>
                                             <td>
-                                                @if ($item->destroy == \Config::get('app.no_permission'))
-                                                    <span style="color: red">{{ trans('labels.LableNo') }}</span>
+                                                @if ($item->destroy == config('app.no_permission'))
+                                                    <span style="color: red">{{ trans('labels.label_no') }}</span>
                                                 @else
-                                                    <span style="color: green">{{ trans('labels.LableYes') }}</span>
+                                                    <span style="color: green">{{ trans('labels.label_yes') }}</span>
                                                 @endif
                                             </td>
                                             <td class="text-center">
@@ -91,7 +91,7 @@
                     @else 
                         <br>
                         <div class="alert alert-info">
-                          {{ trans('labels.LabelNoData') }}
+                          {{ trans('messages.no_data') }}
                         </div>
                     @endif  
                     </div>
@@ -107,17 +107,17 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">{{ trans('labels.labelDeletePermission') }} "<b><span id='idDel'></span></b>"</h4>
+                        <h4 class="modal-title">{{ trans('labels.label_delete_permission') }} "<b><span id='idDel'></span></b>"</h4>
                     </div>
                     <div class="modal-body text-center alert alert-danger">
-                        <h3 class="text-danger">{{ trans('labels.confirmDeletePermission') }}</h3>
+                        <h3 class="text-danger">{{ trans('labels.confirm_delete_permission') }}</h3>
                     </div>
                     <div class="modal-footer">
                         <form action="{{ url('admin/permissions/' . $item->id) }}" method="POST">
                         {!! csrf_field() !!}
                         {!! method_field('DELETE') !!}
-                        <button type="submit" class="btn btn-danger btn-sm">{{ trans('labels.BtnDelete') }}</button>
-                        <button type="button" class="btn btn-primary btn-sm pull-right" data-dismiss="modal">{{ trans('labels.BtnCancel') }}</button>
+                        <button type="submit" class="btn btn-danger btn-sm">{{ trans('labels.btn_delete') }}</button>
+                        <button type="button" class="btn btn-primary btn-sm pull-right" data-dismiss="modal">{{ trans('labels.btn_cancel') }}</button>
                         </form> 
                     </div>
                 </div>

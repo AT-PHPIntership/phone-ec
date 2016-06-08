@@ -1,19 +1,19 @@
 @extends('backend.layouts.master')
 
-@section('title', trans('labels.labelEditPermission'))
+@section('title', trans('labels.label_edit_permission'))
 
 @section('content')
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">{{ trans('labels.labelEditPermission') }}</h1>
+            <h1 class="page-header">{{ trans('labels.label_edit_permission') }}</h1>
         </div>
         <!-- /.col-lg-12 -->
     </div>
     @if (count($errors) > 0)
         <!-- Form Error List -->
         <div class="alert alert-danger">
-            <strong>{{ trans('labels.LabelError') }}</strong>
+            <strong>{{ trans('messages.error') }}</strong>
             <br><br>
             <ul>
                 @foreach ($errors->all() as $error)
@@ -34,7 +34,7 @@
                                 {!! csrf_field() !!}
                                 {!! method_field('PUT') !!}
                                 <div class="form-group">
-                                    <label>{{ trans('labels.labelModule') }}</label>
+                                    <label>{{ trans('labels.label_module') }}</label>
                                     <select name="module" id="module" class="form-control" required="required">
                                         @foreach ($modules as $module)
                                         <option value="{{ $module }}" 
@@ -48,47 +48,47 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>{{ trans('labels.LabelPermissions') }}</label>
+                                    <label>{{ trans('labels.label_permissions') }}</label>
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" name="see" value="1" 
-                                            @if ($permission->see == \Config::get('app.has_permission'))
+                                            <input type="checkbox" name="see" value="{{ $permission->see }}" 
+                                            @if ($permission->see == config('app.has_permission'))
                                                 checked
                                             @endif
                                             >
-                                            {{ trans('labels.BtnShow') }}
+                                            {{ trans('labels.btn_show') }}
                                         </label>
 
                                         <label>
-                                            <input type="checkbox" name="create" value="1" 
-                                            @if ($permission->inset == \Config::get('app.has_permission'))
+                                            <input type="checkbox" name="inset" value="{{ $permission->inset }}" 
+                                            @if ($permission->inset == config('app.has_permission'))
                                                 checked
                                             @endif
                                             >
-                                            {{ trans('labels.BtnCreate') }}
+                                            {{ trans('labels.btn_create') }}
                                         </label>
 
                                         <label>
-                                            <input type="checkbox" name="update" value="1" 
-                                            @if ($permission->edit == \Config::get('app.has_permission'))
+                                            <input type="checkbox" name="edit" value="{{ $permission->edit }}" 
+                                            @if ($permission->edit == config('app.has_permission'))
                                                 checked
                                             @endif
                                             >
-                                            {{ trans('labels.BtnUpdate') }}
+                                            {{ trans('labels.btn_update') }}
                                         </label>
 
                                         <label>
-                                            <input type="checkbox" name="delete" value="1" 
-                                            @if ($permission->destroy == \Config::get('app.has_permission'))
+                                            <input type="checkbox" name="destroy" value="{{ $permission->destroy }}" 
+                                            @if ($permission->destroy == config('app.has_permission'))
                                                 checked
                                             @endif
                                             >
-                                            {{ trans('labels.BtnDelete') }}
+                                            {{ trans('labels.btn_delete') }}
                                         </label>
                                     </div>
                                 </div>
-                                <a class="btn btn-sm btn-default" href="{!! url('admin/permissions') !!}" name="cancel">{{ trans('labels.BtnCancel') }}</a>
-                                <input type="submit" class="btn btn-sm btn-primary" name="edit" value="{{ trans('labels.BtnUpdate') }}">
+                                <a class="btn btn-sm btn-default" href="{!! url('admin/permissions') !!}" name="cancel">{{ trans('labels.btn_cancel') }}</a>
+                                <input type="submit" class="btn btn-sm btn-primary" value="{{ trans('labels.btn_update') }}">
                             </form>
                         </div>
                         <!-- /.col-lg-12 (nested) -->
@@ -105,3 +105,18 @@
     <!-- /.row -->
 </div>
 @endsection
+
+{{--@section('script')
+    <script>
+        $(document).ready(function(){
+            $('input[type="checkbox"]').on('click', function(){
+                if ($(this).is(':checked'))
+                {
+                    $(this).val(1);
+                } else {
+                    $(this).val(0);
+                }
+            });
+        });
+    </script>
+@endsection--}}
