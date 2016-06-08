@@ -27,7 +27,7 @@ class Group extends Model
      *
      * @return \Illuminate\Http\Response
      */
-    public function Admins()
+    public function admins()
     {
         return $this->belongsToMany('App\Models\Backend\Admin', 'AdminGroup');
     }

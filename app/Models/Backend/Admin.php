@@ -31,7 +31,7 @@ class Admin extends Authenticatable
      *
      * @return \Illuminate\Http\Response
      */
-    public function Groups()
+    public function groups()
     {
         return $this->belongsToMany('App\Models\Backend\Group', 'AdminGroup');
     }
