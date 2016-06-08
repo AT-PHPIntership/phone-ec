@@ -32,17 +32,17 @@
 @endsection
 
 @section('content')
-<h1>Account Login</h1>
+<h1>{!! trans('labels.account_login') !!}</h1>
         <div class="login-content">
           <div class="left">
-            <h2>New Customer</h2>
+            <h2>{!! trans('labels.new_customer') !!}</h2>
             <div class="content">
-              <p><b>Register Account</b></p>
+              <p><b>{!! trans('labels.register_account') !!}</b></p>
               <p>By creating an account you will be able to shop faster, be up to date on an order's status, and keep track of the orders you have previously made.</p>
               <a class="button" href="register">Continue</a></div>
           </div>
           <div class="right">
-            <h2>Returning Customer</h2>
+            <h2>{!! trans('labels.returning_customer')</h2>
             <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
               {!! csrf_field() !!}
               <div class="content">
@@ -66,11 +66,10 @@
                     </span>
                 @endif
                 <br>
-                <a href="{{ url('password/reset') }}">Forgotten Password</a>
+                <a href="{{ url('password/reset') }}">{!! trans('labels.forgot_password') !!}</a>
                 <br>
                 <div class="social-auth-links text-center">
-                    <a href="auth/facebook" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
-                        Facebook</a>
+                    <a href="auth/facebook" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> {!! trans('labels.signin_facebook') !!}</a>
                 </div>
                 <!-- /.social-auth-links -->
                 <br>
