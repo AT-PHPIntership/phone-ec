@@ -70,9 +70,9 @@ class PermissionsController extends Controller
     {
         $data['modules'] = $this->getModule();
 
-        try{
+        try {
             $data['permission'] = Permission::findOrFail($id);
-        } catch (ModelNotFoundException $e){
+        } catch (ModelNotFoundException $e) {
             abort(404);
         }
 
@@ -91,9 +91,9 @@ class PermissionsController extends Controller
     {
         if (!$this->checkPermissionExisted($request)) {
             // get permission with id
-            try{
+            try {
                 $role = Permission::findOrFail($id);
-            } catch (ModelNotFoundException $e){
+            } catch (ModelNotFoundException $e) {
                 abort(404);
             }
 
@@ -124,9 +124,9 @@ class PermissionsController extends Controller
      */
     public function destroy($id, Request $request)
     {
-        try{
+        try {
             $permission = Permission::findOrFail($id);
-        } catch (ModelNotFoundException $e){
+        } catch (ModelNotFoundException $e) {
             abort(404);
         }
 
