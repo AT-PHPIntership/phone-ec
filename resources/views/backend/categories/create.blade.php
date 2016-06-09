@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
-                    @if (isset($errors) && $errors->any())
+                    @if ($errors && $errors->any())
                         <div class="alert alert-danger">
                             {!! trans('labels.prolem_input') !!}
                             <ul>
@@ -37,17 +37,7 @@
                                             <option value="0">----------Root----------</option>
                                             @foreach($cates as $cate)
                                                 <option value="{{ $cate->id }}">{{ $cate->cate_name }}</option>
-                                                    @foreach($cate['children'] as $childFirst)
-                                                        <option value='{{ $childFirst->id }}'>-- {{ $childFirst->cate_name }}</option> 
-                                                        @foreach($childFirst['children'] as $childSecond)
-                                                            <option value='{{ $childSecond->id }}'>---- {{ $childSecond->cate_name }}</option>
-                                                            @foreach($childSecond['children'] as $childThree)
-                                                                <option value='{{ $childThree->id }}'>------ {{ $childThree->cate_name }}</option>
-                                                            @endforeach
-                                                        @endforeach
-                                                    @endforeach
-                                                </li>
-                                            @endforeach 
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group">

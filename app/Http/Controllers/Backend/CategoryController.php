@@ -30,7 +30,8 @@ class CategoryController extends Controller
     public function create()
     {
         $data['data'] = Category::all();
-        $data["cates"] = Category::tree();
+        //$data["cates"] = Category::tree();
+        $data['cates'] = Category::all();
         return view('backend.categories.create')->with($data);
     }
 
@@ -64,7 +65,8 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $data["data"] = Category::findOrFail($id);
-        $data["cates"] = Category::tree();
+        //$data["cates"] = Category::tree();
+        $data['cates'] = Category::all();
         return view('backend.categories.edit')->with($data);
     }
 
@@ -79,10 +81,10 @@ class CategoryController extends Controller
     public function update(CategoryRequest $request, $id)
     {
         $editcate = Category::findOrFail($id);
-        $editcate->cate_name = $request->cate_name;
-        $editcate->cate_description = $request->cate_description;
-        $editcate->cate_status = $request->cate_status;
-        $editcate->parent_id = $request->parent_id;
+//        $editcate->cate_name = $request->cate_name;
+//        $editcate->cate_description = $request->cate_description;
+//        $editcate->cate_status = $request->cate_status;
+//        $editcate->parent_id = $request->parent_id;
         if ($request->hasFile('cate_image')) {
             if ($editcate->cate_image) {
                 file::delete(public_path('upload/') . $editcate->cate_image);
@@ -91,7 +93,7 @@ class CategoryController extends Controller
             $editcate->cate_image = $fileName;
             $request->file('cate_image')->move(public_path(config('app.upload')), $fileName);
         }
-        $editcate->save();
+        $editcate->update($request->all());
         $request->session()->flash('message', trans('messages.category_update'));
         return redirect()->route('admin.categories.index');
     }

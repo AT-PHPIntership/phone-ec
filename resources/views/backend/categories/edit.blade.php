@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
-                    @if (isset($errors) && $errors->any())
+                    @if ($errors && $errors->any())
                         <div class="alert alert-danger">
                             {!! trans('labels.prolem_input') !!}
                             <ul>
@@ -33,21 +33,10 @@
                                     <div class="form-group">
                                         <label>Category Parent</label>
                                         <select name="parent_id" class="form-control">
-                                            <option value="" selected disabled style="display:none">Please choose category parent</option>
-                                            <option value="0">----------Root----------</option>
+                                            <option value="0">----------Root----------</option>                                     
                                             @foreach($cates as $cate)
-                                                <option value="{{ $cate->id }}">{{ $cate->cate_name }}</option>
-                                                    @foreach($cate['children'] as $childFirst)
-                                                        <option value='{{ $childFirst->id }}'>-- {{ $childFirst->cate_name }}</option> 
-                                                        @foreach($childFirst['children'] as $childSecond)
-                                                            <option value='{{ $childSecond->id }}'>---- {{ $childSecond->cate_name }}</option>
-                                                            @foreach($childSecond['children'] as $childThree)
-                                                                <option value='{{ $childThree->id }}'>------ {{ $childThree->cate_name }}</option>
-                                                            @endforeach
-                                                        @endforeach
-                                                    @endforeach
-                                                </li>
-                                            @endforeach                           
+                                                <option value="{{ $cate->id }}" {!! $cate->id == $data->parent_id ? "selected" : "" !!}>{{ $cate->cate_name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group">
