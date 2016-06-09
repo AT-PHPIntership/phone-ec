@@ -42,7 +42,3 @@ return [
 	"btn_reset"  => "Reset",
 	"btn_cancel" => "Cancel",
 ];
-<<<<<<< HEAD
-
-=======
->>>>>>> 646366b6278219f4f2d04402da133af22d5c3eb6
