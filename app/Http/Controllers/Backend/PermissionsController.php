@@ -41,7 +41,6 @@ class PermissionsController extends Controller
     {
         // check permission is exists?
         if (!$this->checkPermissionExisted($request)) {
-            
             // set permission and create Permission
             $arrRole = $this->getRequestPermission($request);
             $newRole = new Permission($arrRole);

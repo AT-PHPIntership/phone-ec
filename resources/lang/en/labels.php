@@ -1,5 +1,9 @@
 <?php
 return [
+
+
+	'chat_work' 	=> 'chat work',
+	'direct_Chat'	=> 'Direct Chat',
 	"label_dashboard" => "Dashboard",
 	"label_users"     => "Users",
 	"label_products"  => "Products",

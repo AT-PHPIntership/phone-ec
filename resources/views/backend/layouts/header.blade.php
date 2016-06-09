@@ -24,13 +24,16 @@
     <link href="{!! asset('assets/backend/bower_components/datatables-responsive/css/dataTables.responsive.css') !!}" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="{!! asset('assets/backend/dist/css/sb-admin-2.css" rel="stylesheet') !!}">
+    <link href="{!! asset('assets/backend/dist/css/sb-admin-2.css') !!}" rel="stylesheet">
+
+    <!-- Chat Work -->
+    <link href="{!! asset('assets/backend/dist/css/chatwork.css') !!}" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="{!! asset('assets/backend/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css') !!}">
+    <link href="{!! asset('assets/backend/bower_components/font-awesome/css/font-awesome.min.css') !!}" rel="stylesheet" type='text/css'>
     
     <!-- jQuery -->
-    <script src="{!! asset('assets/backend/bower_components/jquery/dist/jquery.min.js') !!}"></script>
+    <script src="{!! asset('assets/backend/bower_components/jquery/dist/jquery.min.js') !!}" ></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
