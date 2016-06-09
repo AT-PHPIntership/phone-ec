@@ -5,10 +5,10 @@ use Illuminate\Database\Seeder;
 class DatabaseSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+    * Run the database seeds.
+    *
+    * @return void
+    */
     public function run()
     {
         $this->call(BrandsTableSeeder::class);
@@ -20,5 +20,8 @@ class DatabaseSeeder extends Seeder
         $this->call(RatingTableSeeder::class);
         $this->call(ContactTableSeeder::class);
         $this->call(PermissionsTableSeeder::class);
+        $this->call(GroupsTableSeeder::class);
+        $this->call(GroupPermisstionsTableSeeder::class);
+        $this->call(AdminGroupTableSeeder::class);
     }
 }

@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Backend\Permission;
+use Illuminate\Database\Eloquent\ModelNotFoundException as ModelNotFoundException;
 
 class PermissionsController extends Controller
 {
@@ -67,8 +68,13 @@ class PermissionsController extends Controller
      */
     public function edit($id)
     {
-        $data['modules']    = $this->getModule() ;
-        $data['permission'] = Permission::findOrFail($id);
+        $data['modules'] = $this->getModule();
+
+        try {
+            $data['permission'] = Permission::findOrFail($id);
+        } catch (ModelNotFoundException $e) {
+            abort(404);
+        }
 
         return view('backend.permissions.edit')->with($data);
     }
@@ -85,7 +91,12 @@ class PermissionsController extends Controller
     {
         if (!$this->checkPermissionExisted($request)) {
             // get permission with id
-            $role = Permission::findOrFail($id);
+            try {
+                $role = Permission::findOrFail($id);
+            } catch (ModelNotFoundException $e) {
+                abort(404);
+            }
+
             $role->module = $request->module;
 
             // set permission
@@ -113,7 +124,11 @@ class PermissionsController extends Controller
      */
     public function destroy($id, Request $request)
     {
-        $permission = Permission::findOrFail($id);
+        try {
+            $permission = Permission::findOrFail($id);
+        } catch (ModelNotFoundException $e) {
+            abort(404);
+        }
 
         // check delete permission ok?
         if ($permission->delete()) {
@@ -178,7 +193,7 @@ class PermissionsController extends Controller
     private function getRequestPermission($request)
     {
         // set permission
-        $permissions   = config('app.arr_permissions');
+        $permissions = config('app.arr_permissions');
 
         $arrRole = array();
 
