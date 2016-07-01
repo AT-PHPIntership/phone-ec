@@ -56,7 +56,7 @@ class LoginTest extends TestCase
     	//Test Register
     	$this->visit('/register')
         ->type($user->name.'testlogin','name')
-        ->type($user->name.rand().'@gmail.com','email')
+        ->type('testregister'.rand().'@gmail.com','email')
         ->type($user->phone,'phone')
         ->type($user->address,'address')
         ->type('847464','password')
