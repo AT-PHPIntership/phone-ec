@@ -29,7 +29,9 @@
                                                 <option value="3">Orders was shipped successfully</option>
                                             </select>
                                         </div>
-                                        <button type="submit" class="btn btn-primary" name='Update'>Update</button>
+                                        <input type="hidden" name="email" value="{!! $orders->users->email !!}">                                        
+                                        <button type="submit" id="show" class="btn btn-primary" name='Update'>Update</button>
+                                        <div id="loading"><img src="{{ url('assets/backend/dist/img/loading_icon.gif') }}" width="70"></div>
                                     </form>
                                 </div>
                                 <!-- /.col-lg-12 (nested) -->
